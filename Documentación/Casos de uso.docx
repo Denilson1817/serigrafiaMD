@@ -1,0 +1,61 @@
+Sección	Contenido
+Designación	CU-CREARCATA-01
+Nombre	Crear nuevo catalogo
+Autores 	Administrador
+Prioridad	Importancia para el correcto funcionamiento del sistema: ALTO
+Calidad del sistema: MEDIANO
+Seguridad del sistema: BAJO
+Estado crítico	Mediano
+Origen	Dueño del sistema
+Persona responsable	Scrum Team
+Descripción	El administrador del negocio de serigrafía, puede crear un nuevo catálogo de diseños según se requiera, a través del sistema web, los catálogos se guardaran en la base de datos.
+Evento disparador	El administrador, requiere crear un nuevo catálogo para los diseños de su negocio.
+Actores	Administrador
+Precondiciones	1-	El administrador, debe ingresar al sistema por una cuenta especial, con la cual tenga permisos exclusivos.
+2-	El administrador requiere crear un nuevo catálogo.
+Postcondiciones 	1-	Los nuevos catálogos son ingresados al sistemas, estos se deben agregar a la base de datos y a la interfaz del catálogo.
+Resultado	Uno o más catálogos son agregados al sistema web del negocio de serigrafía.
+Escenario principal	1-	El administrador ingresa al sistema con una cuenta única con opciones exclusivas.
+2-	El administrador ingresa a la interfaz de catálogo de diseño.
+3-	El administrador tiene una opción para agregar un nuevo catálogo de diseños.
+4-	El administrador interactúa con una interfaz la cual, de una manera sencilla, le permita crear un nuevo catálogo.
+5-	Los catálogo se agregan con éxito a la interfaz del sistema y a la base de datos.
+Escenarios alternativos	1-	El administrador no ingresa al sistema de la manera correcta.
+Escenarios de excepción	1-	Los datos necesarios para agregar un nuevo catálogo se encuentren incompletos.
+2-	Los datos ya existen dentro de la base de datos.
+3-	Los datos ingresados sean erróneos.
+Cualidades 	1-	Orden de los elementos de la interfaz
+2-	Tamaños de los elementos de la interfaz
+3-	Validación de la información
+4-	Usabilidad
+
+Sección	Contenido
+Designación	CU-AGRECATA-02
+Nombre	Agregar un nuevo al catálogo de diseños
+Autores 	Administrador
+Prioridad	Importancia para el correcto funcionamiento del sistema: MEDIANO
+Calidad del sistema: MEDIANO
+Seguridad del sistema: BAJO
+Estado crítico	Mediano
+Origen	Dueño del sistema
+Persona responsable	Scrum Team
+Descripción	El administrador del negocio de serigrafía, puede agregar datos o elementos al catálogo de diseños, a través del sistema web, elementos que serán agregados a la base de datos.
+Evento disparador	El administrador, requiere agregar un elemento o elementos a un catálogo de diseños para su negocio.
+Actores	Administrador
+Precondiciones	1-	El administrador, debe ingresar al sistema por una cuenta especial, con la cual tenga permisos exclusivos.
+Postcondiciones 	1-	Los elementos agregados a un catálogo de diseño se deben poder agregar a la base de datos y a la interfaz del catálogo.
+Resultado	Uno o más elementos agregados a un catálogo de diseño del negocio de serigrafía.
+Escenario principal	1-	El administrador ingresa al sistema con una cuenta única con opciones exclusivas.
+2-	El administrador ingresa a la interfaz de catálogo de diseño.
+3-	El administrador tiene una opción para agregar elementos a un catálogo de diseños.
+4-	El administrador interactúa con una interfaz la cual, de una manera sencilla, le permita agregar nuevos elementos a un catálogo.
+5-	Los elementos se agregan con éxito a la interfaz del sistema y a la base de datos.
+Escenarios alternativos	1-	El administrador no ingresa al sistema de la manera correcta.
+Escenarios de excepción	1.	Los datos necesarios para agregar nuevos elementos al catálogo se encuentren incompletos.
+2.	Los datos ya existen dentro de la base de datos.
+3.	Los datos ingresados son erróneos.
+Cualidades 	1-	Orden de los elementos de la interfaz
+2-	Tamaños de los elementos de la interfaz
+3-	Validación de la información
+4-	Usabilidad
+
