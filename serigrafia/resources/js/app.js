@@ -6,10 +6,8 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-function crearNuevoCatalogo(){
-    document.getElementById("crearNuevoC").style.display="block";
-}
-
-function cerrarImgNueCat(){
-    document.getElementById("crearNuevoC").style.display="none";
-}
+$(document).ready(function () {
+    $(document).on('click', '#newCatalog', function (e) {
+        document.getElementById("crearNuevoC").style.display="block";
+    });
+});
