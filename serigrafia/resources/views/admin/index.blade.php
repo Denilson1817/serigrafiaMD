@@ -88,7 +88,7 @@
            </a>
           </div>
         </form>
-      </div>  
+</div>  
 
 <div class="flex flex-wrap -mx-3 p-3 mb-6 text-black">
     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -107,7 +107,7 @@
             <div class="px-6 pt-4 pb-2">
                 <div class="flex flex-wrap -mx-3 mb-6 text-black">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <a class="bg-gray-600 hover:bg-gray-700 text-white hover:text-black font-semibold py-2 px-4 rounded shadow" href="PreguntaDiseño">
+                        <a class="bg-gray-600 hover:bg-gray-700 text-white hover:text-black font-semibold py-2 px-4 rounded shadow" href='PreguntaDiseño'>
                             Eliminar
                         </a>
                     </div>
