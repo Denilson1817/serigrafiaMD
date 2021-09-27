@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CatalogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,6 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 Route::post('/admin/catalog/store', [CatalogController::class, 'store'])->name('catalog.store');
+Route::get('/admin/catalog/edit/{id}', [CatalogController::class, 'edit'])->name('catalog.edit');
+Route::post('/admin/catalog/update', [CatalogController::class, 'update'])->name('catalog.update');
+Route::post('/admin/catalog/addDesing', [CatalogController::class, 'addDesing'])->name('catalog.addDesing');

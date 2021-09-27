@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Catalogo;
+use App\Models\Diseno as ModelsDiseno;
+use App\Models\Diseno_color;
+use App\Models\Diseno_dimension;
+use Diseno;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class CatalogController extends Controller
 {
-    protected $messages = [
+    /*protected $messages = [
         'name.required'     => 'Es necesario ingresar un nombre',
         'capacity.required' => 'Es necesario ingresar una capacidad',
         'capacity.integer'  => 'La capacidad debe ser expresada en números',
@@ -28,34 +33,53 @@ class CatalogController extends Controller
         'state'    => 'required',
         'city'     => 'required',
         'items'    => 'required'
-    ];
+    ];*/
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), $this->validations, $this->messages);
+        /*$validator = Validator::make($request->all(), $this->validations, $this->messages);
         if ($validator->fails()) 
         {
             session()->flash("error", "«Por favor verifica que los campos sean correctos»");
             return back()->withErrors($validator)->withInput();
-        }
-        $classroom           = new Classroom();
-        $classroom->name     = $request->name;
-        $classroom->capacity = $request->capacity;
-        $classroom->address  = $request->address;
-        $classroom->cp       = $request->cp;
-        $classroom->state_id = $request->state;
-        $classroom->city     = $request->city;
+        }*/
+        $catalog           = new Catalogo();
+        $catalog->Nombre     = $request->nombre;
+        $catalog->Categoria = $request->categoria;
+        $catalog->save();
 
-        $classroom->save();
+        $diseno = new ModelsDiseno();
+        $diseno->Foto = $request->foto;
+        $diseno->Textura = $request->textura;
+        $diseno->ID_Catalago = $catalog->id;
+        $diseno->save();
 
-        foreach ($request->items as $item) 
-        {
-            $itemObject               = new Item();
-            $itemObject->name         = $item['id'];
-            $itemObject->quantity     = $item['cantidad'];
-            $itemObject->classroom_id = $classroom['id'];
-            $itemObject->save();
-        }
-        session()->flash("success", "Salón agregado");
-        return redirect()->route('classroom.search');
+        $diseno_color = new Diseno_color();
+        $diseno_color->Color = $request->color;
+        $diseno_color->IDDiseno = $diseno->id;
+        $diseno_color->save();
+
+        $diseno_dimen = new Diseno_dimension();
+        $diseno_dimen->DimensioY = $request->dimension_y;
+        $diseno_dimen->DimensioX = $request->dimension_x;
+        $diseno_dimen->IDDiseno = $diseno->id;
+        $diseno_dimen->save();
+        
+        session()->flash("success", "Catálogo agregado");
+        return redirect()->route('dashboard');
+    }
+    public function edit($id)
+    {
+        $catalog = Catalogo::find($id);
+        return view('admin.edit', ['catalog' => $catalog]);
+    }
+    public function update(Request $request)
+    {
+        $catalog = Catalogo::find($request->id_catalog);
+        $catalog->Nombre     = $request->nombre;
+        $catalog->Categoria = $request->categoria;
+        $catalog->save();
+        session()->flash("success", "Catálogo editado");
+        return back()->withInput();
+        //return redirect()->route('catalog.edit', $request->id_catalog);
     }
 }
