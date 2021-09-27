@@ -61,7 +61,7 @@
     </div>
 </div>
 
-<div class="w-full max-w-xs">
+<div class="w-full max-w-xs" id="PreguntaDiseño">
         <form class="bg-whtie shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <div class="mb-4, text-center">
             <label class="font-serif text-lg text-gray-800 text-center" for="username">
