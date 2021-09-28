@@ -61,6 +61,54 @@
     </div>
 </div>
 
+<div class="eliminar catalogo w-full max-w-xs" id="ElimCatalogo" hidden>
+        <form class="bg-whtie shadow-md rounded px-8 pt-6 pb-8 mb-4" >
+          <div class="mb-4, text-center">
+            <label class="font-serif text-lg text-gray-800 text-center" for="username">
+              ¿Estas seguro de eliminar este catálogo?
+            </label>
+          </div>
+
+          <div class="text-center">
+            <img src="Catalogo.jpg">
+          </div>
+
+          <div class="mb-6, text-center">
+            <label class="font-serif text-lg text-gray-800 text-center" for="password">
+              Nombre del catálogo
+            </label>            
+          </div>
+          
+          <div class="mb-4, text-center">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="motivo">
+              ¿Cual es el motivo de la baja del catálogo?
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="motivo" type="text" placeholder="Motivo...">
+          </div>
+          <div class="mb-6">
+            <p class="text-red-500 text-xs italic"></p>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="md:flex md:items-center">
+                <div class="md:w-1/3"></div>
+                <div class="md:w-2/3">
+                </div>
+              </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="MotivoCatalogo.html">
+               Enviar
+            </a>
+
+            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="Inicio.html">
+              Cancelar
+            </a>
+
+          </div>
+        </form>
+</div>  
+
+
 <div class="flex flex-wrap -mx-3 p-3 mb-6 text-black">
     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
         <div class="nuevo-catalogo">
@@ -78,9 +126,9 @@
             <div class="px-6 pt-4 pb-2">
                 <div class="flex flex-wrap -mx-3 mb-6 text-black">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <a class="bg-gray-600 hover:bg-gray-700 text-white hover:text-black font-semibold py-2 px-4 rounded shadow">
-                            Eliminar
-                        </a>
+                        <div class="eliminar-catalogo">
+                            <button id="elimi_catalogo" class="link_eliminar_catalogo">Eliminar</button>
+                        </div>
                     </div>
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <a class="bg-blue-600 hover:bg-blue-700 text-white hover:text-black font-semibold py-2 px-4 rounded shadow" href="{{route('catalog.edit', $catalog->id)}}">
