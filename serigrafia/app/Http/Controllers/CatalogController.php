@@ -72,6 +72,7 @@ class CatalogController extends Controller
         $catalog = Catalogo::find($id);
         return view('admin.edit', ['catalog' => $catalog]);
     }
+
     public function update(Request $request)
     {
         $catalog = Catalogo::find($request->id_catalog);
@@ -81,5 +82,14 @@ class CatalogController extends Controller
         session()->flash("success", "Catálogo editado");
         return back()->withInput();
         //return redirect()->route('catalog.edit', $request->id_catalog);
+    }
+
+    public function eliminar(){
+        $catalog = Catalogo::find($request->id_catalog);
+        $catalog->Nombre     = $request->nombre;
+        $catalog->Categoria = $request->categoria;
+        $catalog->save();
+        session()->flash("success", "Catálogo editado");
+        return back()->withInput();
     }
 }
