@@ -84,7 +84,7 @@ class CatalogController extends Controller
         //return redirect()->route('catalog.edit', $request->id_catalog);
     }
 
-    public function eliminar(){
+    public function eliminar($id){
         $catalog = Catalogo::find($id);
         return view('admin.edit', ['catalog' => $catalog]);
     }
