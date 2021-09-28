@@ -88,4 +88,31 @@ class CatalogController extends Controller
         $catalog = Catalogo::find($id);
         return view('admin.edit', ['catalog' => $catalog]);
     }
+
+    public function addDesing(Request $request){
+        $diseno = new ModelsDiseno();
+        $diseno->Foto = $request->foto;
+        $diseno->Textura = $request->textura;
+        $diseno->ID_Catalago = $catalog->id;
+        $diseno->save();
+
+        $catalog           = new Catalogo();
+        $catalog->Nombre     = $request->nombre;
+        $catalog->Categoria = $request->categoria;
+        $catalog->save();
+
+        $diseno_color = new Diseno_color();
+        $diseno_color->Color = $request->color;
+        $diseno_color->IDDiseno = $diseno->id;
+        $diseno_color->save();
+
+        $diseno_dimen = new Diseno_dimension();
+        $diseno_dimen->DimensioY = $request->dimension_y;
+        $diseno_dimen->DimensioX = $request->dimension_x;
+        $diseno_dimen->IDDiseno = $diseno->id;
+        $diseno_dimen->save();
+        
+        session()->flash("success", "Catálogo agregado");
+        return redirect()->route('dashboard');
+    }
 }
