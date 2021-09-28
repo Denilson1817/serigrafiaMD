@@ -85,11 +85,7 @@ class CatalogController extends Controller
     }
 
     public function eliminar(){
-        $catalog = Catalogo::find($request->id_catalog);
-        $catalog->Nombre     = $request->nombre;
-        $catalog->Categoria = $request->categoria;
-        $catalog->save();
-        session()->flash("success", "Catálogo editado");
-        return back()->withInput();
+        $catalog = Catalogo::find($id);
+        return view('admin.edit', ['catalog' => $catalog]);
     }
 }
