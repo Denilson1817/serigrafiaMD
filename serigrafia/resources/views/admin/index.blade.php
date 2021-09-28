@@ -61,35 +61,6 @@
     </div>
 </div>
 
-<div class="w-full max-w-xs" id="PreguntaDiseño">
-        <form class="bg-whtie shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <div class="mb-4, text-center">
-            <label class="font-serif text-lg text-gray-800 text-center" for="username">
-              ¿Estas seguro de eliminar este diseño?
-            </label>
-          </div>
-
-          <div class="text-center">
-            <img src="Ejemplo.png">
-          </div>
-
-          <div class="mb-6, text-center">
-            <label class="font-serif text-lg text-gray-800 text-center" for="password">
-              Nombre del diseño
-            </label>            
-          </div>
-          <div class="flex items-center justify-between">
-            <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="MotivoDiseño.html">
-              Aceptar
-           </a>
-
-           <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="Inicio.html">
-             Cancelar
-           </a>
-          </div>
-        </form>
-</div>  
-
 <div class="flex flex-wrap -mx-3 p-3 mb-6 text-black">
     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
         <div class="nuevo-catalogo">
