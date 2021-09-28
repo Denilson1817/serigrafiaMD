@@ -86,7 +86,7 @@ class CatalogController extends Controller
 
     public function eliminar($id){
         $catalog = Catalogo::find($id);
-        return view('admin.edit', ['catalog' => $catalog]);
+        return view('admin.eliminar', ['catalog' => $catalog]);
     }
 
     public function addDesing(Request $request){
