@@ -8,7 +8,7 @@
         <h1 class="titulo-2">Catálogos</h1>
     </div>
 </header>
-<form action="{{route('catalog.update')}}" method="post">
+<form action="{{route('catalog.eliminar')}}" method="post">
     @csrf
     <div class="grid grid-cols-6 gap-4">
         <div class="col-span-6">
