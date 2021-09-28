@@ -28,7 +28,7 @@
         </div>
     </div>
 </form>
-<form action="{{route('catalog.deleteCatalogo')}}" method="post">
+<form action="{{route('catalog.deleteCatalogo')}}">
     @csrf
     <div class="grid grid-cols-6 gap-4">
         <div class="col-span-6">
