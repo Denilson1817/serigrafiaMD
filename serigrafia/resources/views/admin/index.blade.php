@@ -78,7 +78,7 @@
             <div class="px-6 pt-4 pb-2">
                 <div class="flex flex-wrap -mx-3 mb-6 text-black">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <a class="button bg-blue-600 hover:bg-blue-700 text-white hover:text-black font-semibold py-2 px-4 rounded shadow" href="{{route('catalog.eliminar', $catalog->id)}}">
+                        <a class="bg-blue-600 hover:bg-blue-700 text-white hover:text-black font-semibold py-2 px-4 rounded shadow" href="{{route('catalog.eliminar', $catalog->id)}}">
                             Eliminar
                         </a>
                     </div>
