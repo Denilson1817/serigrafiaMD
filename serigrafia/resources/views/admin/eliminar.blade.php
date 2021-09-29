@@ -1,48 +1,31 @@
 @extends('layouts.app')
 @section('content')
-<div class="eliminar_Diseño_ w-full max-w-xs" id="ElimDiseño" hidden>
-        <form class="bg-whtie shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <div class="mb-4, text-center">
-            <label class="font-serif text-lg text-gray-800 text-center" for="username">
-              ¿Estas seguro de eliminar este diseño?
-            </label>
-          </div>
-
-          <div class="text-center">
-            <img src="Ejemplo.png">
-          </div>
-
-          <div class="mb-6, text-center">
-            <label class="font-serif text-lg text-gray-800 text-center" for="password">
-              Nombre del diseño
-            </label>            
-          </div>
-          <div class="mb-4, text-center">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="motivo">
-              ¿Cual es el motivo de la baja del catálogo?
-            </label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="motivo" type="text" placeholder="Motivo...">
-          </div>
-          <div class="mb-6">
-            <p class="text-red-500 text-xs italic"></p>
-          </div>
-          <div class="flex items-center justify-between">
-            <div class="md:flex md:items-center">
-                <div class="md:w-1/3"></div>
-                <div class="md:w-2/3">
-                </div>
-              </div>
-          </div>
-          <div class="flex items-center justify-between">
-            <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="MotivoCatalogo.html">
-               Enviar
-            </a>
-
-            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="Inicio.html">
-              Cancelar
-            </a>
-          </div>
-        </form>
-      </div>
-@endforeach
+<header class="interfaz_Principal">
+    <div class="titulo_seri">
+        <h2 class="titulo-1">Serigrafía</h2>
+    </div>
+    <div class="titulo_cata">
+        <h1 class="titulo-2">Catálogos</h1>
+    </div>
+</header>
+<form action="{{route('catalog.update')}}" method="post">
+    @csrf
+    <div class="grid grid-cols-6 gap-4">
+        <div class="col-span-6">
+            <h3 class="w-full text-xl">¿Estas seguro de eliminar el catalogo?</h3>
+        </div>
+        <input type="hidden" name="id_catalog" id="id_catalog" value="{{$catalog->id}}">
+        <div class="col-span-6 md:col-span-3">
+            <label for="nombre">Nombre del catalogo: </label>
+            <input type="text" name="nombre" id="nombre" class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" value="{{$catalog->Nombre}}">
+        </div>
+        <div class="col-span-6 md:col-span-3">
+            <label for="categoria">Categoría del catalogo: </label>
+            <input type="text" name="categoria" id="categoria" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" value="{{$catalog->Categoria}}">
+        </div>
+        <div class="col-span-6">
+            <input type="submit" value="Aceptar" class="crear_cata_enviar">
+        </div>
+    </div>
+</form>
 @endsection
