@@ -5,7 +5,7 @@
         <h2 class="titulo-1">Serigrafía</h2>
     </div>
     <div class="titulo_cata">
-        <h1 class="titulo-2">Catálogos</h1>
+        <h1 class="titulo-2">Catáloguuuuuuos</h1>
     </div>
 </header>
 <!--<form action="{{route('catalog.eliminar')}}" method="post">-->
