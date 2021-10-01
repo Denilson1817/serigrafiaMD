@@ -11,6 +11,8 @@ class Diseno extends Model
     protected $fillable = [
 		'Textura',
 		'Foto',
+		'Estado',
 		'ID_Catalago'
+		
 	];
 }
