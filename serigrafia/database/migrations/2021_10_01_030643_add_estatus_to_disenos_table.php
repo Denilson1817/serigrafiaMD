@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddEstatusToDisenoTable extends Migration
+class AddEstatusToDisenosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddEstatusToDisenoTable extends Migration
      */
     public function up()
     {
-        Schema::table('diseno', function (Blueprint $table) {
-            $table->string('estatus')->nullable();
+        Schema::table('disenos', function (Blueprint $table) {
+            $table->int('estatus')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddEstatusToDisenoTable extends Migration
      */
     public function down()
     {
-        Schema::table('diseno', function (Blueprint $table) {
-            $table->dropColumn('estatus'); 
+        Schema::table('disenos', function (Blueprint $table) {
+            $table->dropColumn('estatus');
         });
     }
 }
