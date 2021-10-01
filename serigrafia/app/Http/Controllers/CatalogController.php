@@ -101,9 +101,17 @@ class CatalogController extends Controller
         return back()->withInput();
     }
 
-    public function eliminar($id){
+    public function deleteCatalog($id){
         $catalog = Catalogo::find($id);
-        return view('admin.eliminar', ['catalog' => $catalog]);
+        return view('admin.deleteCatalog', ['catalog' => $catalog]);
+    }
+    public function deleteDiseno($id){
+        $catalog = Catalogo::find($id);
+        return view('admin.deleteDiseno', ['catalog' => $catalog]);
+    }
+
+    public function dashboard(){
+        return view('admin.index');
     }
 
     public function addDesing(Request $request){

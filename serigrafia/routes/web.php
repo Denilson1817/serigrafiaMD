@@ -22,8 +22,10 @@ Route::get('/dashboard', function () {
     return view('admin.index');
 })->name('dashboard');
 
+Route::get('/admin/catalog/dashboard', [CatalogController::class, 'dashboard'])->name('catalog.dashboard');
 Route::post('/admin/catalog/store', [CatalogController::class, 'store'])->name('catalog.store');
 Route::get('/admin/catalog/edit/{id}', [CatalogController::class, 'edit'])->name('catalog.edit');
 Route::post('/admin/catalog/update', [CatalogController::class, 'update'])->name('catalog.update');
 Route::post('/admin/catalog/addDesing', [CatalogController::class, 'addDesing'])->name('catalog.addDesing');
-Route::get('/admin/catalog/eliminar/{id}', [CatalogController::class, 'eliminar'])->name('catalog.eliminar');
+Route::get('/admin/catalog/deleteCatalog/{id}', [CatalogController::class, 'deleteCatalog'])->name('catalog.deleteCatalog');
+Route::get('/admin/catalog/deleteDiseno/{id}', [CatalogController::class, 'deleteDiseno'])->name('catalog.deleteDiseno');
