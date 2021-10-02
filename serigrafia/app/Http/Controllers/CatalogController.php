@@ -109,17 +109,18 @@ class CatalogController extends Controller
         $catalog = Catalogo::find($id);
         return view('admin.deleteDiseno', ['catalog' => $catalog]);
     }
+    
 
     public function dashboard(){
         return view('admin.index');
     }
-
+    
     public function addDesing(Request $request){
         $validator = Validator::make($request->all(), $this->validationsDesing, $this->messagesDesing);
         if ($validator->fails()) 
         {
             session()->flash("error", "«Por favor verifica que los campos del diseño sean correctos»");
-            return back()->withErrors($validator)->withInput();
+            return back()->withInput();
         }
 
         $diseno = new ModelsDiseno();
@@ -142,4 +143,5 @@ class CatalogController extends Controller
         session()->flash("success", "Diseño agregado al catálogo");
         return back()->withInput();
     }
+    
 }
