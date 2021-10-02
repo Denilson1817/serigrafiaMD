@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddEstatusToDisenosTable extends Migration
+class CreateDisenoEliminadosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddEstatusToDisenosTable extends Migration
      */
     public function up()
     {
-        Schema::table('disenos', function (Blueprint $table) {
-            $table->int('estatus')->nullable();
+        Schema::create('diseno_eliminados', function (Blueprint $table) {
+            $table->id();
+            $table->string("Razon");
+            $table->string("Nombre");
+            $table->foreignId("IDDisenos");
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddEstatusToDisenosTable extends Migration
      */
     public function down()
     {
-        Schema::table('disenos', function (Blueprint $table) {
-            $table->dropColumn('estatus');
-        });
+        Schema::dropIfExists('diseno_eliminados');
     }
 }
