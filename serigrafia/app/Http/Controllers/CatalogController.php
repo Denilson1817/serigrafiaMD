@@ -149,6 +149,7 @@ class CatalogController extends Controller
         $diseno_estado = new Diseno_Estado();
         $diseno_estado->Estado = 1;
         $diseno_estado->save();
+        
 
         
         session()->flash("success", "Diseño agregado al catálogo");
