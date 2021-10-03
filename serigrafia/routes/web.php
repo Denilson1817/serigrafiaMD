@@ -29,3 +29,5 @@ Route::post('/admin/catalog/update', [CatalogController::class, 'update'])->name
 Route::post('/admin/catalog/addDesing', [CatalogController::class, 'addDesing'])->name('catalog.addDesing');
 Route::get('/admin/catalog/deleteCatalog/{id}', [CatalogController::class, 'deleteCatalog'])->name('catalog.deleteCatalog');
 Route::get('/admin/catalog/deleteDiseno/{id}', [CatalogController::class, 'deleteDiseno'])->name('catalog.deleteDiseno');
+Route::get('/admin/catalog/changeStatusDiseno/{id}', [CatalogController::class, 'changeStatusDiseno'])->name('catalog.changeStatusDiseno');
+Route::get('/admin/catalog/changeStatusCatalog/{id}', [CatalogController::class, 'changeStatusCatalog'])->name('catalog.changeStatusCatalog');
