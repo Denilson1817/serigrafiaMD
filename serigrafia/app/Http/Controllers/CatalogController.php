@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Catalogo;
+use App\Models\CatalogoEliminado;
+use App\Models\DisenoEliminado;
 use App\Models\Diseno as ModelsDiseno;
 use App\Models\Diseno_color;
 use App\Models\Diseno_dimension;
-use Diseno;
+use App\Models\Diseno;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -76,11 +78,6 @@ class CatalogController extends Controller
         $diseno_dimen->IDDiseno = $diseno->id;
         $diseno_dimen->save();
 
-        $diseno_estado = new Diseno_Estado();
-        $diseno_estado->Estado = 1;
-        $diseno_estado->save();
-
-
         
         session()->flash("success", "Catálogo agregado");
         return redirect()->route('dashboard');
@@ -137,12 +134,30 @@ class CatalogController extends Controller
 
     }
     
-    public function enviarCatalog(){
-        return view('admin.index'); 
+    //Aqui se envian los datos de DeleteCatalogo a la BD
+    public function enviarCatalog(Request $request){
 
+        $enviar = new CatalogoEliminado();
+        $enviar->Razon = $request->razon;
+        $enviar->Nombre = $request->nombre;
+        $enviar->IDCatalogo = $request->idcatalogo;
+        
+        $enviar->save();
+
+        return back()->with('mensaje', 'Se ha dado de baja el catalogo');
     }
+
+    //Aquí se envian los datos de DeleteDiseno a la BD
     public function enviarDiseno(){
-        return view('admin.index');
+
+        $enviarD = new DisenoEliminado();
+        $enviarD->Razon = $request->razon;
+        $enviarD->Nombre = $request->nombre;
+        $enviarD->IDiseno = $request->iddiseno;
+        
+        $enviarD->save();
+
+        return back()->with('mensaje', 'Se ha dado de baja el catalogo');
     
     }
 
