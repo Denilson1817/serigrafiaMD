@@ -138,10 +138,12 @@ class CatalogController extends Controller
     }
     
     public function enviarCatalog(){
+        return view('admin.index'); 
 
     }
     public function enviarDiseno(){
-
+        return view('admin.index');
+    
     }
 
     public function dashboard(){
