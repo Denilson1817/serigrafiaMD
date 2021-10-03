@@ -60,20 +60,13 @@
               </div>
           </div>
           <div class="flex items-center justify-between">
-<<<<<<< HEAD
-          <button type="button" class= "bg-blue-600 hover:bg-blue-700 text-white hover:text-black font-semibold py-2 px-4 rounded shadow" onclick="dashboard()">Enviar</button>
-          <!--  
-          <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="MotivoCatalogo.html">
-=======
           <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{route('catalog.enviarCatalog')}}">
->>>>>>> 5b776a27ddc920fda05cd5911029ea3921cbf1d0
                Enviar
           </a>
   
           <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="{{route('catalog.dashboard')}}">
               Cancelar
           </a>
-
           </div>
         </form>
       </div>  
