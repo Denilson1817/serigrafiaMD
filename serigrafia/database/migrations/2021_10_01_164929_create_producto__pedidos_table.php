@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCatalogosTable extends Migration
+class CreateProductoPedidosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateCatalogosTable extends Migration
      */
     public function up()
     {
-        Schema::create('catalogos', function (Blueprint $table) {
-            $table->id();
-            $table->string('Nombre');
-            $table->string('Categoria');
-            $table->boolean("Estado");
+        Schema::create('producto__pedidos', function (Blueprint $table) {
+            $table->foreignId('IDPedido');
+            $table->foreignId('IDproducto');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateCatalogosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('catalogos');
+        Schema::dropIfExists('producto__pedidos');
     }
 }

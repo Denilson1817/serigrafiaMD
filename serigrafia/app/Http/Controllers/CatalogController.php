@@ -40,7 +40,7 @@ class CatalogController extends Controller
     ];
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), $this->validationsCatalog, $this->messagesCatalog);
+        /*$validator = Validator::make($request->all(), $this->validationsCatalog, $this->messagesCatalog);
         if ($validator->fails()) 
         {
             session()->flash("error", "«Por favor verifica que los campos del catálogo sean correctos»");
@@ -52,10 +52,11 @@ class CatalogController extends Controller
         {
             session()->flash("error", "«Por favor verifica que los campos del diseño sean correctos»");
             return back()->withErrors($validator)->withInput();
-        }
+        }*/
         $catalog           = new Catalogo();
         $catalog->Nombre     = $request->nombre;
         $catalog->Categoria = $request->categoria;
+        $catalog->Estado = 1;
         $catalog->save();
 
         $diseno = new ModelsDiseno();
@@ -74,6 +75,12 @@ class CatalogController extends Controller
         $diseno_dimen->DimensioX = $request->dimension_x;
         $diseno_dimen->IDDiseno = $diseno->id;
         $diseno_dimen->save();
+
+        $diseno_estado = new Diseno_Estado();
+        $diseno_estado->Estado = 1;
+        $diseno_estado->save();
+
+
         
         session()->flash("success", "Catálogo agregado");
         return redirect()->route('dashboard');
@@ -86,12 +93,12 @@ class CatalogController extends Controller
 
     public function update(Request $request)
     {
-        $validator = Validator::make($request->all(), $this->validationsCatalog, $this->messagesCatalog);
+        /*$validator = Validator::make($request->all(), $this->validationsCatalog, $this->messagesCatalog);
         if ($validator->fails()) 
         {
             session()->flash("error", "«Por favor verifica que los campos del catálogo sean correctos»");
             return back()->withErrors($validator)->withInput();
-        }
+        }*/
 
         $catalog = Catalogo::find($request->id_catalog);
         $catalog->Nombre     = $request->nombre;
@@ -109,18 +116,47 @@ class CatalogController extends Controller
         $catalog = Catalogo::find($id);
         return view('admin.deleteDiseno', ['catalog' => $catalog]);
     }
+    public function change_statusd(disenos $disenos){
+        if($disenos->Estado==1){
+            $disenos->update(['Estado'=>0]);
+        }else{
+            $disenos->update(['Estado'=>1]);
+            return view('admin.deleteDiseno', ['catalog' => $catalog]);
+
+        }
+
+    }
+    public function change_statusc(disenos $catalog){
+        if($catalog->Estado==1){
+            $catalog->update(['Estado'=>0]);
+        }else{
+            $catalog->update(['Estado'=>1]);
+            return view('admin.deleteCatalog', ['catalog' => $catalog]);
+
+        }
+
+    }
+    
+    public function enviarCatalog(){
+        return view('admin.index'); 
+
+    }
+    public function enviarDiseno(){
+        return view('admin.index');
+    
+    }
 
     public function dashboard(){
         return view('admin.index');
     }
-
+    
     public function addDesing(Request $request){
-        $validator = Validator::make($request->all(), $this->validationsDesing, $this->messagesDesing);
+        /*$validator = Validator::make($request->all(), $this->validationsDesing, $this->messagesDesing);
         if ($validator->fails()) 
         {
             session()->flash("error", "«Por favor verifica que los campos del diseño sean correctos»");
             return back()->withErrors($validator)->withInput();
-        }
+        }*/
 
         $diseno = new ModelsDiseno();
         $diseno->Foto = $request->foto;
@@ -138,8 +174,15 @@ class CatalogController extends Controller
         $diseno_dimen->DimensioX = $request->dimension_x;
         $diseno_dimen->IDDiseno = $diseno->id;
         $diseno_dimen->save();
+
+        $diseno_estado = new Diseno_Estado();
+        $diseno_estado->Estado = 1;
+        $diseno_estado->save();
+        
+
         
         session()->flash("success", "Diseño agregado al catálogo");
         return back()->withInput();
     }
+    
 }
