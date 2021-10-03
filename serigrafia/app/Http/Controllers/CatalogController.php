@@ -56,6 +56,7 @@ class CatalogController extends Controller
         $catalog           = new Catalogo();
         $catalog->Nombre     = $request->nombre;
         $catalog->Categoria = $request->categoria;
+        $catalog->Estado = 1;
         $catalog->save();
 
         $diseno = new ModelsDiseno();
@@ -74,6 +75,12 @@ class CatalogController extends Controller
         $diseno_dimen->DimensioX = $request->dimension_x;
         $diseno_dimen->IDDiseno = $diseno->id;
         $diseno_dimen->save();
+
+        $diseno_estado = new Diseno_Estado();
+        $diseno_estado->Estado = 1;
+        $diseno_estado->save();
+
+
         
         session()->flash("success", "Catálogo agregado");
         return redirect()->route('dashboard');
@@ -139,6 +146,11 @@ class CatalogController extends Controller
         $diseno_dimen->DimensioX = $request->dimension_x;
         $diseno_dimen->IDDiseno = $diseno->id;
         $diseno_dimen->save();
+
+        $diseno_estado = new Diseno_Estado();
+        $diseno_estado->Estado = 1;
+        $diseno_estado->save();
+
         
         session()->flash("success", "Diseño agregado al catálogo");
         return back()->withInput();
