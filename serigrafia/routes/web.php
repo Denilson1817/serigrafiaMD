@@ -31,3 +31,4 @@ Route::get('/admin/catalog/deleteCatalog/{id}', [CatalogController::class, 'dele
 Route::get('/admin/catalog/deleteDiseno/{id}', [CatalogController::class, 'deleteDiseno'])->name('catalog.deleteDiseno');
 Route::get('/admin/catalog/changeStatusDiseno/{id}', [CatalogController::class, 'changeStatusDiseno'])->name('catalog.changeStatusDiseno');
 Route::get('/admin/catalog/changeStatusCatalog/{id}', [CatalogController::class, 'changeStatusCatalog'])->name('catalog.changeStatusCatalog');
+Route::get('/admin/catalog/enviarCatalog', [CatalogController::class, 'enviarCatalog'])->name('catalog.enviarCatalog');
