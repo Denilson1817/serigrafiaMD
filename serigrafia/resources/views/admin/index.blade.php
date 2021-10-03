@@ -90,9 +90,9 @@
         </div>
         @endforeach
     </div>
-    <script>
+   <script>
         
-        @if(Session::has('success'))
+        /*@if(Session::has('success'))
         Swal.fire(
             {
                 icon: 'success',
@@ -113,6 +113,6 @@
                 timer: 1500
             }
         )
-        @endif
+        @endif/*
     </script>
 @endsection

@@ -40,7 +40,7 @@ class CatalogController extends Controller
     ];
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), $this->validationsCatalog, $this->messagesCatalog);
+        /*$validator = Validator::make($request->all(), $this->validationsCatalog, $this->messagesCatalog);
         if ($validator->fails()) 
         {
             session()->flash("error", "«Por favor verifica que los campos del catálogo sean correctos»");
@@ -52,7 +52,7 @@ class CatalogController extends Controller
         {
             session()->flash("error", "«Por favor verifica que los campos del diseño sean correctos»");
             return back()->withErrors($validator)->withInput();
-        }
+        }*/
         $catalog           = new Catalogo();
         $catalog->Nombre     = $request->nombre;
         $catalog->Categoria = $request->categoria;
@@ -86,12 +86,12 @@ class CatalogController extends Controller
 
     public function update(Request $request)
     {
-        $validator = Validator::make($request->all(), $this->validationsCatalog, $this->messagesCatalog);
+        /*$validator = Validator::make($request->all(), $this->validationsCatalog, $this->messagesCatalog);
         if ($validator->fails()) 
         {
             session()->flash("error", "«Por favor verifica que los campos del catálogo sean correctos»");
             return back()->withErrors($validator)->withInput();
-        }
+        }*/
 
         $catalog = Catalogo::find($request->id_catalog);
         $catalog->Nombre     = $request->nombre;
@@ -116,12 +116,12 @@ class CatalogController extends Controller
     }
     
     public function addDesing(Request $request){
-        $validator = Validator::make($request->all(), $this->validationsDesing, $this->messagesDesing);
+        /*$validator = Validator::make($request->all(), $this->validationsDesing, $this->messagesDesing);
         if ($validator->fails()) 
         {
             session()->flash("error", "«Por favor verifica que los campos del diseño sean correctos»");
-            return back()->withInput();
-        }
+            return back()->withErrors($validator)->withInput();
+        }*/
 
         $diseno = new ModelsDiseno();
         $diseno->Foto = $request->foto;
