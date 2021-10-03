@@ -144,7 +144,9 @@ class CatalogController extends Controller
         
         $enviar->save();
 
-        return back()->with('mensaje', 'Se ha dado de baja el catalogo');
+        //return back()->with('mensaje', 'Se ha dado de baja el catalogo');
+        //session()->flash("success", "Se ha daado de baja el Catalogo");
+        return redirect()->route('dashboard');
     }
 
     //Aquí se envian los datos de DeleteDiseno a la BD

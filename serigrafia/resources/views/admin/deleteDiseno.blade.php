@@ -35,7 +35,7 @@
 
               <div class="mb-6, text-center">
                 <label class="font-serif text-lg text-gray-800 text-center">
-                  Nombre del Diseño
+                Nombre del Catalogo al que pertenece el Diseño: 
                 </label>
                 <p></p>
                 <label class="font-serif text-lg text-blue-800 text-center">{{$catalog->Nombre}}</label>
@@ -46,7 +46,7 @@
 
               <div class="mb-6, text-center">
                     <div class="font-serif text-lg text-gray-800">
-                        <label for="categoria">Categoría del catalogo: </label>
+                        <label for="categoria">Nombre del Diseño: </label>
                         <p> </p>
                         <label class="font-serif text-lg text-blue-800 text-center">{{$catalog->Categoria}}</label>
                     </div>
@@ -55,7 +55,7 @@
 
               <div class="mb-4, text-center">
                 <label class="block text-gray-700 text-sm font-bold mb-2">
-                  ¿Cual es el motivo de la baja del catálogo?
+                  ¿Cual es el motivo de la baja del Diseño?
                 </label>
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input_razon" name="razon" id="razon">
               </div>

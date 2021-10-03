@@ -11,11 +11,12 @@
 </header>
 
 <center>
+  <!--
   @if (session('mensaje'))
     <div class="alert alert-success">
       {{ session('mensaje') }}
     </div>
-  @endif
+  @endif-->
 
   <form action="{{route('catalog.enviarCatalog')}}" method="post">
     @csrf
