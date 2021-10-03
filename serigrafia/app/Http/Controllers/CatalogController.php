@@ -116,7 +116,33 @@ class CatalogController extends Controller
         $catalog = Catalogo::find($id);
         return view('admin.deleteDiseno', ['catalog' => $catalog]);
     }
+    public function change_statusd(disenos $disenos){
+        if($disenos->Estado==1){
+            $disenos->update(['Estado'=>0]);
+        }else{
+            $disenos->update(['Estado'=>1]);
+            return view('admin.deleteDiseno', ['catalog' => $catalog]);
+
+        }
+
+    }
+    public function change_statusc(disenos $catalog){
+        if($catalog->Estado==1){
+            $catalog->update(['Estado'=>0]);
+        }else{
+            $catalog->update(['Estado'=>1]);
+            return view('admin.deleteCatalog', ['catalog' => $catalog]);
+
+        }
+
+    }
     
+    public function enviarCatalog(){
+
+    }
+    public function enviarDiseno(){
+
+    }
 
     public function dashboard(){
         return view('admin.index');
