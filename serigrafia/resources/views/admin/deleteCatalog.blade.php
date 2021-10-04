@@ -35,15 +35,20 @@
               </div>
 
               <div class="mb-6, text-center">
-                <label class="font-serif text-lg text-gray-800 text-center">
-                  Nombre del catálogo
-                </label>
-                <p></p>
-                <label class="font-serif text-lg text-blue-800 text-center">{{$catalog->Nombre}}</label>
+                  <label class="font-serif text-lg text-gray-800 text-center">
+                    Nombre del catálogo
+                  </label>
+                    <p></p>
+                  <label class="font-serif text-lg text-blue-800 text-center">{{$catalog->Nombre}}</label>
 
-                <input type="hidden" name="nombre" id="nombre" value="{{$catalog->Nombre}}" class="input_nombre">
-                <input type="hidden" name="idcatalogo" id="idcatalogo" value="{{$catalog->id}}" class="input_idcatalogo">
               </div>
+
+              <!--RECUPERAR LOS DATOS Y MANDARLOS A LA NUEVA TABLA-->
+              <input type="hidden" name="nombre" id="nombre" value="{{$catalog->Nombre}}" class="input_nombre">
+              <input type="hidden" name="idcatalogo" id="idcatalogo" value="{{$catalog->id}}" class="input_idcatalogo">
+              <input type="hidden" name="estado" id="estado" value = 0 class="input_estado">
+              <input type="hidden" name="categoria" id="categoria" value="{{$catalog->Categoria}}" class="input_categoria">
+              
 
               <div class="mb-6, text-center">
                     <div class="font-serif text-lg text-gray-800">
@@ -64,6 +69,7 @@
               <div class="mb-6">
                 <p class="text-red-500 text-xs italic"></p>
               </div>
+
 
               <div class="flex items-center justify-between">
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Enviar</button>

@@ -105,14 +105,7 @@ class CatalogController extends Controller
         return back()->withInput();
     }
 
-    public function deleteCatalog($id){
-        $catalog = Catalogo::find($id);
-        return view('admin.deleteCatalog', ['catalog' => $catalog]);
-    }
-    public function deleteDiseno($id){
-        $catalog = Catalogo::find($id);
-        return view('admin.deleteDiseno', ['catalog' => $catalog]);
-    }
+    /*
     public function change_statusd(disenos $disenos){
         if($disenos->Estado==1){
             $disenos->update(['Estado'=>0]);
@@ -133,17 +126,37 @@ class CatalogController extends Controller
         }
 
     }
+    */
+
+    //AQUÍ ES PARA VER LAS VISTAS DE NUESTRAS RUTAS 
+    public function deleteCatalog($id){
+        $catalog = Catalogo::find($id);
+        return view('admin.deleteCatalog', ['catalog' => $catalog]);
+    }
+
+    public function deleteDiseno($id){
+        $catalog = Catalogo::find($id);
+        return view('admin.deleteDiseno', ['catalog' => $catalog]);
+    }
+
     
     //Aqui se envian los datos de DeleteCatalogo a la BD
     public function enviarCatalog(Request $request){
+        $catalog = Catalogo::find($request->idcatalogo);
+        $catalog->Nombre = $request->nombre;
+        $catalog->Categoria = $request->categoria;
+        $catalog->Estado = $request->estado;
+        
+        $catalog->save();
 
         $enviar = new CatalogoEliminado();
         $enviar->Razon = $request->razon;
         $enviar->Nombre = $request->nombre;
         $enviar->IDCatalogo = $request->idcatalogo;
-        
+
         $enviar->save();
 
+        
         //return back()->with('mensaje', 'Se ha dado de baja el catalogo');
         //session()->flash("success", "Se ha daado de baja el Catalogo");
         return redirect()->route('dashboard');
@@ -163,6 +176,7 @@ class CatalogController extends Controller
     
     }
 
+    //Metodo para redireccionar a la pagina de inicio 
     public function dashboard(){
         return view('admin.index');
     }
