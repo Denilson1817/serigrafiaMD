@@ -16,6 +16,7 @@ class CreateProductosTable extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
             $table->string('Material');
+            $table->float("Precio");
             $table->foreignId('IDDiseno');
             $table->timestamps();
         });

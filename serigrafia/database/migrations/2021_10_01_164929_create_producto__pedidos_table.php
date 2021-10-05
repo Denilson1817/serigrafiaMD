@@ -15,6 +15,8 @@ class CreateProductoPedidosTable extends Migration
     {
         Schema::create('producto__pedidos', function (Blueprint $table) {
             $table->foreignId('IDPedido');
+            $table->float("PrecioTotal");
+            $table->integer("NumProductos");
             $table->foreignId('IDproducto');
             $table->timestamps();
         });
