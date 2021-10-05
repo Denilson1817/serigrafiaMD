@@ -64,6 +64,7 @@ class CatalogController extends Controller
         $diseno = new ModelsDiseno();
         $diseno->Foto = $request->foto;
         $diseno->Textura = $request->textura;
+        $diseno->Estado = 1;
         $diseno->ID_Catalago = $catalog->id;
         $diseno->save();
 
@@ -192,6 +193,7 @@ class CatalogController extends Controller
         $diseno = new ModelsDiseno();
         $diseno->Foto = $request->foto;
         $diseno->Textura = $request->textura;
+        $diseno->Estado = 1;
         $diseno->ID_Catalago = $request->id_catalog;
         $diseno->save();
 
@@ -206,9 +208,8 @@ class CatalogController extends Controller
         $diseno_dimen->IDDiseno = $diseno->id;
         $diseno_dimen->save();
 
-        $diseno_estado = new Diseno_Estado();
-        $diseno_estado->Estado = 1;
-        $diseno_estado->save();
+        
+        
         
 
         
