@@ -93,6 +93,7 @@
         </div>
         @endforeach
     </div>
+    
    <script>
         
         /*@if(Session::has('success'))
