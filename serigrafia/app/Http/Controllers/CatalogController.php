@@ -176,7 +176,7 @@ class CatalogController extends Controller
         
         $enviarD = new DisenoEliminado();
         $enviarD->Razon = $request->razon;
-        $enviarD->Nombre = "Dragon ball";
+        $enviarD->Nombre = "My little Pony";
         $enviarD->IDDisenos = $request->iddiseno;
         
         $enviarD->save();
