@@ -164,17 +164,24 @@ class CatalogController extends Controller
     }
 
     //Aquí se envian los datos de DeleteDiseno a la BD
-    public function enviarDiseno(){
+    public function enviarDiseno(Request $request){
+        $diseno = Diseno::find($request->iddiseno);
+        $diseno->Foto = $request->foto;
+        //$diseno->Nombre = "Prueba";
+        $diseno->Textura = $request->textura;
+        $diseno->Estado = $request->estado;
 
+        $diseno->save();
+        
         $enviarD = new DisenoEliminado();
         $enviarD->Razon = $request->razon;
-        $enviarD->Nombre = $request->nombre;
-        $enviarD->IDiseno = $request->iddiseno;
+        $enviarD->Nombre = "Dragon ball";
+        $enviarD->IDDisenos = $request->iddiseno;
         
         $enviarD->save();
 
-        return back()->with('mensaje', 'Se ha dado de baja el catalogo');
-    
+        //return back()->with('mensaje', 'Se ha dado de baja el catalogo');
+        return redirect()->route('dashboard');
     }
 
     //Metodo para redireccionar a la pagina de inicio 
