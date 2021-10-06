@@ -16,7 +16,6 @@ class CreateCatalogoEliminadosTable extends Migration
         Schema::create('catalogo_eliminados', function (Blueprint $table) {
             $table->id();
             $table->string("Razon");
-            $table->string("Nombre");
             $table->foreignId("IDCatalogo");
             $table->timestamps();
         });
