@@ -10,6 +10,8 @@ class Producto_Pedido extends Model
     use HasFactory;
     protected $fillable = [
         'IDPedido',
+        'PrecioTotal',
+        'NumProductos',
         'IDproducto'
 
     ];

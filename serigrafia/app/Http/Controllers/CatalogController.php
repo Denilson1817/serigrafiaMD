@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Catalogo;
+use App\Models\CatalogoEliminado;
+use App\Models\DisenoEliminado;
 use App\Models\Diseno as ModelsDiseno;
 use App\Models\Diseno_color;
 use App\Models\Diseno_dimension;
-use Diseno;
+use App\Models\Diseno;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -62,6 +64,7 @@ class CatalogController extends Controller
         $diseno = new ModelsDiseno();
         $diseno->Foto = $request->foto;
         $diseno->Textura = $request->textura;
+        $diseno->Estado = 1;
         $diseno->ID_Catalago = $catalog->id;
         $diseno->save();
 
@@ -75,11 +78,6 @@ class CatalogController extends Controller
         $diseno_dimen->DimensioX = $request->dimension_x;
         $diseno_dimen->IDDiseno = $diseno->id;
         $diseno_dimen->save();
-
-        $diseno_estado = new Diseno_Estado();
-        $diseno_estado->Estado = 1;
-        $diseno_estado->save();
-
 
         
         session()->flash("success", "Catálogo agregado");
@@ -108,14 +106,7 @@ class CatalogController extends Controller
         return back()->withInput();
     }
 
-    public function deleteCatalog($id){
-        $catalog = Catalogo::find($id);
-        return view('admin.deleteCatalog', ['catalog' => $catalog]);
-    }
-    public function deleteDiseno($id){
-        $catalog = Catalogo::find($id);
-        return view('admin.deleteDiseno', ['catalog' => $catalog]);
-    }
+    /*
     public function change_statusd(disenos $disenos){
         if($disenos->Estado==1){
             $disenos->update(['Estado'=>0]);
@@ -136,16 +127,57 @@ class CatalogController extends Controller
         }
 
     }
-    
-    public function enviarCatalog(){
-        return view('admin.index'); 
+    */
 
+    //AQUÍ ES PARA VER LAS VISTAS DE NUESTRAS RUTAS 
+    public function deleteCatalog($id){
+        $catalog = Catalogo::find($id);
+        return view('admin.deleteCatalog', ['catalog' => $catalog]);
     }
+
+    public function deleteDiseno($id){
+        $catalog = Catalogo::find($id);
+        return view('admin.deleteDiseno', ['catalog' => $catalog]);
+    }
+
+    
+    //Aqui se envian los datos de DeleteCatalogo a la BD
+    public function enviarCatalog(Request $request){
+        $catalog = Catalogo::find($request->idcatalogo);
+        $catalog->Nombre = $request->nombre;
+        $catalog->Categoria = $request->categoria;
+        $catalog->Estado = $request->estado;
+        
+        $catalog->save();
+
+        $enviar = new CatalogoEliminado();
+        $enviar->Razon = $request->razon;
+        $enviar->Nombre = $request->nombre;
+        $enviar->IDCatalogo = $request->idcatalogo;
+
+        $enviar->save();
+
+        
+        //return back()->with('mensaje', 'Se ha dado de baja el catalogo');
+        //session()->flash("success", "Se ha daado de baja el Catalogo");
+        return redirect()->route('dashboard');
+    }
+
+    //Aquí se envian los datos de DeleteDiseno a la BD
     public function enviarDiseno(){
-        return view('admin.index');
+
+        $enviarD = new DisenoEliminado();
+        $enviarD->Razon = $request->razon;
+        $enviarD->Nombre = $request->nombre;
+        $enviarD->IDiseno = $request->iddiseno;
+        
+        $enviarD->save();
+
+        return back()->with('mensaje', 'Se ha dado de baja el catalogo');
     
     }
 
+    //Metodo para redireccionar a la pagina de inicio 
     public function dashboard(){
         return view('admin.index');
     }
@@ -161,6 +193,7 @@ class CatalogController extends Controller
         $diseno = new ModelsDiseno();
         $diseno->Foto = $request->foto;
         $diseno->Textura = $request->textura;
+        $diseno->Estado = 1;
         $diseno->ID_Catalago = $request->id_catalog;
         $diseno->save();
 
@@ -175,9 +208,8 @@ class CatalogController extends Controller
         $diseno_dimen->IDDiseno = $diseno->id;
         $diseno_dimen->save();
 
-        $diseno_estado = new Diseno_Estado();
-        $diseno_estado->Estado = 1;
-        $diseno_estado->save();
+        
+        
         
 
         
