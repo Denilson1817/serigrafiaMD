@@ -11,9 +11,18 @@
 </header>
 
 <center>
+  <!--
+  @if (session('mensaje'))
+    <div class="alert alert-success">
+      {{ session('mensaje') }}
+    </div>
+  @endif-->
+
+@foreach(App\Models\Diseno::where('ID_Catalago', $catalog->id)->get() as $desing)
   <form action="{{route('catalog.enviarDiseno')}}" method="post">
         @csrf
           <div class="w-full max-w-xs">
+          
             <form class="bg-whtie shadow-md rounded px-8 pt-6 pb-8 mb-4">
               <div class="mb-4, text-center">
                 <label class="font-serif text-lg text-gray-800 text-center">
@@ -47,6 +56,7 @@
                     </div>
               </div>            
 
+
               <div class="mb-4, text-center">
                 <label class="block text-gray-700 text-sm font-bold mb-2">
                   ¿Cual es el motivo de la baja del Diseño?
@@ -67,7 +77,9 @@
                 </a>
               </div>
             </form>
-          </div>     
+  @endforeach
+          </div>
+            
   </form>
 </center>
 @endsection
