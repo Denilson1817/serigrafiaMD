@@ -18,7 +18,6 @@
     </div>
   @endif-->
 
-@foreach(App\Models\Diseno::where('ID_Catalago', $catalog->id)->get() as $desing)
   <form action="{{route('catalog.enviarDiseno')}}" method="post">
         @csrf
           <div class="w-full max-w-xs">
@@ -42,18 +41,20 @@
                 <label class="font-serif text-lg text-blue-800 text-center">{{$catalog->Categoria}}</label>
               </div>
               
-              <input type="hidden" name="iddiseno" id="iddiseno" value="{{$desing->id}}" class="input_iddiseno">
-              <input type="hidden" name="estado" id="estado" value = 0 class="input_estado">
-              <input type="hidden" name="textura" id="textura" value="{{$desing->Textura}}" class="input_Textura">
-              <input type="hidden" name="foto" id="foto" value="{{$desing->Foto}}" class="input_Foto">
               
 
               <div class="mb-6, text-center">
-                    <div class="font-serif text-lg text-gray-800">
+                @foreach(App\Models\Diseno::where('ID_Catalago', $catalog->id)->get() as $desing)
+                    <input type="hidden" name="iddiseno" id="iddiseno" value="{{$desing->id}}" class="input_iddiseno">
+                    <input type="hidden" name="estado" id="estado" value = 0 class="input_estado">
+                    <input type="hidden" name="textura" id="textura" value="{{$desing->Textura}}" class="input_Textura">
+                    <input type="hidden" name="foto" id="foto" value="{{$desing->Foto}}" class="input_Foto">
+                  @endforeach
+                  <div class="font-serif text-lg text-gray-800">
                         <label for="categoria">ID del Diseño: </label>
                         <p> </p>
                         <label class="font-serif text-lg text-blue-800 text-center">{{$desing->id}}</label>
-                    </div>
+                  </div>  
               </div>            
 
 
@@ -77,7 +78,6 @@
                 </a>
               </div>
             </form>
-  @endforeach
           </div>
             
   </form>
