@@ -207,8 +207,7 @@ class CatalogController extends Controller
         $diseno_dimen->DimensioY = $request->dimension_y;
         $diseno_dimen->DimensioX = $request->dimension_x;
         $diseno_dimen->IDDiseno = $diseno->id;
-        $diseno_dimen->save();
-        
+        $diseno_dimen->save();        
         
         session()->flash("success", "Diseño agregado al catálogo");
         return back()->withInput();

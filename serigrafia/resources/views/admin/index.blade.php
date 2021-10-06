@@ -15,7 +15,7 @@
                 <h3 class="text-xl">Ingresar Datos</h3>
             </div>
             <div class="w-1/3">
-                <button class="bg-transparent" onclick="document.getElementById('crearNuevoC').style.display='none';" class="imagen_cerrar"><img src="imagenes/error.png" alt="cerrar"></button class="bg-transparent">
+                <button class="bg-transparent" onclick="document.getElementById('crearNuevoC').style.display='none';" class="imagen_cerrar"><img src="../image/error.png" alt="cerrar"></button class="bg-transparent">
             </div>
             <form action="{{route('catalog.store')}}" method="post">
                 @csrf
@@ -61,7 +61,7 @@
     <div class="flex flex-wrap -mx-3 p-3 mb-6 text-black">
         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <div class="nuevo-catalogo">
-                <img src="imagenes/photo-icon.png" alt="nuevo_catalogo" class="imagen-catalogo">
+                <img src="../image/photo-icon.png" alt="nuevo_catalogo" class="imagen-catalogo">
                 <button id="newCatalog" class="link_crear_catalogo">Nuevo catálogo</button>
             </div>
         </div>
