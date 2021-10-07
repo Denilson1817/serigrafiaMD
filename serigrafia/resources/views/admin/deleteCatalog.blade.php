@@ -11,13 +11,6 @@
 </header>
 
 <center>
-  <!--
-  @if (session('mensaje'))
-    <div class="alert alert-success">
-      {{ session('mensaje') }}
-    </div>
-  @endif-->
-
   <form action="{{route('catalog.enviarCatalog')}}" method="post">
     @csrf
     <form action="{{route('catalog.update')}}" method="post">

@@ -16,7 +16,6 @@ class CreateDisenoEliminadosTable extends Migration
         Schema::create('diseno_eliminados', function (Blueprint $table) {
             $table->id();
             $table->string("Razon");
-            $table->string("Nombre");
             $table->foreignId("IDDisenos");
             $table->timestamps();
         });

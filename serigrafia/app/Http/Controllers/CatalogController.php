@@ -104,6 +104,7 @@ class CatalogController extends Controller
         $catalog = Catalogo::find($request->id_catalog);
         $catalog->Nombre     = $request->nombre;
         $catalog->Categoria = $request->categoria;
+        $catalog->Estado = 1;
         $catalog->save();
         session()->flash("success", "Catálogo editado");
         return back()->withInput();
@@ -168,16 +169,23 @@ class CatalogController extends Controller
 
     //Aquí se envian los datos de DeleteDiseno a la BD
     public function enviarDiseno(Request $request){
+        $diseno = Diseno::find($request->iddiseno);
+        $diseno->Foto = $request->foto;
+        //$diseno->Nombre = "Prueba";
+        $diseno->Textura = $request->textura;
+        $diseno->Estado = $request->estado;
 
+        $diseno->save();
+        
         $enviarD = new DisenoEliminado();
         $enviarD->Razon = $request->razon;
-        $enviarD->Nombre = $request->nombre;
-        $enviarD->IDiseno = $request->iddiseno;
+        $enviarD->Nombre = "My little Pony";
+        $enviarD->IDDisenos = $request->iddiseno;
         
         $enviarD->save();
 
-        return back()->with('mensaje', 'Se ha dado de baja el catalogo');
-    
+        //return back()->with('mensaje', 'Se ha dado de baja el catalogo');
+        return redirect()->route('dashboard');
     }
 
     //Metodo para redireccionar a la pagina de inicio 
@@ -197,6 +205,7 @@ class CatalogController extends Controller
         $path = $request->file('foto')->store('public/diseños');
         $diseno->Foto = $path;
         $diseno->Textura = $request->textura;
+        $diseno->Estado = 1;
         $diseno->ID_Catalago = $request->id_catalog;
         $diseno->Estado = 1;
         $diseno->save();
@@ -213,6 +222,28 @@ class CatalogController extends Controller
         $diseno_dimen->save();
         
         session()->flash("success", "Diseño agregado al catálogo");
+        return back()->withInput();
+    }
+
+    //Editar diseño dentro de un catalogo
+    public function editDisenio(Request $request){
+
+        $diseno = Diseno::find($request->id_disenos);
+        $diseno->Foto = $request->foto;
+        $diseno->Textura = $request->textura;
+        $diseno->Estado = 1;
+        $diseno->save();
+
+        $diseno_color = Diseno_Color::find($request->IDDiseno);
+        $diseno_color->Color = $request->color;
+        $diseno_color->save();
+
+        $diseno_dimen = Diseno_dimension::find($request->IDDiseno);
+        $diseno_dimen->DimensioY = $request->demension_y;
+        $diseno_dimen->DimensioX = $request->dimension_x;
+        $diseno_dimen->save();
+
+        session()->flash("success", "Diseño editado");
         return back()->withInput();
     }
     
