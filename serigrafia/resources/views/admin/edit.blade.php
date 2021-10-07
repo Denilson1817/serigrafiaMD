@@ -62,7 +62,9 @@
         </div>
     </form>
     <div class="flex flex-wrap">
-    @foreach(App\Models\Diseno::where('ID_Catalago', $catalog->id)->get() as $desing)
+    
+
+    @foreach(App\Models\Diseno::where('ID_Catalago', $catalog->id)->get() as $desing )
         <div class="w-full md:w-1/2 lg:flex">
             <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('https://v1.tailwindcss.com/img/card-left.jpg')" title="Woman holding a mug">
             </div>
@@ -94,6 +96,7 @@
             </div>
         </div>
     @endforeach
+
     </div>
     <script>
         @if(Session::has('success'))

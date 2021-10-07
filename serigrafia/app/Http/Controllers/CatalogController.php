@@ -135,6 +135,7 @@ class CatalogController extends Controller
         $catalog = Catalogo::find($id);
         return view('admin.deleteCatalog', ['catalog' => $catalog]);
     }
+    
 
     public function deleteDiseno($id){
         $catalog = Catalogo::find($id);
