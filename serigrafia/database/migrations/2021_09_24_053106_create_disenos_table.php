@@ -16,7 +16,7 @@ class CreateDisenosTable extends Migration
         Schema::create('disenos', function (Blueprint $table) {
             $table->id();
             $table->string('Textura');
-            $table->binary('Foto');
+            $table->longText('Foto');
             $table->boolean("Estado");
             $table->foreignId('ID_Catalago');
             $table->timestamps();

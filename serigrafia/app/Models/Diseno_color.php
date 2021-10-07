@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Diseno_color extends Model
 {
-    use HasFactory;
-    protected $fillable = [
+	use HasFactory;
+	protected $fillable = [
 		'IDDiseno',
 		'Color'
 	];
