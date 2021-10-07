@@ -72,7 +72,9 @@
                 <button id="newCatalog" class="link_crear_catalogo">Nuevo catálogo</button>
             </div>
         </div>
+
         @foreach(App\Models\Catalogo::get() as $catalog)
+            @if($catalog->Estado == 1)
         <div class="w-full max-w-sm md:w-1/3 p-3 mb-6 md:mb-0">
             <div class="rounded overflow-hidden shadow-lg">
                 <img class="w-full" src="/storage/@if(!empty($catalog->disenos->first())){{$catalog->disenos->first()->Foto}}@endif" alt="Sunset in the mountains">
@@ -98,6 +100,7 @@
                 </div>
             </div>
         </div>
+        @endif
         @endforeach
     </div>
 

@@ -72,6 +72,7 @@
     
 
     @foreach(App\Models\Diseno::where('ID_Catalago', $catalog->id)->get() as $desing )
+    @if($desing->Estado == 1)
         <div class="w-full md:w-1/2 lg:flex">
             <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('/storage/{{$desing->Foto}}')" title="Woman holding a mug">
             </div>
@@ -139,7 +140,7 @@
                 </div>
             </form>
         </div>    
-
+    @endif
     @endforeach
 
     </div>
