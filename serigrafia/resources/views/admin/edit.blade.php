@@ -94,13 +94,13 @@
             </div>
         </div>
 
-        <div class="bg-rojo-700 border-gray-200 box-content w-2/3 h-auto" id="editDisenio">
+        <div class="bg-rojo-700 border-gray-200 box-content w-2/3 h-auto" id="editDisenio" hidden>
         <!--<div class="w-2/3 h-56 edit_disenio" id="editDisenio">-->
-            <form action="{{route('catalog.addDesing')}}" method="post">
+            <form action="{{route('catalog.editDisenio')}}" method="post">
                 @csrf
                 <div class="grid grid-cols-6 gap-4 p-4">
                     <div class="col-span-6">
-                        <h3 class="w-full text-xl">Agregar un diseño</h3>
+                        <h3 class="w-full text-xl">Editar diseño</h3>
                     </div>
                     <input type="hidden" name="id_catalog" value="{{$catalog->id}}">
                     <div class="col-span-6 md:col-span-3">

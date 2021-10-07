@@ -219,5 +219,27 @@ class CatalogController extends Controller
         session()->flash("success", "Diseño agregado al catálogo");
         return back()->withInput();
     }
+
+    //Editar diseño dentro de un catalogo
+    public function editDisenio(Request $request){
+
+        $diseno = Diseno::find($request->id_disenos);
+        $diseno->Foto = $request->foto;
+        $diseno->Textura = $request->textura;
+        $diseno->Estado = 1;
+        $diseno->save();
+
+        $diseno_color = Diseno_Color::find($request->IDDiseno);
+        $diseno_color->Color = $request->color;
+        $diseno_color->save();
+
+        $diseno_dimen = Diseno_dimension::find($request->IDDiseno);
+        $diseno_dimen->DimensioY = $request->demension_y;
+        $diseno_dimen->DimensioX = $request->dimension_x;
+        $diseno_dimen->save();
+
+        session()->flash("success", "Diseño editado");
+        return back()->withInput();
+    }
     
 }
