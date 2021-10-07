@@ -12,6 +12,7 @@ use App\Models\Diseno;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class CatalogController extends Controller
 {
@@ -25,7 +26,8 @@ class CatalogController extends Controller
     ];
     protected $messagesDesing = [
         'foto.required'     => 'Es necesario ingresar una foto de diseño',
-        'foto.image'     => 'La foto debe ser una imágen',
+        'foto.image'     => 'La foto debe ser una imagen',
+        'foto.file'     => 'La foto debe ser un archivo',
         'textura.required' => 'Es necesario ingresar una textura',
         'color.required'  => 'Es necesario ingresar un color',
         'dimension_y.required'       => 'Es necesario ingresar una dimensión y',
@@ -38,11 +40,11 @@ class CatalogController extends Controller
         'dimension_y' => 'required|integer',
         'dimension_x' => 'required|integer',
         'color'  => 'required',
-        'foto'       => 'required|image',
+        'foto'       => 'required|file|image',
     ];
     public function store(Request $request)
     {
-        /*$validator = Validator::make($request->all(), $this->validationsCatalog, $this->messagesCatalog);
+        $validator = Validator::make($request->all(), $this->validationsCatalog, $this->messagesCatalog);
         if ($validator->fails()) 
         {
             session()->flash("error", "«Por favor verifica que los campos del catálogo sean correctos»");
@@ -54,7 +56,7 @@ class CatalogController extends Controller
         {
             session()->flash("error", "«Por favor verifica que los campos del diseño sean correctos»");
             return back()->withErrors($validator)->withInput();
-        }*/
+        }
         $catalog           = new Catalogo();
         $catalog->Nombre     = $request->nombre;
         $catalog->Categoria = $request->categoria;
@@ -62,7 +64,8 @@ class CatalogController extends Controller
         $catalog->save();
 
         $diseno = new ModelsDiseno();
-        $diseno->Foto = $request->foto;
+        $path = $request->file('foto')->store('diseños');
+        $diseno->Foto = $path;
         $diseno->Textura = $request->textura;
         $diseno->Estado = 1;
         $diseno->ID_Catalago = $catalog->id;
@@ -91,12 +94,12 @@ class CatalogController extends Controller
 
     public function update(Request $request)
     {
-        /*$validator = Validator::make($request->all(), $this->validationsCatalog, $this->messagesCatalog);
+        $validator = Validator::make($request->all(), $this->validationsCatalog, $this->messagesCatalog);
         if ($validator->fails()) 
         {
             session()->flash("error", "«Por favor verifica que los campos del catálogo sean correctos»");
             return back()->withErrors($validator)->withInput();
-        }*/
+        }
 
         $catalog = Catalogo::find($request->id_catalog);
         $catalog->Nombre     = $request->nombre;
@@ -135,6 +138,7 @@ class CatalogController extends Controller
         $catalog = Catalogo::find($id);
         return view('admin.deleteCatalog', ['catalog' => $catalog]);
     }
+    
 
     public function deleteDiseno($id){
         $catalog = Catalogo::find($id);
@@ -191,18 +195,20 @@ class CatalogController extends Controller
     }
     
     public function addDesing(Request $request){
-        /*$validator = Validator::make($request->all(), $this->validationsDesing, $this->messagesDesing);
+        $validator = Validator::make($request->all(), $this->validationsDesing, $this->messagesDesing);
         if ($validator->fails()) 
         {
             session()->flash("error", "«Por favor verifica que los campos del diseño sean correctos»");
             return back()->withErrors($validator)->withInput();
-        }*/
+        }
 
         $diseno = new ModelsDiseno();
-        $diseno->Foto = $request->foto;
+        $path = $request->file('foto')->store('public/diseños');
+        $diseno->Foto = $path;
         $diseno->Textura = $request->textura;
         $diseno->Estado = $request->estado;
         $diseno->ID_Catalago = $request->id_catalog;
+        $diseno->Estado = 1;
         $diseno->save();
 
         $diseno_color = new Diseno_color();
@@ -214,7 +220,7 @@ class CatalogController extends Controller
         $diseno_dimen->DimensioY = $request->dimension_y;
         $diseno_dimen->DimensioX = $request->dimension_x;
         $diseno_dimen->IDDiseno = $diseno->id;
-        $diseno_dimen->save();        
+        $diseno_dimen->save();
         
         session()->flash("success", "Diseño agregado al catálogo");
         return back()->withInput();

@@ -18,17 +18,19 @@
             <div class="col-span-6 md:col-span-3">
                 <label for="nombre">Nombre: </label>
                 <input type="text" name="nombre" id="nombre" class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" value="{{$catalog->Nombre}}">
+                @error('nombre')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
             </div>
             <div class="col-span-6 md:col-span-3">
                 <label for="categoria">Categoría: </label>
                 <input type="text" name="categoria" id="categoria" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" value="{{$catalog->Categoria}}">
+                @error('categoria')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
             </div>
             <div class="col-span-6">
                 <button class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded" type="submit"> Aceptar </button>
             </div>
         </div>
     </form>
-    <form action="{{route('catalog.addDesing')}}" method="post">
+    <form action="{{route('catalog.addDesing')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="grid grid-cols-6 gap-4 p-4">
             <div class="col-span-6">
@@ -38,22 +40,27 @@
             <div class="col-span-6 md:col-span-3">
                 <label for="foto">Foto: </label>
                 <input type="file" name="foto" id="foto" accept=".png, .jpg, .jpeg" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                @error('foto')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
             </div>
             <div class="col-span-6 md:col-span-3">
                 <label for="textura">Textura: </label>
                 <input type="text" name="textura" id="textura" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                @error('textura')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
             </div>
             <div class="col-span-6 md:col-span-2">
                 <label for="color">Color: </label>
                 <input type="color" name="color" id="color" class="w-full">
+                @error('color')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
             </div>
             <div class="col-span-6 md:col-span-2">
                 <label for="dimension_x">Dimensión X </label>
                 <input type="number" name="dimension_x" id="dimension_x" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                @error('dimension_x')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
             </div>
             <div class="col-span-6 md:col-span-2">
                 <label for="dimension_y">Dimensión Y </label>
                 <input type="number" name="dimension_y" id="dimension_y" accept=".png, .jpg, .jpeg" class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                @error('dimension_y')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
             </div>
             <div class="col-span-6">
                 <button class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded" type="submit"> Aceptar </button>
@@ -62,9 +69,12 @@
         </div>
     </form>
     <div class="flex flex-wrap">
-    @foreach(App\Models\Diseno::where('ID_Catalago', $catalog->id)->get() as $desing)
+    
+
+    @foreach(App\Models\Diseno::where('ID_Catalago', $catalog->id)->get() as $desing )
+    @if($desing->Estado == 1)
         <div class="w-full md:w-1/2 lg:flex">
-            <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('https://v1.tailwindcss.com/img/card-left.jpg')" title="Woman holding a mug">
+            <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('/storage/{{$desing->Foto}}')" title="Woman holding a mug">
             </div>
             <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                 <div class="mb-8">
@@ -130,8 +140,9 @@
                 </div>
             </form>
         </div>    
-
+    @endif
     @endforeach
+
     </div>
     <script>
         @if(Session::has('success'))

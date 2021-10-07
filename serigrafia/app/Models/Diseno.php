@@ -13,6 +13,9 @@ class Diseno extends Model
 		'Foto',
 		'Estado',
 		'ID_Catalago'
-		
 	];
+	public function catalogo()
+	{
+	    return $this->belongsTo(Catalogo::class);
+	}
 }
