@@ -110,43 +110,27 @@ class CatalogController extends Controller
         return back()->withInput();
     }
 
-    /*
-    public function change_statusd(disenos $disenos){
-        if($disenos->Estado==1){
-            $disenos->update(['Estado'=>0]);
-        }else{
-            $disenos->update(['Estado'=>1]);
-            return view('admin.deleteDiseno', ['catalog' => $catalog]);
-
-        }
-
-    }
-    public function change_statusc(disenos $catalog){
-        if($catalog->Estado==1){
-            $catalog->update(['Estado'=>0]);
-        }else{
-            $catalog->update(['Estado'=>1]);
-            return view('admin.deleteCatalog', ['catalog' => $catalog]);
-
-        }
-
-    }
-    */
-
-    //AQUÍ ES PARA VER LAS VISTAS DE NUESTRAS RUTAS 
+   //Función PARA DELETE CATALOGO
     public function deleteCatalog($id){
         $catalog = Catalogo::find($id);
         return view('admin.deleteCatalog', ['catalog' => $catalog]);
     }
+    
+    //Función PARA DELETE DISEÑO
+    public function deleteDiseno($iddiseno, $idcatalog ){
+        $diseno = Diseno::find($iddiseno);
+        $catalog = Catalogo::find($idcatalog);
 
-    public function deleteDiseno($id){
-        $catalog = Catalogo::find($id);
-        return view('admin.deleteDiseno', ['catalog' => $catalog]);
+        return view('admin.deleteDiseno')->with([
+                    'desing' => $diseno,
+                    'catalog' => $catalog
+        ]);
     }
 
     
-    //Aqui se envian los datos de DeleteCatalogo a la BD
+    //Aqui se envian los datos de DeleteCatalogo 
     public function enviarCatalog(Request $request){
+        //Aquí es para actualizar el Estado del catalogo en la BD
         $catalog = Catalogo::find($request->idcatalogo);
         $catalog->Nombre = $request->nombre;
         $catalog->Categoria = $request->categoria;
@@ -154,6 +138,7 @@ class CatalogController extends Controller
         
         $catalog->save();
 
+        //Aquí se envia los datos a la tabla de Catalogos eliminados
         $enviar = new CatalogoEliminado();
         $enviar->Razon = $request->razon;
         $enviar->Nombre = $request->nombre;
@@ -161,30 +146,26 @@ class CatalogController extends Controller
 
         $enviar->save();
 
-        
-        //return back()->with('mensaje', 'Se ha dado de baja el catalogo');
-        //session()->flash("success", "Se ha daado de baja el Catalogo");
         return redirect()->route('dashboard');
     }
 
-    //Aquí se envian los datos de DeleteDiseno a la BD
+    //Aquí se envian los datos de DeleteDiseno
     public function enviarDiseno(Request $request){
+        //Aquí es para actualizar el Estado del diseño en la BD
         $diseno = Diseno::find($request->iddiseno);
         $diseno->Foto = $request->foto;
-        //$diseno->Nombre = "Prueba";
         $diseno->Textura = $request->textura;
         $diseno->Estado = $request->estado;
 
         $diseno->save();
         
+        //Aquí se envia los datos a la tabla de Diseños eliminados
         $enviarD = new DisenoEliminado();
         $enviarD->Razon = $request->razon;
         $enviarD->Nombre = "My little Pony";
         $enviarD->IDDisenos = $request->iddiseno;
         
         $enviarD->save();
-
-        //return back()->with('mensaje', 'Se ha dado de baja el catalogo');
         return redirect()->route('dashboard');
     }
 
@@ -205,7 +186,7 @@ class CatalogController extends Controller
         $path = $request->file('foto')->store('public/diseños');
         $diseno->Foto = $path;
         $diseno->Textura = $request->textura;
-        $diseno->Estado = 1;
+        $diseno->Estado = $request->estado;
         $diseno->ID_Catalago = $request->id_catalog;
         $diseno->Estado = 1;
         $diseno->save();
@@ -228,10 +209,9 @@ class CatalogController extends Controller
     //Editar diseño dentro de un catalogo
     public function editDisenio(Request $request){
 
-        $diseno = Diseno::find($request->id_disenos);
+        $diseno = Diseno::find($request->id_diseno);
         $diseno->Foto = $request->foto;
         $diseno->Textura = $request->textura;
-        $diseno->Estado = 1;
         $diseno->save();
 
         $diseno_color = Diseno_Color::find($request->IDDiseno);

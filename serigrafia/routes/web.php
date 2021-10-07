@@ -31,11 +31,11 @@ Route::post('/admin/catalog/addDesing', [CatalogController::class, 'addDesing'])
 //Ruta de Eliminar Diseños y Catalogos
 Route::get('/admin/catalog/dashboard', [CatalogController::class, 'dashboard'])->name('catalog.dashboard');
 Route::get('/admin/catalog/deleteCatalog/{id}', [CatalogController::class, 'deleteCatalog'])->name('catalog.deleteCatalog');
-Route::get('/admin/catalog/deleteDiseno/{id}', [CatalogController::class, 'deleteDiseno'])->name('catalog.deleteDiseno');
+Route::get('/admin/catalog/deleteDiseno/{iddiseno}/{idcatalog}', [CatalogController::class, 'deleteDiseno'])->name('catalog.deleteDiseno');
 
 //Ruta para enviar los datos a la BD
 Route::post('/admin/catalog/enviarCatalog', [CatalogController::class, 'enviarCatalog'])->name('catalog.enviarCatalog');
 Route::post('/admin/catalog/enviarDiseno', [CatalogController::class, 'enviarDiseno'])->name('catalog.enviarDiseno');
 
 //Ruta para editar diseños dentro de un catalogo
-Route::post('/admin/catalog/editDisenio', [CatalogController::class, 'editDisenio'])->name('catalog.editDisenio');
+Route::get('/admin/catalog/editDisenio/', [CatalogController::class, 'editDisenio'])->name('catalog.editDisenio');

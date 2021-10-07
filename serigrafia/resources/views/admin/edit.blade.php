@@ -69,7 +69,10 @@
         </div>
     </form>
     <div class="flex flex-wrap">
-    @foreach(App\Models\Diseno::where('ID_Catalago', $catalog->id)->get() as $desing)
+    
+
+    @foreach(App\Models\Diseno::where('ID_Catalago', $catalog->id)->get() as $desing )
+    @if($desing->Estado == 1)
         <div class="w-full md:w-1/2 lg:flex">
             <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('/storage/{{$desing->Foto}}')" title="Woman holding a mug">
             </div>
@@ -103,13 +106,13 @@
 
         <div class="bg-rojo-700 border-gray-200 box-content w-2/3 h-auto" id="editDisenio" hidden>
         <!--<div class="w-2/3 h-56 edit_disenio" id="editDisenio">-->
-            <form action="{{route('catalog.editDisenio')}}" method="post">
+            <form action="{{route('catalog.editDisenio')}}" method="get">
                 @csrf
                 <div class="grid grid-cols-6 gap-4 p-4">
                     <div class="col-span-6">
                         <h3 class="w-full text-xl">Editar diseño</h3>
                     </div>
-                    <input type="hidden" name="id_catalog" value="{{$catalog->id}}">
+                    <input type="hidden" name="id_diseno" value="{{$catalog->id_diseno}}">
                     <div class="col-span-6 md:col-span-3">
                         <label for="foto">Foto: </label>
                         <input type="file" name="foto" id="foto" accept=".png, .jpg, .jpeg" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
@@ -137,8 +140,9 @@
                 </div>
             </form>
         </div>    
-
+    @endif
     @endforeach
+
     </div>
     <script>
         @if(Session::has('success'))
