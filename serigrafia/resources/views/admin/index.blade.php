@@ -17,37 +17,44 @@
             <div class="w-1/3">
                 <button class="bg-transparent" onclick="document.getElementById('crearNuevoC').style.display='none';" class="imagen_cerrar"><img src="imagenes/error.png" alt="cerrar"></button class="bg-transparent">
             </div>
-            <form action="{{route('catalog.store')}}" method="post">
+            <form action="{{route('catalog.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="flex flex-wrap -mx-3 mb-6 ">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 label_nombre">
                         <label for="nombre">Nombre: </label>
                         <input type="text" name="nombre" id="nombre" class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white input_nombre">
+                        @error('nombre')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
                     </div><br>
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 label_categoria">
                         <label for="categoria">Categoría: </label>
                         <input type="text" name="categoria" id="categoria" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white input_categoria">
+                        @error('categoria')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
                     </div><br>
                     <h3 class="w-full text-xl">Agregar un diseño</h3>
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 label_foto">
                         <label for="foto">Foto: </label>
                         <input type="file" name="foto" id="foto" accept=".png, .jpg, .jpeg" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white input_foto">
+                        @error('foto')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
                     </div><br>
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 label_textura">
                         <label for="textura">Textura: </label>
                         <input type="text" name="textura" id="textura" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                        @error('textura')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
                     </div><br>
                     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 label_color">
                         <label for="color">Color: </label>
                         <input type="color" name="color" id="color" class="appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                        @error('color')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
                     </div><br>
                     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 label_dimensionX">
                         <label for="dimension_x">Dimensión X </label>
                         <input type="number" name="dimension_x" id="dimension_x" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                        @error('dimension_x')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
                     </div><br>
                     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 label_dimensionY">
                         <label for="dimension_y">Dimensión Y </label>
                         <input type="number" name="dimension_y" id="dimension_y" accept=".png, .jpg, .jpeg" class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                        @error('dimension_y')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
                     </div><br>
                     <div class="botones_crear_cata">
                         <input type="submit" value="Aceptar" class="crear_cata_enviar">
@@ -68,7 +75,7 @@
         @foreach(App\Models\Catalogo::get() as $catalog)
         <div class="w-full max-w-sm md:w-1/3 p-3 mb-6 md:mb-0">
             <div class="rounded overflow-hidden shadow-lg">
-                <img class="w-full" src="https://v1.tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains">
+                <img class="w-full" src="/storage/@if(!empty($catalog->disenos->first())){{$catalog->disenos->first()->Foto}}@endif" alt="Sunset in the mountains">
                 <div class="px-6 py-4">
                     <div class="font-bold text-xl mb-2">{{$catalog->Nombre}}</div>
                 </div>
@@ -93,29 +100,30 @@
         </div>
         @endforeach
     </div>
-   <script>
+
+    <script>
         
-        /*@if(Session::has('success'))
-        Swal.fire(
-            {
-                icon: 'success',
-                title: '¡Listo!',
-                text: '{{Session::get("success")}}',
-                showConfirmButton: false,
-                timer: 1500
-            }
-        )
+        @if(Session::has('success'))
+            Swal.fire(
+                {
+                    icon: 'success',
+                    title: '¡Listo!',
+                    text: '{{Session::get("success")}}',
+                    showConfirmButton: false,
+                    timer: 1500
+                }
+            )
         @endif
         @if(Session::has('error'))
-        Swal.fire(
-            {
-                icon: 'error',
-                title: '¡Error!',
-                text: '{{ Session::get("error") }}',
-                showConfirmButton: false,
-                timer: 1500
-            }
-        )
-        @endif/*
+            Swal.fire(
+                {
+                    icon: 'error',
+                    title: '¡Error!',
+                    text: '{{ Session::get("error") }}',
+                    showConfirmButton: false,
+                    timer: 1500
+                }
+            )
+        @endif
     </script>
 @endsection

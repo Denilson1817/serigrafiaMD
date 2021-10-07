@@ -13,4 +13,8 @@ class Catalogo extends Model
 		'Categoria',
 		'Estado'
 	];
+	public function disenos()
+    {
+		return $this->hasMany(Diseno::class, 'ID_Catalago');
+	}
 }
