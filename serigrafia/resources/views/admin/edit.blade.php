@@ -85,7 +85,7 @@
                             </a>
                         </div>
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <a class="bg-blue-600 hover:bg-blue-700 text-white hover:text-black font-semibold py-2 px-4 rounded shadow" href="{{route('catalog.edit', $catalog->id)}}" id="bntEdit">
+                            <a class="bg-blue-600 hover:bg-blue-700 text-white hover:text-black font-semibold py-2 px-4 rounded shadow" href="{{route('catalog.editDisenio', $catalog->id_diseno)}}" id="bntEdit">
                                 Editar
                             </a>
                         </div>
@@ -96,13 +96,13 @@
 
         <div class="bg-rojo-700 border-gray-200 box-content w-2/3 h-auto" id="editDisenio" hidden>
         <!--<div class="w-2/3 h-56 edit_disenio" id="editDisenio">-->
-            <form action="{{route('catalog.editDisenio')}}" method="post">
+            <form action="{{route('catalog.editDisenio')}}" method="get">
                 @csrf
                 <div class="grid grid-cols-6 gap-4 p-4">
                     <div class="col-span-6">
                         <h3 class="w-full text-xl">Editar diseño</h3>
                     </div>
-                    <input type="hidden" name="id_catalog" value="{{$catalog->id}}">
+                    <input type="hidden" name="id_diseno" value="{{$catalog->id_diseno}}">
                     <div class="col-span-6 md:col-span-3">
                         <label for="foto">Foto: </label>
                         <input type="file" name="foto" id="foto" accept=".png, .jpg, .jpeg" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">

@@ -201,7 +201,7 @@ class CatalogController extends Controller
         $diseno = new ModelsDiseno();
         $diseno->Foto = $request->foto;
         $diseno->Textura = $request->textura;
-        $diseno->Estado = 1;
+        $diseno->Estado = $request->estado;
         $diseno->ID_Catalago = $request->id_catalog;
         $diseno->save();
 
@@ -223,10 +223,9 @@ class CatalogController extends Controller
     //Editar diseño dentro de un catalogo
     public function editDisenio(Request $request){
 
-        $diseno = Diseno::find($request->id_disenos);
+        $diseno = Diseno::find($request->id_diseno);
         $diseno->Foto = $request->foto;
         $diseno->Textura = $request->textura;
-        $diseno->Estado = 1;
         $diseno->save();
 
         $diseno_color = Diseno_Color::find($request->IDDiseno);

@@ -38,4 +38,4 @@ Route::post('/admin/catalog/enviarCatalog', [CatalogController::class, 'enviarCa
 Route::post('/admin/catalog/enviarDiseno', [CatalogController::class, 'enviarDiseno'])->name('catalog.enviarDiseno');
 
 //Ruta para editar diseños dentro de un catalogo
-Route::post('/admin/catalog/editDisenio', [CatalogController::class, 'editDisenio'])->name('catalog.editDisenio');
+Route::get('/admin/catalog/editDisenio/', [CatalogController::class, 'editDisenio'])->name('catalog.editDisenio');
