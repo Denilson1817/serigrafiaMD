@@ -14,7 +14,8 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        //
+        $pedidos = Pedido::get()->paginate(15);
+        return json_encode($pedidos);
     }
 
     /**

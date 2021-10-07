@@ -1189,6 +1189,9 @@ select {
 .mb-2 {
 	margin-bottom: 0.5rem;
 }
+.box-content {
+	box-sizing: content-box;
+}
 .block {
 	display: block;
 }
@@ -1239,6 +1242,12 @@ select {
 }
 .h-3 {
 	height: 0.75rem;
+}
+.h-auto {
+	height: auto;
+}
+.h-56 {
+	height: 14rem;
 }
 .min-h-screen {
 	min-height: 100vh;
