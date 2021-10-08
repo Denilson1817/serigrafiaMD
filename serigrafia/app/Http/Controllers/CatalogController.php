@@ -205,24 +205,27 @@ class CatalogController extends Controller
     }
 
     //Editar diseño dentro de un catalogo
-    public function editDisenio(Request $request){
+    public function editarDisenio($iddiseno){
+        $diseno = Diseno::find($iddiseno);
+        $dcolor = Diseno_color::find($iddiseno);
+        $ddimen = Diseno_dimension::find($iddiseno);
 
-        $diseno = Diseno::find($request->id_diseno);
-        $diseno->Foto = $request->foto;
+        return view('admin.editarDisenio')->with([
+                'desing' => $diseno,
+                'color' => $dcolor,
+                'dimen' => $ddimen    
+        ]);
+    }
+
+    public function editDisenio(Request $request){
+        $diseno = Diseno::find($request->iddiseno);
         $diseno->Textura = $request->textura;
+        $diseno->Foto = $request->foto;
+        $diseno->Estado = 1;
+        $diseno->ID_Catalogo = $request->idcatalogo;
+
         $diseno->save();
 
-        $diseno_color = Diseno_Color::find($request->IDDiseno);
-        $diseno_color->Color = $request->color;
-        $diseno_color->save();
-
-        $diseno_dimen = Diseno_dimension::find($request->IDDiseno);
-        $diseno_dimen->DimensioY = $request->demension_y;
-        $diseno_dimen->DimensioX = $request->dimension_x;
-        $diseno_dimen->save();
-
-        session()->flash("success", "Diseño editado");
-        return back()->withInput();
     }
     
 }
