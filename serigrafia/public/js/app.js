@@ -5256,6 +5256,9 @@ $(document).ready(function () {
   $(document).on('click', '#elimi_catalogo', function (e) {
     document.getElementById("ElimCatalogo").hidden = false;
   });
+  $(document).on('click', '#bntEdit', function (e) {
+    document.getElementById("editDisenio").hidden = false;
+  });
 });
 
 /***/ }),
