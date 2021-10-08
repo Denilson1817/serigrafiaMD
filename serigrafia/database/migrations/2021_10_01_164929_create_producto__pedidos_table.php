@@ -14,6 +14,7 @@ class CreateProductoPedidosTable extends Migration
     public function up()
     {
         Schema::create('producto__pedidos', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('IDPedido');
             $table->float("PrecioTotal");
             $table->integer("NumProductos");
