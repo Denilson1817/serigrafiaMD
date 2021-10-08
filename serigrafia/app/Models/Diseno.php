@@ -16,6 +16,6 @@ class Diseno extends Model
 	];
 	public function catalogo()
 	{
-	    return $this->belongsTo(Catalogo::class);
+	    return $this->belongsTo(Catalogo::class, 'ID_Catalago');
 	}
 }
