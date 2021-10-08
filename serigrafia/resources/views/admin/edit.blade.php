@@ -95,7 +95,7 @@
                             </a>
                         </div>
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <a class="bg-blue-600 hover:bg-blue-700 text-white hover:text-black font-semibold py-2 px-4 rounded shadow" href="{{route('catalog.editDisenio', $catalog->id_diseno)}}" id="bntEdit">
+                            <a class="bg-blue-600 hover:bg-blue-700 text-white hover:text-black font-semibold py-2 px-4 rounded shadow" href="{{route('catalog.editarDisenio', $desing->id)}}">
                                 Editar
                             </a>
                         </div>
@@ -104,8 +104,8 @@
             </div>
         </div>
 
-        <div class="bg-rojo-700 border-gray-200 box-content w-2/3 h-auto" id="editDisenio" hidden>
-        <!--<div class="w-2/3 h-56 edit_disenio" id="editDisenio">-->
+        <!--<div class="bg-rojo-700 border-gray-200 box-content w-2/3 h-auto" id="editDisenio" hidden>
+        <div class="w-2/3 h-56 edit_disenio" id="editDisenio">
             <form action="{{route('catalog.editDisenio')}}" method="get">
                 @csrf
                 <div class="grid grid-cols-6 gap-4 p-4">
@@ -139,7 +139,7 @@
                     </div>
                 </div>
             </form>
-        </div>    
+        </div> -->   
     @endif
     @endforeach
 
