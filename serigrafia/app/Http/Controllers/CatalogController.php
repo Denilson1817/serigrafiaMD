@@ -117,14 +117,12 @@ class CatalogController extends Controller
     }
     
     //Función PARA DELETE DISEÑO
-    public function deleteDiseno($iddiseno, $idcatalog ){
+    public function deleteDiseno($iddiseno){
         $diseno = Diseno::find($iddiseno);
-        $catalog = Catalogo::find($idcatalog);
 
         return view('admin.deleteDiseno')->with([
-                    'desing' => $diseno,
-                    'catalog' => $catalog
-        ]);
+                    'desing' => $diseno
+                ]);
     }
 
     

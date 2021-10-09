@@ -10,7 +10,6 @@ class DisenoEliminado extends Model
     use HasFactory;
     protected $fillable = [
 		'Razon',
-        'Nombre',
-		'IDDisenos'
+        'IDDisenos'
 	];
 }

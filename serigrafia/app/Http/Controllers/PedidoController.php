@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Pedido;
 use Illuminate\Http\Request;
-
 class PedidoController extends Controller
 {
     /**
@@ -14,8 +13,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $pedidos = Pedido::get()->paginate(15);
-        return json_encode($pedidos);
+        
     }
 
     /**
@@ -39,15 +37,24 @@ class PedidoController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pedido  $pedido
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pedido $pedido)
+    public function show(Request $request)
     {
-        //
+        $pedidos = Pedido::orderBy('id', 'DESC')->where(function ($q) use ($request) 
+        {
+            if (!empty($request->client)) 
+            {
+                $q->where('name', 'LIKE', "%{$request->name}%");
+            }
+            if (!empty($request->date)) 
+            {
+                $q->where('capacity', "%{$request->date}%");
+            }
+        })->paginate(15);
+        return view('admin.pedido.list', [
+            'pedidos' => $pedidos,
+            'client'  => $request->client,
+            'date'    => $request->date
+        ]);
     }
 
     /**
@@ -56,9 +63,12 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pedido $pedido)
+    public function edit($id_pedido)
     {
-        //
+        $pedido = Pedido::find($id_pedido);
+        return view('admin.pedido.editPedido', [
+            'pedido' => $pedido
+        ]);
     }
 
     /**
@@ -68,7 +78,7 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pedido $pedido)
+    public function update(Request $request)
     {
         //
     }
