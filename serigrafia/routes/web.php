@@ -44,3 +44,4 @@ Route::get('/admin/catalog/editDisenio/', [CatalogController::class, 'editDiseni
 /* PEDIDOS */
 Route::get('/admin/pedidos/search/', [PedidoController::class, 'show'])->name('pedidos.search');
 Route::get('/admin/pedidos/edit/{id_pedido}', [PedidoController::class, 'edit'])->name('pedidos.edit');
+Route::get('/admin/pedidos/addProd_Ped/{id_pedido}', [PedidoController::class, 'edit'])->name('pedidos.edit');
