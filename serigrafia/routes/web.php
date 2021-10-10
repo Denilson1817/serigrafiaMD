@@ -38,9 +38,10 @@ Route::get('/admin/catalog/deleteDiseno/{iddiseno}', [CatalogController::class, 
 Route::post('/admin/catalog/enviarCatalog', [CatalogController::class, 'enviarCatalog'])->name('catalog.enviarCatalog');
 Route::post('/admin/catalog/enviarDiseno', [CatalogController::class, 'enviarDiseno'])->name('catalog.enviarDiseno');
 
-//Ruta para editar diseños dentro de un catalogo
-Route::get('/admin/catalog/editDisenio/', [CatalogController::class, 'editDisenio'])->name('catalog.editDisenio');
-
 /* PEDIDOS */
 Route::get('/admin/pedidos/search/', [PedidoController::class, 'show'])->name('pedidos.search');
 Route::get('/admin/pedidos/edit/{id_pedido}', [PedidoController::class, 'edit'])->name('pedidos.edit');
+Route::post('/admin/pedidos/update', [PedidoController::class, 'update'])->name('pedidos.update');
+//Ruta para editar diseños dentro de un catalogo
+Route::get('/admin/catalog/editarDisenio/{id}', [CatalogController::class, 'editarDisenio'])->name('catalog.editarDisenio');
+Route::post('/admin/catalog/editDisenio/', [CatalogController::class, 'editDisenio'])->name('catalog.editDisenio');

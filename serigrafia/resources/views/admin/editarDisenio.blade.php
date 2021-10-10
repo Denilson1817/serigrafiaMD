@@ -28,7 +28,7 @@
                     
                     <div class="col-span-6 md:col-span-2">
                         <label for="color">Color: </label>
-                        <input type="color" name="color" id="color" class="w-full" value="{{$color>Color}}">
+                        <input type="color" name="color" id="color" class="w-full" value="{{$desing->diseno->id}}">
                     </div>
                     <div class="col-span-6 md:col-span-2">
                         <label for="dimension_x">Dimensión X </label>

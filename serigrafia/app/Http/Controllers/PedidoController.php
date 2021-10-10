@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
+use App\Models\Producto_Pedido;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 class PedidoController extends Controller
 {
@@ -41,15 +43,15 @@ class PedidoController extends Controller
     {
         $pedidos = Pedido::orderBy('id', 'DESC')->where(function ($q) use ($request) 
         {
-            if (!empty($request->client)) 
-            {
-                $q->where('name', 'LIKE', "%{$request->name}%");
-            }
             if (!empty($request->date)) 
             {
-                $q->where('capacity', "%{$request->date}%");
+                $q->where('FechaRealizado', $request->date);
             }
-        })->paginate(15);
+            if (!empty($request->client)) 
+            {
+                $q->where('IDCliente', $request->client);
+            }
+        })->paginate(5);
         return view('admin.pedido.list', [
             'pedidos' => $pedidos,
             'client'  => $request->client,
@@ -80,7 +82,10 @@ class PedidoController extends Controller
      */
     public function update(Request $request)
     {
-        //
+        $pedido = Pedido::find($request->id_pedido);
+        $pedido->FechaEntrega = $request->FechaEntrega;
+        $pedido->numProductos = Producto_Pedido::where('IDPedido', $request->id_pedido)->sum();
+        $pedido->save();
     }
 
     /**

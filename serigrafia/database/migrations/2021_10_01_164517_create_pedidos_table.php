@@ -16,7 +16,7 @@ class CreatePedidosTable extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->date('FechaRealizado');
-            $table->date('FechaEntrega');
+            $table->date('FechaEntraga');
             $table->integer('NumProductos');
             $table->foreignId('IDCliente');
             $table->timestamps();

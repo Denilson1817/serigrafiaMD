@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
+
 class CatalogController extends Controller
 {
     protected $messagesCatalog = [
@@ -207,7 +208,9 @@ class CatalogController extends Controller
     //Editar diseño dentro de un catalogo
     public function editarDisenio($iddiseno){
         $diseno = Diseno::find($iddiseno);
-        $dcolor = Diseno_color::find($iddiseno);
+
+
+        $dcolor = Diseno_color::where('IDDiseno', $iddiseno)->first();
         $ddimen = Diseno_dimension::find($iddiseno);
 
         return view('admin.editarDisenio')->with([
