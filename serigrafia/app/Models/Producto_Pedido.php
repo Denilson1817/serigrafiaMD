@@ -9,10 +9,10 @@ class Producto_Pedido extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'IcioTotal',
+        'IDPedido',
+        'PrecioTotal',
         'NumProductos',
-        'IDproductoDPedido',
-        'Pre'
+        'IDproducto'
 
     ];
 }
