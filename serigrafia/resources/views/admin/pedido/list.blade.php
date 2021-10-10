@@ -8,8 +8,6 @@
         <h1 class="titulo-2">Diseños</h1>
     </div>
 </header>
-
-<body>
     <div class="w-full p-4">
         <form action="{{route('pedidos.search')}}" method="get"></form>
             <div class="inline-block p-4">
@@ -34,126 +32,62 @@
             </div>
         </form>
     </div>
-    <div class="flex items-center justify-center w-full">
-        <div class="overflow-auto lg:overflow-visible w-full">
-            @if(isset($pedidos))
-            <table class="table text-gray-400 border-separate space-y-6 text-sm w-full">
-                <thead class="bg-gray-800 text-gray-500">
-                    <tr>
-                        <th class="p-3 ">Cliente</th>
-                        <th class="p-3 text-left">Fecha entrega</th>
-                        <th class="p-3 text-left">Precio total</th>
-                        <th class="p-3 text-left">Número de productos</th>
-                        <th class="p-3 text-left"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!--@foreach($pedidos as $pedido)
-                            <tr class="flex flex-wrap bg-gray-800">
+    <div class="flex flex-wrap items-center justify-center w-full">
+        <div class="w-full">
+            <div class="overflow-auto lg:overflow-visible w-full">
+                @if(isset($pedidos))
+                <table class="table text-gray-400 border-separate space-y-6 text-sm w-full">
+                    <thead class="bg-gray-800 text-gray-500">
+                        <tr>
+                            <th class="p-3 ">Cliente</th>
+                            <th class="p-3 text-left">Fecha entrega</th>
+                            <th class="p-3 text-left">Precio total</th>
+                            <th class="p-3 text-left">Número de productos</th>
+                            <th class="p-3 text-left"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($pedidos as $pedido)
+                            <tr class="bg-gray-800">
                                 <td class="w-2/6 p-3 max-w-xs">
                                     <div class="flex align-items-center">
                                         <div class="ml-3">
-                                            <div class="text-xs md:text-lg">Appple</div>
+                                            <div class="text-xs md:text-lg">{{$pedido->cliente->Nombre}}</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="w-1/6 p-3">
-                                    Technology
+                                    {{$pedido->FechaEntraga}}
                                 </td>
                                 <td class="w-1/6 p-3 font-bold">
-                                    200.00$
+                                    {{App\Models\Producto_Pedido::where('IDPedido', $pedido->id)->sum('PrecioTotal')}}
                                 </td>
                                 <td class="w-1/6 p-3">
-                                    <span class="bg-green-400 text-gray-50 rounded-md px-2">available</span>
+                                    {{$pedido->NumProductos}}
                                 </td>
                                 <td class="w-1/6 p-3">
-                                    <a href="{{route('pedidos.edit', '')}}" class="text-gray-400 hover:text-gray-100  ml-2">
+                                    <a href="{{route('pedidos.edit', $pedido->id)}}" class="text-gray-400 hover:text-gray-100 ml-2">
                                         <i class="material-icons-round text-base hover:text-green-300">Modificar</i>
                                     </a>
                                 </td>
                             </tr>
-                            @endforeach-->
-                    <tr class="bg-gray-800">
-                        <td class="w-2/6 p-3 max-w-xs">
-                            <div class="flex align-items-center">
-                                <div class="ml-3">
-                                    <div class="text-xs md:text-lg">Realme kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="w-1/6 p-3">
-                            Technology
-                        </td>
-                        <td class="w-1/6 p-3 font-bold">
-                            200.00$
-                        </td>
-                        <td class="w-1/6 p-3">
-                            <span class="bg-red-400 text-gray-50 rounded-md px-2">no stock</span>
-                        </td>
-                        <td class="w-1/6 p-3">
-                            <a href="{{route('pedidos.edit', '')}}" class="text-gray-400 hover:text-gray-100 ml-2">
-                                <i class="material-icons-round text-base hover:text-green-300">Modificar</i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr class="bg-gray-800">
-                        <td class="w-2/6 p-3 max-w-xs">
-                            <div class="flex align-items-center">
-                                <div class="ml-3">
-                                    <div class="text-xs md:text-lg">Samsung</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="w-1/6 p-3">
-                            Technology
-                        </td>
-                        <td class="w-1/6 p-3 font-bold">
-                            200.00$
-                        </td>
-                        <td class="w-1/6 p-3">
-                            <span class="bg-yellow-400 text-gray-50  rounded-md px-2">start sale</span>
-                        </td>
-                        <td class="w-1/6 p-3">
-                            <a href="{{route('pedidos.edit', '')}}" class="text-gray-400 hover:text-gray-100 ml-2">
-                                <i class="material-icons-round text-base hover:text-green-300">Modificar</i>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            @else
+                        @endforeach
+                    </tbody>
+                </table>
+                @else
 
-            @endif
+                @endif
+                {{$client}}
+            </div>
+        </div>
+        <div class="w-full">
+        {{$pedidos->appends([
+            'pedidos' => $pedidos,
+            'client'  => $client,
+            'date'    => $date
+        ])->links()}}
         </div>
     </div>
 
-    <div class="container mx-auto">
-        <label class="px-20 text-black font-weight"><b>Cliente</b></label>
-        <label class="px-20 text-black font-weight"><b>Fecha entrega</b></label>
-        <label class="px-20 text-black font-weight"><b>Número de productos</b></label>
-        <label class="px-20 text-black font-weight"><b>Precio total</b></label>
-
-        <br>
-
-        <label class="pl-16">Some Text</label>
-        <label class="pl-40">Some Text</label>
-        <label class="pl-48">Some Text</label>
-        <label class="pl-56 pr-32">Some Text</label>
-        <button class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
-            Modificar
-        </button>
-
-        <br>
-        <br>
-        <br>
-
-        <label class="pl-16">Some Text</label>
-        <label class="pl-40">Some Text</label>
-        <label class="pl-48">Some Text</label>
-        <label class="pl-56 pr-32">Some Text</label>
-        <button class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
-            Modificar
-        </button>
-    </div>
 </body>
 @endsection

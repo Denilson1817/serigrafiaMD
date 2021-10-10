@@ -14,4 +14,8 @@ class Pedido extends Model
         'NumProductos',
         'IDCliente'
     ];
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'IDCliente');
+    }
 }
