@@ -20,7 +20,7 @@
                         <label for="textura">Textura: </label>
                         <input type="text" name="textura" id="textura"  value="{{$desing->Textura}}" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
                     </div>
-
+            
                     <div class="col-span-6 md:col-span-3">
                         <label for="foto">Foto: </label>
                         <input type="file" name="foto" id="foto" accept=".png, .jpg, .jpeg"  value="{{$desing->Foto}}" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
