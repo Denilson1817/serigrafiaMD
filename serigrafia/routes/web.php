@@ -48,9 +48,11 @@ Route::post('/admin/pedidos/update', [PedidoController::class, 'update'])->name(
 //Productos pedidos
 Route::get('/admin/pedidos/editProductoPedido', [ProductoPedidoController::class, 'edit'])->name('pedidos.productoPedido.edit');
 Route::get('/admin/pedidos/updateProductoPedido', [ProductoPedidoController::class, 'update'])->name('pedidos.productoPedido.update');
-
 //RUTA PARA ELIMINAR PRODUCTO
 Route::get('admin/pedidos/destroyProPed/{id_Prod}', [ProductoPedidoController::class, 'destroyProPed'])->name('pedidos.destroyProPed');
+//RUTA PARA AGREGAR PRODUCTO EN UN PEDIDO
+Route::get('admin/pedidos/addPro_Ped/{id_Pedido}', [ProductoPedidoController::class, 'addPro_Ped'])->name('pedidos.addPro_Ped');
+
 
 //Ruta para editar diseños dentro de un catalogo
 Route::get('/admin/catalog/editarDisenio/{id}', [CatalogController::class, 'editarDisenio'])->name('catalog.editarDisenio');
