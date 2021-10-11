@@ -9,7 +9,7 @@
     </div>
 </header>
     <div class="w-full p-4">
-        <form action="{{route('pedidos.search')}}" method="get"></form>
+        <form action="{{route('pedidos.search')}}" method="get">
             <div class="inline-block p-4">
                 <label class="pl-16">Cliente</label>
                 <input type="text" name="client" class="shadow appearance-none border rounded py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input_razon" name="cliente" id="cliente" placeholder="Nombre Cliente">
@@ -77,7 +77,6 @@
                 @else
 
                 @endif
-                {{$client}}
             </div>
         </div>
         <div class="w-full">

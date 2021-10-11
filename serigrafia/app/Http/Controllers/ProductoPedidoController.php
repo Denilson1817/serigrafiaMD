@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pedido;
 use App\Models\Producto_Pedido;
 use Illuminate\Http\Request;
 
@@ -44,9 +45,9 @@ class ProductoPedidoController extends Controller
      * @param  \App\Models\Producto_Pedido  $producto_Pedido
      * @return \Illuminate\Http\Response
      */
-    public function show(Producto_Pedido $producto_Pedido)
+    public function show(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -55,9 +56,10 @@ class ProductoPedidoController extends Controller
      * @param  \App\Models\Producto_Pedido  $producto_Pedido
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto_Pedido $producto_Pedido)
+    public function edit(Request $request)
     {
-        //
+        $producto_Pedido = Producto_Pedido::find($request->id);
+        return view('admin.pedido.editProductoPedido', ['ProductoPedido' => $producto_Pedido]);
     }
 
     /**
@@ -67,9 +69,13 @@ class ProductoPedidoController extends Controller
      * @param  \App\Models\Producto_Pedido  $producto_Pedido
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto_Pedido $producto_Pedido)
+    public function update(Request $request)
     {
-        //
+        $producto_Pedido = Producto_Pedido::find($request->id);
+        $producto_Pedido->NumProductos = $request->NumProductos;
+        $producto_Pedido->PrecioTotal = $request->NumProductos*$producto_Pedido->producto->Precio;
+        $producto_Pedido->save();
+        return redirect()->route('pedidos.edit', ['id_pedido' => $producto_Pedido->pedido->id]);
     }
 
     /**

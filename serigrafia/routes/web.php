@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\ProductoPedidoController;
+use App\Models\Producto_Pedido;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +44,11 @@ Route::post('/admin/catalog/enviarDiseno', [CatalogController::class, 'enviarDis
 Route::get('/admin/pedidos/search/', [PedidoController::class, 'show'])->name('pedidos.search');
 Route::get('/admin/pedidos/edit/{id_pedido}', [PedidoController::class, 'edit'])->name('pedidos.edit');
 Route::post('/admin/pedidos/update', [PedidoController::class, 'update'])->name('pedidos.update');
+
+//Productos pedidos
+Route::get('/admin/pedidos/editProductoPedido', [ProductoPedidoController::class, 'edit'])->name('pedidos.productoPedido.edit');
+Route::get('/admin/pedidos/updateProductoPedido', [ProductoPedidoController::class, 'update'])->name('pedidos.productoPedido.update');
+
 //Ruta para editar diseños dentro de un catalogo
 Route::get('/admin/catalog/editarDisenio/{id}', [CatalogController::class, 'editarDisenio'])->name('catalog.editarDisenio');
 Route::post('/admin/catalog/editDisenio/', [CatalogController::class, 'editDisenio'])->name('catalog.editDisenio');

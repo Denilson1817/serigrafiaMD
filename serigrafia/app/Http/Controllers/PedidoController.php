@@ -47,9 +47,15 @@ class PedidoController extends Controller
             {
                 $q->where('FechaRealizado', $request->date);
             }
+            
+        })->where(function ($q) use ($request) 
+        {
             if (!empty($request->client)) 
             {
-                $q->where('IDCliente', $request->client);
+                $q->whereHas('cliente', function (Builder $query) use ($request) 
+                {
+                    $query->where('Nombre', 'LIKE', '%'.$request->client.'%');
+                });
             }
         })->paginate(5);
         return view('admin.pedido.list', [
@@ -83,9 +89,10 @@ class PedidoController extends Controller
     public function update(Request $request)
     {
         $pedido = Pedido::find($request->id_pedido);
-        $pedido->FechaEntrega = $request->FechaEntrega;
-        $pedido->numProductos = Producto_Pedido::where('IDPedido', $request->id_pedido)->sum();
+        $pedido->FechaEntraga = $request->FechaEntrega;
+        $pedido->numProductos = Producto_Pedido::where('IDPedido', $request->id_pedido)->count();
         $pedido->save();
+        return redirect()->route('pedidos.search');
     }
 
     /**
