@@ -78,8 +78,7 @@ class ProductoPedidoController extends Controller
      * @param  \App\Models\Producto_Pedido  $producto_Pedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto_Pedido $producto_Pedido)
-    {
-        //
+    public function destroyProduct(Producto_Pedido $producto_Pedido){
+        $producto_Pedido->delete();
     }
 }

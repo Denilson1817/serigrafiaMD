@@ -48,3 +48,5 @@ Route::post('/admin/pedidos/update', [PedidoController::class, 'update'])->name(
 Route::get('/admin/catalog/editarDisenio/{id}', [CatalogController::class, 'editarDisenio'])->name('catalog.editarDisenio');
 Route::post('/admin/catalog/editDisenio/', [CatalogController::class, 'editDisenio'])->name('catalog.editDisenio');
 
+//RUTA PARA ELIMINAR PRODUCTO
+Route::delete('admin/pedidos/destroyProPed/{id_Prod}', [ProductoPedidoController::class, 'destroyProPed'])->name('pedidos.destroyProPed');

@@ -45,7 +45,7 @@
                                 <td class="border px-4 py-2">
 
                                     <!--INPUTS QUE TE DEBO DE MANDAR EN EL BOTON EDITAR Y ELIMINAR-->
-                                    <input type="hidden" name="idproducto" id="idproducto" value="{{$producto->IDProdcuto}}" class="input_idpedido">
+                                    <input type="hidden" name="idproducto" id="idproducto" value="{{$producto->IDProducto}}" class="input_idpedido">
                                     <input type="hidden" name="idpedido" id="idpedido" value="{{$producto->IDpedido}}" class="input_idpedido">
 
                                     <label class="pl-8">ID {{$produco->IDproducto</label>
@@ -53,9 +53,9 @@
                                     <button type="submit" class="bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 border-b-4 border-yellow-700 hover:border-yellow-500 rounded">
                                         Editar
                                     </button>
-                                    <button type="submit" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                    <a type="button" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded" href="{{route('pedidos.destroyProPed', $producto->IDproducto)}}">
                                         Eliminar
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach
