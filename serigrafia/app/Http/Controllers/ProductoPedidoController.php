@@ -90,5 +90,6 @@ class ProductoPedidoController extends Controller
         $producto_Pedido = Producto_Pedido::where('IDproducto', $id_Prod);
 
         $producto_Pedido->delete();   
+        return back();
     }
 }
