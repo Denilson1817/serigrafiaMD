@@ -19,7 +19,7 @@
               </div>
 
               <div class="text-center">
-                <img src=https://www.serigrafiadf.com/wp-content/uploads/2017/11/Outsourcing-en-disen%CC%83os-de-playeras-parte-2-serigrafia-ink-works.png>
+                <img src='/storage/{{$desing->Foto}}'>
               </div>
 
               <div class="mb-6, text-center">
@@ -27,7 +27,7 @@
                 Nombre del Catalogo al que pertenece el Diseño: 
                 </label>
                 <br>
-                <label class="font-serif text-lg text-blue-800 text-center">{{$catalog->Nombre}}</label>
+                <label class="font-serif text-lg text-blue-800 text-center">{{$desing->catalogo->Nombre}}</label>
               </div>
               
               <!--Inputs que se enviaran en el request-->

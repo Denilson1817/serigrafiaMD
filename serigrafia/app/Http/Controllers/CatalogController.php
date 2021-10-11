@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
+
 class CatalogController extends Controller
 {
     protected $messagesCatalog = [
@@ -117,14 +118,12 @@ class CatalogController extends Controller
     }
     
     //Función PARA DELETE DISEÑO
-    public function deleteDiseno($iddiseno, $idcatalog ){
+    public function deleteDiseno($iddiseno){
         $diseno = Diseno::find($iddiseno);
-        $catalog = Catalogo::find($idcatalog);
 
         return view('admin.deleteDiseno')->with([
-                    'desing' => $diseno,
-                    'catalog' => $catalog
-        ]);
+                    'desing' => $diseno
+                ]);
     }
 
     
@@ -209,7 +208,6 @@ class CatalogController extends Controller
     //Editar diseño dentro de un catalogo
     public function editarDisenio($iddiseno){
         $diseno = Diseno::find($iddiseno);
-        //$dcolor = Diseno_color::find($iddiseno);
         $dcolor = Diseno_color::where('IDDiseno', $iddiseno)->first();
         $ddimen = Diseno_dimension::where('IDDiseno', $iddiseno)->first();
 

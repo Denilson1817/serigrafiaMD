@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
+use App\Models\Producto_Pedido;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-
 class PedidoController extends Controller
 {
     /**
@@ -14,8 +15,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $pedidos = Pedido::get()->paginate(15);
-        return json_encode($pedidos);
+        
     }
 
     /**
@@ -39,15 +39,30 @@ class PedidoController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pedido  $pedido
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pedido $pedido)
+    public function show(Request $request)
     {
-        //
+        $pedidos = Pedido::orderBy('id', 'DESC')->where(function ($q) use ($request) 
+        {
+            if (!empty($request->date)) 
+            {
+                $q->where('FechaRealizado', $request->date);
+            }
+            
+        })->where(function ($q) use ($request) 
+        {
+            if (!empty($request->client)) 
+            {
+                $q->whereHas('cliente', function (Builder $query) use ($request) 
+                {
+                    $query->where('Nombre', 'LIKE', '%'.$request->client.'%');
+                });
+            }
+        })->paginate(5);
+        return view('admin.pedido.list', [
+            'pedidos' => $pedidos,
+            'client'  => $request->client,
+            'date'    => $request->date
+        ]);
     }
 
     /**
@@ -56,9 +71,12 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pedido $pedido)
+    public function edit($id_pedido)
     {
-        //
+        $pedido = Pedido::find($id_pedido);
+        return view('admin.pedido.editPedido', [
+            'pedido' => $pedido
+        ]);
     }
 
     /**
@@ -68,9 +86,13 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pedido $pedido)
+    public function update(Request $request)
     {
-        //
+        $pedido = Pedido::find($request->id_pedido);
+        $pedido->FechaEntraga = $request->FechaEntrega;
+        $pedido->numProductos = Producto_Pedido::where('IDPedido', $request->id_pedido)->count();
+        $pedido->save();
+        return redirect()->route('pedidos.search');
     }
 
     /**
