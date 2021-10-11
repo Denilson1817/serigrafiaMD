@@ -54,7 +54,4 @@ Route::get('admin/pedidos/destroyProPed/{id_Prod}', [ProductoPedidoController::c
 
 //Ruta para editar diseños dentro de un catalogo
 Route::get('/admin/catalog/editarDisenio/{id}', [CatalogController::class, 'editarDisenio'])->name('catalog.editarDisenio');
-Route::post('/admin/catalog/editDisenio/', [CatalogController::class, 'editDisenio'])->name('catalog.editDisenio');
-
-
-
+Route::post('/admin/catalog/editDisenio', [CatalogController::class, 'editDisenioGuard'])->name('catalog.editDisenioGuard');
