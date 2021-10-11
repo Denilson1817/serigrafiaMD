@@ -47,9 +47,9 @@
                                 <button class="bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 border-b-4 border-yellow-700 hover:border-yellow-500 rounded" onclick="editProductoPedido('{{$producto->id}}')">
                                     Editar
                                 </button>
-                                <button class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded" onclick="">
+                                <a type="button" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded" href="{{route('pedidos.destroyProPed', $producto->IDproducto)}}">
                                     Eliminar
-                                </button>
+                                </a>
                             </td>
                         </tr>
                         @endforeach
