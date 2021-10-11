@@ -84,7 +84,11 @@ class ProductoPedidoController extends Controller
      * @param  \App\Models\Producto_Pedido  $producto_Pedido
      * @return \Illuminate\Http\Response
      */
-    public function destroyProduct(Producto_Pedido $producto_Pedido){
-        $producto_Pedido->delete();
+    public function destroyProPed($id_Prod){
+        //$producto_Pedido = Producto_Pedido::find($id_Prod);
+        
+        $producto_Pedido = Producto_Pedido::where('IDproducto', $id_Prod);
+
+        $producto_Pedido->delete();   
     }
 }

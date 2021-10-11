@@ -48,8 +48,9 @@ Route::post('/admin/pedidos/update', [PedidoController::class, 'update'])->name(
 //Productos pedidos
 Route::get('/admin/pedidos/editProductoPedido', [ProductoPedidoController::class, 'edit'])->name('pedidos.productoPedido.edit');
 Route::get('/admin/pedidos/updateProductoPedido', [ProductoPedidoController::class, 'update'])->name('pedidos.productoPedido.update');
+
 //RUTA PARA ELIMINAR PRODUCTO
-Route::delete('admin/pedidos/destroyProPed/{id_Prod}', [ProductoPedidoController::class, 'destroyProPed'])->name('pedidos.destroyProPed');
+Route::get('admin/pedidos/destroyProPed/{id_Prod}', [ProductoPedidoController::class, 'destroyProPed'])->name('pedidos.destroyProPed');
 
 //Ruta para editar diseños dentro de un catalogo
 Route::get('/admin/catalog/editarDisenio/{id}', [CatalogController::class, 'editarDisenio'])->name('catalog.editarDisenio');
