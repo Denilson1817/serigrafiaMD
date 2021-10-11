@@ -2,14 +2,21 @@ require('./bootstrap');
 
 import Alpine from 'alpinejs';
 
-window.Alpine = Alpine;
-
 Alpine.start();
+window.Alpine = Alpine;
+window.Swal = require('sweetalert2')
 
-function crearNuevoCatalogo(){
-    document.getElementById("crearNuevoC").style.display="block";
-}
+$(document).ready(function () {
+    
+    $(document).on('click', '#newCatalog', function (e) {
+        document.getElementById("crearNuevoC").style.display="block";
+    });
 
-function cerrarImgNueCat(){
-    document.getElementById("crearNuevoC").style.display="none";
-}
+    $(document).on('click', '#elimi_catalogo', function(e){
+        document.getElementById("ElimCatalogo").hidden=false;
+    });
+
+    $(document).on('click', '#bntEdit', function(e){
+        document.getElementById("editDisenio").hidden=false;
+    });
+});
