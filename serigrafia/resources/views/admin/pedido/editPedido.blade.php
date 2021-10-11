@@ -7,7 +7,6 @@
     <div class="titulo_cata">
         <h1 class="titulo-2">Pedidos</h1>
     </div>
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </header>
 
 <body>
