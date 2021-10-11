@@ -92,4 +92,12 @@ class ProductoPedidoController extends Controller
         $producto_Pedido->delete();   
         return back();
     }
+
+    public function addPro_Ped($id_Pedido){
+        $pedido = Pedido::find($id_Pedido);
+
+        return view('admin.pedido.addPro_Ped', ['$pedido' => $pedido]);
+
+
+    }
 }
