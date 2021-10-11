@@ -86,6 +86,8 @@
                     </p>
                     <div class="text-gray-900 font-bold text-xl mb-2">ID: {{$desing->id}}</div>
                     <p class="text-gray-700 text-base">Textura: {{$desing->Textura}}</p>
+                    {{$desing->disenoColor->Color}}
+                    {{$desing->disenoDimension->DimensioY}}
                 </div>
                 <div class="flex items-center">
                     <div class="flex flex-wrap -mx-3 mb-6 text-black">

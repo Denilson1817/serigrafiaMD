@@ -18,4 +18,12 @@ class Diseno extends Model
 	{
 	    return $this->belongsTo(Catalogo::class, 'ID_Catalago');
 	}
+	public function disenoColor()
+    {
+        return $this->hasOne(Diseno_color::class, 'IDDiseno');
+    }
+	public function disenoDimension()
+    {
+        return $this->hasOne(Diseno_dimension::class, 'IDDiseno');
+    }
 }
