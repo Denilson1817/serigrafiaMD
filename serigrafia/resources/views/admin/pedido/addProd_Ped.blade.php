@@ -34,7 +34,7 @@
                 <input type="hidden" id="precio" value="{{$producto->Precio}}">
                 <div class="w-1/2 text-left">{{$producto->Precio}}
             
-          <input type="hidden" name="precio" id="precio" value="{{producto->id}}"> <!-- EN ESTE 
+          <input type="hidden" name="precio" id="precio" value="{{$producto->id}}"> <!-- EN ESTE 
             INPUT SE GUARDARA EL PRECIO PARA POSTERIORMENTE LLEVARLO A LA MULTIPLICACIÓN-->  
         </div>
             <br>
@@ -67,3 +67,4 @@
         document.getElementById('total').innerHTML = document.getElementById('precio').value * document.getElementById('NumProductos').value
     }
 </script>
+@endsection
