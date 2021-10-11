@@ -27,13 +27,14 @@
             <br>
             <br>
     </div>
-        <div>
-            <!--AQUI FALTA QUE CUANDO SE SELECCIONE POR EJEMPLO EL PRODUCTO 1 ARRIBA  DEL SELECT OPTION
-                EN EL PRECIO SE PONGA SU PRECIO QUE LE CORRESPONDE-->
-          <label class="pl-16">Precio</label>
-          <label class="pl-32"><b></b></label>
-          <label>{{producto->Precio}}</label> <!--AQUÍ EXACTAMENTE-->
-          <input type="hidden" name="precio" id="precio" value="{{producto->Precio}}"> <!-- EN ESTE 
+        
+            
+                <label class="pl-16">Precio </label> 
+                <label class="pl-16"><b></b></label>
+                <input type="hidden" id="precio" value="{{$producto->Precio}}">
+                <div class="w-1/2 text-left">{{$producto->Precio}}
+            
+          <input type="hidden" name="precio" id="precio" value="{{producto->id}}"> <!-- EN ESTE 
             INPUT SE GUARDARA EL PRECIO PARA POSTERIORMENTE LLEVARLO A LA MULTIPLICACIÓN-->  
         </div>
             <br>
@@ -41,24 +42,16 @@
         <div class="col-span-6 md:col-span-2">
             <label class="pl-16">Cantidad de unidades </label>
             <label class="pl-16"><b></b></label>
-            <input type="number" name="cantidad" id="cantidad" value=0 class="appearance-none border rounded py-2 px-12 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input_num">        
-            <!-- EN ESTE INPUT EL USUARIO INTRODUCE LA CANTIDAD PARA LA MULTIPLICACION-->
+            <input type="number" name="NumProductos" id="NumProductos" value="{{$producto->NumProductos}}" class="appearance-none border rounded py-2 px-12 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input_num" onchange="calculaTotal()">        
+            
             <br>
             <br>
         
-          <label class="pl-16">Precio total</label> <!-- DEBAJO DE AQUÍ DEBERIA IR EL RESULTADO DE LA MULTIPLICACION-->
-          <label class="pl-32"><b></b></label>
+                  <label class="pl-16">Precio total </label>
+                  <label class="pl-32"><b></b></label>
+                <div class="w-1/2 text-left" id="total">{{$producto->PrecioTotal}}
+                </div>
             
-            <!-- AQUÍ INTENTE HACER UNA MULTIPLICACIÓN SIN EMBARGO, NECESITA UN BUTON TYPE="SUBMIT"
-             Y UN FORM, PARA QUE SE LLEVE A CABO, POR LO QUE CREO QUE NO FUNCIONARIA--> 
-            <?php
-                if(isset($_POST['precio']) && isset($_POST['cantidad'])){
-                    $result = $_POST['precio'] * $_POST['cantidad'];
-                        echo "Precio Total: " . $result;
-
-                
-                }
-            ?>
             <br>
             <br>
         </div>
@@ -69,3 +62,8 @@
                 <!-- CUANDO SE DE EN AGREGAR SE DEBERIA MANDAR A LA BD, CREO YO-->
     @endforeach
 </body>
+<script>
+    function calculaTotal(){
+        document.getElementById('total').innerHTML = document.getElementById('precio').value * document.getElementById('NumProductos').value
+    }
+</script>
