@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
+use App\Models\Cliente;
 use App\Models\Producto_Pedido;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -128,5 +129,35 @@ class PedidoController extends Controller
         $diseno = Diseno::find($iddiseno,'Foto');
         return redirect()->route('disenos.search');
     }
+
+    public function cancelPedido($id_pedido, $id_cliente)
+    {
+        $pedido = Pedido::find($id_pedido);
+        //$cliente->id = Cliente::where('IDPedido', $request->id_pedido)->count();
+        $cliente = Cliente::find($id_cliente);
+
+
+        return view('admin.pedido.cancelPedido', [
+            'pedido' => $pedido, 
+            'cliente' => $cliente
+        ]);
+    }
+
+    //Aquí se envian los datos de cancelPedido
+    public function enviarPedido(Request $request){
+        
+        //Aquí se envia los datos a la tabla de Pedidos Cancelados
+        $enviarP = new PedidosCancelados();
+        $enviarP->NombreCliente = $request->nombreCliente;
+        $enviarP->IDPedido = $request->idpedido;
+        $enviarP->FechaRealizacion = $request->fechaRealizado;
+        $enviarP->FechaEntrega = $request->fechaEntrega;
+        $enviarP->Motivo = $request->razon;
+
+        $enviarD->save();
+        return redirect()->route('dashboard');
+    }
+
+    
 
 }

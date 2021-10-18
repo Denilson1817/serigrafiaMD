@@ -11,7 +11,8 @@ class Producto extends Model
 	protected $fillable = [
 		'Material',
 		'Precio',
-		'IDDiseno'
+		'IDDiseno',
+		'Nombre'
 	];
 	public function diseno()
 	{
