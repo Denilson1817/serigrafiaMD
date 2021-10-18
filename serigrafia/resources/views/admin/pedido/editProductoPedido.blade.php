@@ -9,6 +9,7 @@
                 <img src="{{$ProductoPedido->producto->diseno->Foto}}" alt="{{$ProductoPedido->producto->diseno->Foto}}" srcset="">
             </div>
         </div>
+        
         <input type="hidden" name="id" value="{{$ProductoPedido->id}}">
         <div class="flex flex-wrap justify-center mb-4">
             <div class="w-1/2 text-left">Precio por unidad</div>

@@ -25,7 +25,7 @@ class PedidoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pedido.registroPedido');
     }
 
     /**
@@ -36,7 +36,25 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pedido = new Pedido();
+        $pedido->FechaRealizado = $request->FechaRealizado;
+        $pedido->FechaEntraga = $request->FechaEntraga;
+        $pedido->NumProductos = 0;
+        $pedido->IDCliente = $request->IDCliente;
+        $pedido->save();
+
+        foreach ($request->productos as $producto) 
+        {
+            $productoPedido               = new Producto_Pedido();
+            $productoPedido->IDPedido     = $pedido->id;
+            $productoPedido->NumProductos = $producto['cantidad'];
+            $productoPedido->IDproducto   = $producto['id'];
+            $productoPedido->PrecioTotal  = $producto['precio'] * $producto['cantidad'];
+            $productoPedido->save();
+        }
+
+        $pedido->NumProductos = Producto_Pedido::where('IDPedido', $pedido->id)->get()->count();
+        $pedido->save();
     }
 
     public function show(Request $request)
