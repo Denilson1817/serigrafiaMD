@@ -12,7 +12,8 @@ class Diseno extends Model
 		'Textura',
 		'Foto',
 		'Estado',
-		'ID_Catalago'
+		'ID_Catalago',
+		'Nombre'
 	];
 	public function catalogo()
 	{
