@@ -44,6 +44,8 @@ Route::post('/admin/catalog/enviarDiseno', [CatalogController::class, 'enviarDis
 Route::get('/admin/pedidos/search/', [PedidoController::class, 'show'])->name('pedidos.search');
 Route::get('/admin/pedidos/edit/{id_pedido}', [PedidoController::class, 'edit'])->name('pedidos.edit');
 Route::post('/admin/pedidos/update', [PedidoController::class, 'update'])->name('pedidos.update');
+Route::get('/admin/pedidos/create', [PedidoController::class, 'create'])->name('pedidos.create');
+Route::post('/admin/pedidos/save', [PedidoController::class, 'save'])->name('pedidos.save');
 
 //Productos pedidos
 Route::get('/admin/pedidos/editProductoPedido', [ProductoPedidoController::class, 'edit'])->name('pedidos.productoPedido.edit');

@@ -79,12 +79,17 @@
                 @endif
             </div>
         </div>
-        <div class="w-full">
-        {{$pedidos->appends([
-            'pedidos' => $pedidos,
-            'client'  => $client,
-            'date'    => $date
-        ])->links()}}
+        <div class="flex flex-wrap bg-gray-200">
+            <div class="w-2/3 justify-start">
+                {{$pedidos->appends([
+                    'pedidos' => $pedidos,
+                    'client'  => $client,
+                    'date'    => $date
+                ])->links()}}
+            </div>
+            <div class="w-1/3 p-2 justify-end">
+                <a href="{{route('pedidos.create')}}" class="bg-transparent hover:bg-green-500 text-bluegreen font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">Agregar pedido</a>
+            </div>
         </div>
     </div>
 
