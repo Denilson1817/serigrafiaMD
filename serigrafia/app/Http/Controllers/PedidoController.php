@@ -124,6 +124,11 @@ class PedidoController extends Controller
     {
         //
     }
+    //para buscar una foto 
+    public function showPhoto($iddiseno){
+        $diseno = Diseno::find($iddiseno,'Foto');
+        return redirect()->route('disenos.search');
+    }
 
     public function cancelPedido($id_pedido, $id_cliente)
     {
@@ -152,4 +157,7 @@ class PedidoController extends Controller
         $enviarD->save();
         return redirect()->route('dashboard');
     }
+
+    
+
 }
