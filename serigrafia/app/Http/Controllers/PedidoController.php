@@ -105,4 +105,10 @@ class PedidoController extends Controller
     {
         //
     }
+    //para buscar una foto 
+    public function showPhoto($iddiseno){
+        $diseno = Diseno::find($iddiseno,'Foto');
+        return redirect()->route('disenos.search');
+    }
+
 }
