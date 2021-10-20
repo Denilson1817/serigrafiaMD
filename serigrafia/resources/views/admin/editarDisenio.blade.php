@@ -24,11 +24,16 @@
                 <label for="textura">Textura: </label>
                 <input type="text" name="textura" id="textura" value="{{$desing->Textura}}" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
             </div>
-                    
+
+            <input type="hidden" name="idcolor" id="idcolor" value="{{$color->IDDiseno}}">
+
             <div class="col-span-6 md:col-span-2">
                 <label for="color">Color: </label>
-                <input type="color" name="color" id="color" class="w-full" value="{{$color->Color}}">
+                <!--<input type="color" name="color" id="color" class="w-full" value="{{$color->Color}}">-->
+                <input type="color" name="color" id="color" class="w-full" value="{{$desing->disenoColor->Color}}">
             </div>
+
+            <input type="hidden" name="iddimen" id="iddimen" value="{{$dimen->IDDiseno}}">
         
             <div class="col-span-6 md:col-span-2">
                 <label for="dimension_x">Dimensión X </label>
@@ -41,12 +46,13 @@
             </div>
             
             <div class="col-span-6">
-                <button class="bg-green-500 hover:bg-green-400 mr-64 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded" type="submit"> Aceptar </button>
+                <button class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded" type="submit"> Aceptar </button>
                 <!--<button class="bg-green-500 hover:bg-green-400 mr-64 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded" onclick="document.getElementById('modal2').hidden=false;"  type="button" id="btnAcep"> Aceptar </button>-->
-                <button class="bg-red-500 hover:bg-red-700 ml-64 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded" onclick="document.getElementById('modal1').hidden=false;"  type="button" id="btnCance"> Cancelar </button>
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded" onclick="document.getElementById('modal1').hidden=false;"  type="button" id="btnCance"> Cancelar </button>
             </div>
         </div>
-    </div>    
+    </form>
+</div>    
 </center>
 
 <!-- Full screen modal -->
