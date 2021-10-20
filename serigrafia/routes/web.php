@@ -45,7 +45,7 @@ Route::get('/admin/pedidos/search/', [PedidoController::class, 'show'])->name('p
 Route::get('/admin/pedidos/edit/{id_pedido}', [PedidoController::class, 'edit'])->name('pedidos.edit');
 Route::post('/admin/pedidos/update', [PedidoController::class, 'update'])->name('pedidos.update');
 Route::get('/admin/pedidos/create', [PedidoController::class, 'create'])->name('pedidos.create');
-Route::post('/admin/pedidos/save', [PedidoController::class, 'save'])->name('pedidos.save');
+Route::post('/admin/pedidos/save', [PedidoController::class, 'store'])->name('pedidos.save');
 Route::get('/admin/pedidos/cancelPedido/{id_pedido}/{id_cliente}', [PedidoController::class, 'cancelPedido'])->name('pedidos.cancelPedido');
 Route::get('/admin/pedidos/enviarPedido', [PedidoController::class, 'enviarPedido'])->name('pedidos.enviarPedido');
 
