@@ -65,4 +65,4 @@ Route::get('/admin/catalog/editarDisenio/{id}', [CatalogController::class, 'edit
 Route::post('/admin/catalog/editDisenio', [CatalogController::class, 'editDisenioGuard'])->name('catalog.editDisenioGuard');
 
 //Ruta para registrar pedido
-Route::get('admin/pedidos/agregarProducto', [ProductoPedidoController::class, 'vistaAgreProd'])->name('pedidos.vistaAgreProd');
+Route::get('/admin/pedidos/agregarProducto', [PedidoController::class, 'agregarProducto'])->name('pedidos.agregarProducto');

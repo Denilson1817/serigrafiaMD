@@ -165,6 +165,8 @@ class PedidoController extends Controller
         return redirect()->route('dashboard');
     }
 
-    
+    public function agregarProducto(){
+        return view('admin.producto.agregarProducto');
+    }
 
 }

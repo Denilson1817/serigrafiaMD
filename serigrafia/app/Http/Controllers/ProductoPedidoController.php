@@ -101,7 +101,4 @@ class ProductoPedidoController extends Controller
 
     }
 
-    public function vistaAgreProd(){
-        return view('admin.pedido.agregarProducto');
-    }
 }

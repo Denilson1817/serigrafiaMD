@@ -46,6 +46,7 @@
             </div>
         </center>
     </div>
+    <a href="{{route('pedidos.agregarProducto')}}">Registrar producto</a>
 </div>
 <form action="{{route('pedidos.save')}}" method="post" enctype="multipart/form-data" class="p-4">
     @csrf
