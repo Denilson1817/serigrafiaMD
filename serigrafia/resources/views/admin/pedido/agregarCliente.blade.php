@@ -11,7 +11,7 @@
    
 
                     <!---No sé cual es la ruta--->
-<form action ="{{route(No conozco la ruta)}}" method="post" enctype="multipart/form-data">
+<form action ="" method="post" enctype="multipart/form-data">
 
     <!-- This example requires Tailwind CSS v2.0+ -->
     <nav class="bg-gray-800">
