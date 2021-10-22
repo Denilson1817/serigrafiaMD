@@ -7,20 +7,18 @@
     <h1 style="font-size: 30px;" class="font-extrabold  pl-16 ">Agregar Producto</h1>
     <br>
     <br>
-    <div class="titulo_cata">
-    </div>
 </header>
 
-<form action="{{pedidos.addNewProduct}}" method="post">
+<form action="{{route('pedidos.addNewProduct')}}" method="post">
+    @csrf
     <div class="flex flex-wrap -mx-3 mb-6 p-4">
         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <div class="md:flex md:items-center mb-6">
-            <input type="hidden" name="id" value="{{$producto->id}}">
                 <div class="md:w-1/3">
                     <label>Precio: </label>
                 </div>
                 <div class="md:w-2/3">
-                    <input type="number" name="Precio" id="Precio" class="appearance-none border rounded py-2 px-15 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full">
+                    <input type="number" name="Precio" id="Precio" class="appearance-none border rounded py-2 px-15 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-25">
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">
@@ -31,6 +29,14 @@
                     <input type="text" name="Material" id="Material" class="appearance-none border rounded py-2 px-15 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full">
                 </div>
             </div>
+            <div class="md:flex md:items-center mb-6">
+                <div class="md:w-1/3">
+                    <label>Nombre</label>
+                </div>
+                <div class="md:w-2/3">
+                    <input type="text" name="Nombre" id="Nombre" class="appearance-none border rounded py-2 px-15 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full">
+                </div>
+            </div>
         </div>
         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <div class="md:flex md:items-center mb-6">
@@ -38,7 +44,7 @@
                     <label>Categoría: </label>
                 </div>
                 <div class="md:w-2/3">
-                    <input type="text" name="categoria" id="categoria" class="appearance-none border rounded py-2 px-15 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full">
+                    <input type="text" name="Categoria" id="Categoria" class="appearance-none border rounded py-2 px-15 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full">
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">

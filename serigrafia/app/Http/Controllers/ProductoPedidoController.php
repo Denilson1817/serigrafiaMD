@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
+use App\Models\Producto;
 use App\Models\Producto_Pedido;
 use Illuminate\Http\Request;
 
@@ -99,6 +100,25 @@ class ProductoPedidoController extends Controller
         return view('admin.pedido.addProd_Ped', ['pedido' => $pedido]);
 
 
+    }
+
+    public function agregarProducto(){
+        return view('admin.producto.agregarProducto');
+    }
+
+    public function addNewProduct(Request $request){
+        $producto = new Producto();
+        $producto->Material = $request->Material;
+        $producto->Precio = $request->Precio;
+        $producto->Nombre = $request->Nombre;
+        $producto->IDDiseno = $request->Diseno;
+        $producto->save();
+        
+    }
+
+    public function buscarCatalogo($categoria){
+        $catalog = Catalogo::where('Categoria', '=', $categoria)->first();
+        return $diseno = Diseno::where('Nombre', $catalog->id)->get();
     }
 
 }
