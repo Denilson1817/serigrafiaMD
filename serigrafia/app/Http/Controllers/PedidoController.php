@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Catalogo;
 use App\Models\Pedido;
 use App\Models\Cliente;
 use App\Models\Diseno;
@@ -165,6 +166,20 @@ class PedidoController extends Controller
         return redirect()->route('dashboard');
     }
 
-    
+    public function agregarProducto(){
+        return view('admin.producto.agregarProducto');
+    }
 
+    public function addNewProduct(Request $request){
+
+    }
+
+    public function buscarCatalogo($categoria){
+        $catalog = Catalogo::where('Categoria', '=', $categoria)->first();
+        return $diseno = Diseno::where('Nombre', $catalog->id)->get();
+    }
+
+    public function agregarCliente(){
+        return view('admin.pedido.agregarCliente');
+    }
 }

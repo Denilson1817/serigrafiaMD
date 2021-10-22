@@ -69,3 +69,13 @@ Route::post('/admin/catalog/editDisenio', [CatalogController::class, 'editDiseni
 
 //CLIENTES
 Route::get('client/index', [ClienteController::class, 'index'])->name('client.index');
+
+//Ruta para registrar pedido
+Route::get('/admin/pedidos/agregarProducto', [PedidoController::class, 'agregarProducto'])->name('pedidos.agregarProducto');
+//Ruta para agregar productos
+Route::post('/admin/pedidos/addNewProduct', [PedidoController::class, 'addNewProduct'])->name('pedidos.addNewProduct');
+//Ruta para buscar disenios en catalogo
+Route::get('/admin/pedidos/buscarCatalogo/{categoria}', [PedidoController::class, 'buscarCatalogo'])->name('pedidos.buscarCatalogo');
+
+//Ruta para agregar clientes vista
+Route::get('/admin/pedidos/agregarCliente', [PedidoController::class, 'agregarCliente'])->name('pedidos.agregarCliente');
