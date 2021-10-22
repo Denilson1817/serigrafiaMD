@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoPedidoController;
 use App\Models\Producto_Pedido;
@@ -63,6 +64,11 @@ Route::get('admin/pedidos/addPro_Ped/{id_Pedido}', [ProductoPedidoController::cl
 //Ruta para editar diseños dentro de un catalogo
 Route::get('/admin/catalog/editarDisenio/{id}', [CatalogController::class, 'editarDisenio'])->name('catalog.editarDisenio');
 Route::post('/admin/catalog/editDisenio', [CatalogController::class, 'editDisenioGuard'])->name('catalog.editDisenioGuard');
+
+
+
+//CLIENTES
+Route::get('client/index', [ClienteController::class, 'index'])->name('client.index');
 
 //Ruta para registrar pedido
 Route::get('/admin/pedidos/agregarProducto', [ProductoPedidoController::class, 'agregarProducto'])->name('pedidos.agregarProducto');
