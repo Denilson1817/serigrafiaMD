@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
+use App\Models\PedidoCancelado;
 use App\Models\Cliente;
 use App\Models\Producto_Pedido;
 use Illuminate\Database\Eloquent\Builder;
@@ -147,14 +148,14 @@ class PedidoController extends Controller
     public function enviarPedido(Request $request){
         
         //Aquí se envia los datos a la tabla de Pedidos Cancelados
-        $enviarP = new PedidosCancelados();
+        $enviarP = new PedidoCancelado();
         $enviarP->NombreCliente = $request->nombreCliente;
         $enviarP->IDPedido = $request->idpedido;
         $enviarP->FechaRealizacion = $request->fechaRealizado;
         $enviarP->FechaEntrega = $request->fechaEntrega;
         $enviarP->Motivo = $request->razon;
 
-        $enviarD->save();
+        $enviarP->save();
         return redirect()->route('dashboard');
     }
 
