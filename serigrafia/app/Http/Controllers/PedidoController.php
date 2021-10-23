@@ -154,7 +154,6 @@ class PedidoController extends Controller
 
     //Aquí se envian los datos de cancelPedido
     public function enviarPedido(Request $request){
-        
         //Aquí se envia los datos a la tabla de Pedidos Cancelados
         $enviarP = new PedidoCancelado();
         $enviarP->NombreCliente = $request->nombreCliente;
