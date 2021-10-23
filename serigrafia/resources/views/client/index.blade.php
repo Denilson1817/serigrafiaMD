@@ -1,38 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<header class="interfaz_Principal">
-    <div class="titulo_seri">
-        <h2 class="titulo-1">Serigrafía Ortiz</h2>
-    </div>
-    <div class="titulo_cata">
-        <h1 class="titulo-2">Diseños</h1>
-    </div>
-</header>
-    <div class="w-full p-4">
-        <form action="{{route('pedidos.search')}}" method="get">
-            <div class="inline-block p-4">
-                <label class="pl-16">Cliente</label>
-                <input type="text" name="client" class="shadow appearance-none border rounded py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input_razon" name="cliente" id="cliente" placeholder="Nombre Cliente">
-            </div>
-            <div class="inline-block p-4">
-                <label class="pl-16">Fecha de compra</label>
-                <input type="date" name="date" class="shadow appearance-none border rounded py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input_razon" name="fecha" id="fecha" placeholder="DD/MM/YY">
-            </div>
-
-            <div class="inline-block p-4">
-                <button type="submit" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
-                    Buscar
-                </button>
-                <a class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4">
-                    Limpiar
-                </a>
-                <a class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
-                    Regresar
-                </a>
-            </div>
-        </form>
-    </div>
-    <div class="flex flex-wrap items-center justify-center w-full">
+    <div class="flex flex-wrap items-center justify-center w-full p-6">
         <div class="w-full">
             <div class="overflow-auto lg:overflow-visible w-full">
                 @if(isset($pedidos))
@@ -97,6 +65,4 @@
             </div>
         </div>
     </div>
-
-</body>
 @endsection

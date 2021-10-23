@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Catalogo;
 use App\Models\Pedido;
 use App\Models\PedidoCancelado;
 use App\Models\Cliente;
+use App\Models\Diseno;
+use App\Models\Producto;
 use App\Models\Producto_Pedido;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+
 class PedidoController extends Controller
 {
     /**
@@ -39,10 +44,10 @@ class PedidoController extends Controller
     public function store(Request $request)
     {
         $pedido = new Pedido();
-        $pedido->FechaRealizado = $request->FechaRealizado;
+        $pedido->FechaRealizado = new Carbon();
         $pedido->FechaEntraga = $request->FechaEntraga;
         $pedido->NumProductos = 0;
-        $pedido->IDCliente = $request->IDCliente;
+        $pedido->IDCliente = $request->cliente_id;
         $pedido->save();
 
         foreach ($request->productos as $producto) 
@@ -51,12 +56,15 @@ class PedidoController extends Controller
             $productoPedido->IDPedido     = $pedido->id;
             $productoPedido->NumProductos = $producto['cantidad'];
             $productoPedido->IDproducto   = $producto['id'];
-            $productoPedido->PrecioTotal  = $producto['precio'] * $producto['cantidad'];
+            $productoObj = Producto::find($producto['id']);
+            $productoPedido->PrecioTotal  = $productoObj->Precio * $producto['cantidad'];
             $productoPedido->save();
         }
 
         $pedido->NumProductos = Producto_Pedido::where('IDPedido', $pedido->id)->get()->count();
         $pedido->save();
+        session()->flash("success", "Pedido registrado");
+        return redirect()->route('pedidos.search');
     }
 
     public function show(Request $request)
@@ -159,6 +167,7 @@ class PedidoController extends Controller
         return redirect()->route('dashboard');
     }
 
-    
-
+    public function agregarCliente(){
+        return view('admin.pedido.agregarCliente');
+    }
 }

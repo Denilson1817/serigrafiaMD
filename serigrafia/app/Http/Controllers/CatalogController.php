@@ -227,14 +227,11 @@ class CatalogController extends Controller
         $diseno->Textura = $request->textura;
         $diseno->save();
 
-        /*$diseno_color = Diseno_color::where('IDDiseno', $request->id)->first();
-        $diseno_color->diseno->Color = $request->color;
-        $diseno_color->save();
+        $dcolor = Diseno_color::where('IDDiseno', "=", $request->idcolor)
+                            ->update(['Color' => $request->color]);        
 
-        $diseno_dimen = Diseno_dimension::where('IDDiseno', $request->id)->first();
-        $diseno_dimen->DimensioY = $request->dimension_y;
-        $diseno_dimen->DimensioX = $request->dimension_x;
-        $diseno_dimen->save();*/
+        $diseno_dimen = Diseno_dimension::where('IDDiseno', '=', $request->iddimen)
+                            ->update(['DimensioX' => $request->dimension_x, 'DimensioY' => $request->dimension_y]);
         
         session()->flash("success", "Diseño actualizado");
         return back()->withInput();
