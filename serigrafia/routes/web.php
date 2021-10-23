@@ -69,7 +69,8 @@ Route::get('admin/pedidos/addPro_Ped/{id_Pedido}', [ProductoPedidoController::cl
 Route::get('/admin/catalog/editarDisenio/{id}', [CatalogController::class, 'editarDisenio'])->name('catalog.editarDisenio');
 Route::post('/admin/catalog/editDisenio', [CatalogController::class, 'editDisenioGuard'])->name('catalog.editDisenioGuard');
 
-
+//ruta que recupera la foto d eun diseño
+Route::get('/admin/pedidos/getFotoDiseno', [PedidoController::class, 'showPhoto'])->name('getPhotoDiseno');
 
 //CLIENTES
 Route::get('client/index', [ClienteController::class, 'index'])->name('client.index');

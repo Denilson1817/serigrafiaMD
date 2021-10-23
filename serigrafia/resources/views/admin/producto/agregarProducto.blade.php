@@ -54,6 +54,9 @@
                 <div class="md:w-2/3">
                     <select name="Diseno" id="Diseno" class="appearance-none border rounded py-2 px-15 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full" onchange="functionDiseno()">
                         <option disabled selected value="">Diseño</option>
+                        @foreach(App\Models\Diseno::get() as $desing )
+                            <option value="{{$desing->id}}"> {{$desing->Nombre}} </option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -64,7 +67,7 @@
                     <img id="imagenPrevisualizacion" class="pl-2 block h-40 w-32">
                 </div><br>
                 <div class="pl-16 space-y-4 flex space-x-4 justify-center">
-                    <button onclick="document.getElementById('Foto').click()" class=" bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-8 border-b-4 border-blue-700 hover:border-blue-500 rounded ">Agregar</button>
+                    <button type="submit" class=" bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-8 border-b-4 border-blue-700 hover:border-blue-500 rounded ">Agregar</button>
                 </div>
             </center>
         </div>
@@ -72,6 +75,18 @@
 </form>
 
 <script type="text/javascript">
-    
+    function functionDiseno(){
+        $.ajax({
+            type: "GET",
+            url: route('getPhotoDiseno'),
+            data: {
+                idDiseno: document.getElementById('Diseno').value
+            },
+            success: function(respu) {
+                console.log(respu)
+                $("#imagenPrevisualizacion").attr('src', '/storage/'+respu);
+            }
+        });
+    }
 </script>
 @endsection
