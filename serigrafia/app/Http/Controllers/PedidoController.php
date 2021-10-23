@@ -127,7 +127,7 @@ class PedidoController extends Controller
     //para buscar una foto 
     public function showPhoto($iddiseno){
         $diseno = Diseno::find($iddiseno,'Foto');
-        return redirect()->route('disenos.search');
+        return redirect()->route('Foto.search');
     }
 
     public function cancelPedido($id_pedido, $id_cliente)
@@ -145,7 +145,6 @@ class PedidoController extends Controller
 
     //Aquí se envian los datos de cancelPedido
     public function enviarPedido(Request $request){
-        
         //Aquí se envia los datos a la tabla de Pedidos Cancelados
         $enviarP = new PedidosCancelados();
         $enviarP->NombreCliente = $request->nombreCliente;
