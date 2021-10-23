@@ -45,10 +45,14 @@ Route::post('/admin/catalog/enviarDiseno', [CatalogController::class, 'enviarDis
 Route::get('/admin/pedidos/search/', [PedidoController::class, 'show'])->name('pedidos.search');
 Route::get('/admin/pedidos/edit/{id_pedido}', [PedidoController::class, 'edit'])->name('pedidos.edit');
 Route::post('/admin/pedidos/update', [PedidoController::class, 'update'])->name('pedidos.update');
+
 Route::get('/admin/pedidos/create', [PedidoController::class, 'create'])->name('pedidos.create');
 Route::post('/admin/pedidos/save', [PedidoController::class, 'store'])->name('pedidos.save');
+
+//RUTA PARA CANCELAR PEDIDO
 Route::get('/admin/pedidos/cancelPedido/{id_pedido}/{id_cliente}', [PedidoController::class, 'cancelPedido'])->name('pedidos.cancelPedido');
-Route::get('/admin/pedidos/enviarPedido', [PedidoController::class, 'enviarPedido'])->name('pedidos.enviarPedido');
+//RUTA PARA ENVIAR LOS DATOS A LA BD
+Route::post('/admin/pedidos/enviarPedido', [PedidoController::class, 'enviarPedido'])->name('pedidos.enviarPedido');
 
 
 
@@ -65,7 +69,8 @@ Route::get('admin/pedidos/addPro_Ped/{id_Pedido}', [ProductoPedidoController::cl
 Route::get('/admin/catalog/editarDisenio/{id}', [CatalogController::class, 'editarDisenio'])->name('catalog.editarDisenio');
 Route::post('/admin/catalog/editDisenio', [CatalogController::class, 'editDisenioGuard'])->name('catalog.editDisenioGuard');
 
-
+//ruta que recupera la foto d eun diseño
+Route::get('/admin/pedidos/getFotoDiseno', [PedidoController::class, 'showPhoto'])->name('getPhotoDiseno');
 
 //CLIENTES
 Route::get('client/index', [ClienteController::class, 'index'])->name('client.index');

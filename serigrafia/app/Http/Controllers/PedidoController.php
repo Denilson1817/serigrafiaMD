@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Catalogo;
 use App\Models\Pedido;
+use App\Models\PedidoCancelado;
 use App\Models\Cliente;
 use App\Models\Diseno;
 use App\Models\Producto;
@@ -133,9 +134,9 @@ class PedidoController extends Controller
         //
     }
     //para buscar una foto 
-    public function showPhoto($iddiseno){
-        $diseno = Diseno::find($iddiseno,'Foto');
-        return redirect()->route('disenos.search');
+    public function showPhoto(Request $request){
+        $diseno = Diseno::find($request->idDiseno);
+        return $diseno->Foto;
     }
 
     public function cancelPedido($id_pedido, $id_cliente)
@@ -153,16 +154,15 @@ class PedidoController extends Controller
 
     //Aquí se envian los datos de cancelPedido
     public function enviarPedido(Request $request){
-        
         //Aquí se envia los datos a la tabla de Pedidos Cancelados
-        $enviarP = new PedidosCancelados();
+        $enviarP = new PedidoCancelado();
         $enviarP->NombreCliente = $request->nombreCliente;
         $enviarP->IDPedido = $request->idpedido;
         $enviarP->FechaRealizacion = $request->fechaRealizado;
         $enviarP->FechaEntrega = $request->fechaEntrega;
         $enviarP->Motivo = $request->razon;
 
-        $enviarD->save();
+        $enviarP->save();
         return redirect()->route('dashboard');
     }
 

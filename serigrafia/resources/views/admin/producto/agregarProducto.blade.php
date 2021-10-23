@@ -56,6 +56,9 @@
                 <div class="md:w-2/3">
                     <select name="Diseno" id="Diseno" class="appearance-none border rounded py-2 px-15 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full" onchange="functionDiseno()">
                         <option disabled selected value="">Diseño</option>
+                        @foreach(App\Models\Diseno::get() as $desing )
+                            <option value="{{$desing->id}}"> {{$desing->Nombre}} </option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -74,6 +77,18 @@
 </form>
 
 <script type="text/javascript">
-    
+    function functionDiseno(){
+        $.ajax({
+            type: "GET",
+            url: route('getPhotoDiseno'),
+            data: {
+                idDiseno: document.getElementById('Diseno').value
+            },
+            success: function(respu) {
+                console.log(respu)
+                $("#imagenPrevisualizacion").attr('src', '/storage/'+respu);
+            }
+        });
+    }
 </script>
 @endsection
