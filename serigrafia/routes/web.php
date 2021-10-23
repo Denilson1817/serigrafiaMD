@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoPedidoController;
 use App\Models\Producto_Pedido;
@@ -73,3 +74,6 @@ Route::get('/admin/pedidos/buscarCatalogo/{categoria}', [PedidoController::class
 
 //Ruta para agregar clientes vista
 Route::get('/admin/pedidos/agregarCliente', [PedidoController::class, 'agregarCliente'])->name('pedidos.agregarCliente');
+//Ruta para agregar un cliente
+Route::post('/admin/pedidos/store', [ClienteController::class, 'store'])->name('clientes.store');
+

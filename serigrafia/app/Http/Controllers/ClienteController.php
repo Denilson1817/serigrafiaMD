@@ -24,7 +24,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        return view('admin.pedido.agregarCliente');
+        //return view('admin.pedido.agregarCliente');
     }
 
     /**
@@ -35,7 +35,21 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cliente = new Cliente();
+        /*$cliente->Telefono = $request->input('Telefono');
+        $cliente->Nombre = $request->input('Nombre');
+        $cliente->Domicilio = $request->input('Domicilio');
+        $cliente->CorreoElectronico = $request->input('CorreoElectronico');
+        $cliente->save();*/
+        $cliente->Telefono = $request->telefono;
+        $cliente->Nombre = $request->nombre;
+        $cliente->Domicilio = $request->domicilio;
+        $cliente->CorreoElectronico = $request->correoElectronico;
+        
+        
+        $cliente->save();
+
+        return back()->withInput();
     }
 
     /**
