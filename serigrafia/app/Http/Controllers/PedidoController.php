@@ -48,6 +48,7 @@ class PedidoController extends Controller
         $pedido->FechaEntraga = $request->FechaEntraga;
         $pedido->NumProductos = 0;
         $pedido->IDCliente = $request->cliente_id;
+        $pedido->estado = 1;
         $pedido->save();
 
         foreach ($request->productos as $producto) 
@@ -163,7 +164,7 @@ class PedidoController extends Controller
         $enviarP->Motivo = $request->razon;
 
         $enviarP->save();
-        return redirect()->route('dashboard');
+        return redirect()->route('pedidos.search');
     }
 
     public function agregarCliente(){

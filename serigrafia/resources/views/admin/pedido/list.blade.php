@@ -72,7 +72,7 @@
                                 </td>
                                 <td class="w-1/6 p-3">
                                     <a href="{{route('pedidos.cancelPedido', ['id_pedido' => $pedido->id, 'id_cliente' => $pedido->IDCliente])}}" class="text-gray-400 hover:text-gray-100 ml-2">
-                                        <i class="material-icons-round text-base hover:text-green-300">Cancelar</i>
+                                        <i class="material-icons-round text-base hover:text-red-300">Eliminar</i>
                                     </a>
                                 </td>
                             </tr>

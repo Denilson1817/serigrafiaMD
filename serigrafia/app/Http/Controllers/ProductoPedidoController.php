@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Catalogo;
+use App\Models\Diseno;
 use App\Models\Pedido;
 use App\Models\Producto;
 use App\Models\Producto_Pedido;
@@ -113,10 +115,11 @@ class ProductoPedidoController extends Controller
         $producto->Nombre = $request->Nombre;
         $producto->IDDiseno = $request->Diseno;
         $producto->save();
-        
+        return back();
     }
 
     public function buscarCatalogo($categoria){
+        $disenos = collect();
         foreach(Catalogo::where('Categoria', $categoria)->get() as $catalog){
             $disenos->concat([Diseno::select('Nombre')->where('ID_Catalago', '=', $catalog->id)->get()]);
         }
