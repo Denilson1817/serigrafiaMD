@@ -48,6 +48,7 @@ class PedidoController extends Controller
         $pedido->FechaEntraga = $request->FechaEntraga;
         $pedido->NumProductos = 0;
         $pedido->IDCliente = $request->cliente_id;
+        $pedido->estado = 1;
         $pedido->save();
 
         foreach ($request->productos as $producto) 
@@ -119,6 +120,7 @@ class PedidoController extends Controller
         $pedido = Pedido::find($request->id_pedido);
         $pedido->FechaEntraga = $request->FechaEntrega;
         $pedido->numProductos = Producto_Pedido::where('IDPedido', $request->id_pedido)->count();
+        $pedido->estado = 1;
         $pedido->save();
         return redirect()->route('pedidos.search');
     }
@@ -138,7 +140,7 @@ class PedidoController extends Controller
         $diseno = Diseno::find($request->idDiseno);
         return $diseno->Foto;
     }
-
+        //Función PARA CANCELAR PEDIDO
     public function cancelPedido($id_pedido, $id_cliente)
     {
         $pedido = Pedido::find($id_pedido);
@@ -154,6 +156,14 @@ class PedidoController extends Controller
 
     //Aquí se envian los datos de cancelPedido
     public function enviarPedido(Request $request){
+        //Aquí es para actualizar el Estado del catalogo en la BD
+        
+        $pedido = Pedido::find($request->id_pedido);
+        $pedido->FechaRealizado = $request->fechaRealizado;
+        $catalog->FechaEntraga = $request->fechaEntraga;
+        $catalog->NumProductos = $request->numProductos;
+        $catalog->Estado = $request->estado;
+
         //Aquí se envia los datos a la tabla de Pedidos Cancelados
         $enviarP = new PedidoCancelado();
         $enviarP->NombreCliente = $request->nombreCliente;
@@ -163,10 +173,16 @@ class PedidoController extends Controller
         $enviarP->Motivo = $request->razon;
 
         $enviarP->save();
+
         return redirect()->route('dashboard');
     }
 
+
+    
     public function agregarCliente(){
         return view('admin.pedido.agregarCliente');
     }
+
+
+   
 }
