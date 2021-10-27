@@ -48,34 +48,36 @@
                     </thead>
                     <tbody>
                         @foreach($pedidos as $pedido)
-                            <tr class="bg-gray-800">
-                                <td class="w-2/6 p-3 max-w-xs">
-                                    <div class="flex align-items-center">
-                                        <div class="ml-3">
-                                            <div class="text-xs md:text-lg">{{$pedido->cliente->Nombre}}</div>
+                            @if($pedido->estado == 1)
+                                <tr class="bg-gray-800">
+                                    <td class="w-2/6 p-3 max-w-xs">
+                                        <div class="flex align-items-center">
+                                            <div class="ml-3">
+                                                <div class="text-xs md:text-lg">{{$pedido->cliente->Nombre}}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="w-1/6 p-3">
-                                    {{$pedido->FechaEntraga}}
-                                </td>
-                                <td class="w-1/6 p-3 font-bold">
-                                    {{App\Models\Producto_Pedido::where('IDPedido', $pedido->id)->sum('PrecioTotal')}}
-                                </td>
-                                <td class="w-1/6 p-3">
-                                    {{$pedido->NumProductos}}
-                                </td>
-                                <td class="w-1/6 p-3">
-                                    <a href="{{route('pedidos.edit', $pedido->id)}}" class="text-gray-400 hover:text-gray-100 ml-2">
-                                        <i class="material-icons-round text-base hover:text-green-300">Modificar</i>
-                                    </a>
-                                </td>
-                                <td class="w-1/6 p-3">
-                                    <a href="{{route('pedidos.cancelPedido', ['id_pedido' => $pedido->id, 'id_cliente' => $pedido->IDCliente])}}" class="text-gray-400 hover:text-gray-100 ml-2">
-                                        <i class="material-icons-round text-base hover:text-red-300">Eliminar</i>
-                                    </a>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td class="w-1/6 p-3">
+                                        {{$pedido->FechaEntraga}}
+                                    </td>
+                                    <td class="w-1/6 p-3 font-bold">
+                                        {{App\Models\Producto_Pedido::where('IDPedido', $pedido->id)->sum('PrecioTotal')}}
+                                    </td>
+                                    <td class="w-1/6 p-3">
+                                        {{$pedido->NumProductos}}
+                                    </td>
+                                    <td class="w-1/6 p-3">
+                                        <a href="{{route('pedidos.edit', $pedido->id)}}" class="text-gray-400 hover:text-gray-100 ml-2">
+                                            <i class="material-icons-round text-base hover:text-green-300">Modificar</i>
+                                        </a>
+                                    </td>
+                                    <td class="w-1/6 p-3">
+                                        <a href="{{route('pedidos.cancelPedido', ['id_pedido' => $pedido->id, 'id_cliente' => $pedido->IDCliente])}}" class="text-gray-400 hover:text-gray-100 ml-2">
+                                            <i class="material-icons-round text-base hover:text-red-300">Eliminar</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
