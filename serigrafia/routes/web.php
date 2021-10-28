@@ -90,7 +90,7 @@ Route::post('/admin/pedidos/store', [ClienteController::class, 'store'])->name('
 
 
 //CARRITO
-Route::get('cliente/addCarrito', [CarritoController::class, 'addCarrito'])->name('cliente.addProductos');
-Route::get('cliente/carrito', [CarritoController::class, 'viewCarrito'])->name('cliente.carrito');
-Route::post('cliente/saveProductToCarrito', [CarritoController::class, ''])->name('cliente.saveProductoCarrito')
+//Route::get('cliente/addCarrito', [CarritoController::class, 'addCarrito'])->name('cliente.addProductos');
+//Route::get('cliente/carrito', [CarritoController::class, 'viewCarrito'])->name('cliente.carrito');
+//Route::post('cliente/saveProductToCarrito', [CarritoController::class, ''])->name('cliente.saveProductoCarrito');
 

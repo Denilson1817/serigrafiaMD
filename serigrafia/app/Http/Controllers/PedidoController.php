@@ -86,7 +86,9 @@ class PedidoController extends Controller
                     $query->where('Nombre', 'LIKE', '%'.$request->client.'%');
                 });
             }
-        })->paginate(5);
+        })
+        ->where('estado',1)
+        ->paginate(5);
         return view('admin.pedido.list', [
             'pedidos' => $pedidos,
             'client'  => $request->client,
@@ -158,11 +160,12 @@ class PedidoController extends Controller
     public function enviarPedido(Request $request){
         //Aquí es para actualizar el Estado del catalogo en la BD
         
-        $pedido = Pedido::find($request->id_pedido);
-        $pedido->FechaRealizado = $request->fechaRealizado;
-        $catalog->FechaEntraga = $request->fechaEntraga;
-        $catalog->NumProductos = $request->numProductos;
-        $catalog->Estado = $request->estado;
+        $pedido = Pedido::find($request->idpedido);
+        /*$pedido->FechaRealizado = $request->fechaRealizado;
+        $pedido->FechaEntraga = $request->fechaEntraga;
+        $pedido->NumProductos = $request->numProductos;*/
+        $pedido->estado = 0;
+        $pedido->save();
 
         //Aquí se envia los datos a la tabla de Pedidos Cancelados
         $enviarP = new PedidoCancelado();
@@ -171,6 +174,7 @@ class PedidoController extends Controller
         $enviarP->FechaRealizacion = $request->fechaRealizado;
         $enviarP->FechaEntrega = $request->fechaEntrega;
         $enviarP->Motivo = $request->razon;
+        $enviarP->Estado = 0;
 
         $enviarP->save();
         return redirect()->route('pedidos.search');
