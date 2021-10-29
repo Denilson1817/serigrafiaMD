@@ -115,9 +115,11 @@
             },
             
             success: function(respu) {
+                console.log("RES:   "+respu);
                 for ($i = 0; i <respu.count; i++) {
-                    if(id.Catalogo(ID_Catalogo)==id.Diseno(Nombre)){
-                        $("Diseno").append("<option value='"+respu[i].desing.id+"'>" + respu[i].$desing.Nombre+"</option>");
+                    $("Diseno").append("<option value='"+respu[i].desing.id+"'>" + respu[i].$desing.Nombre+"</option>");
+
+                }
                
             }
 
