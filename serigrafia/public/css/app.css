@@ -1820,6 +1820,9 @@ select {
 .p-3 {
 	padding: 0.75rem;
 }
+.p-10 {
+	padding: 2.5rem;
+}
 .px-4 {
 	padding-left: 1rem;
 	padding-right: 1rem;
@@ -3020,6 +3023,10 @@ label {
 		display: flex;
 	}
 
+	.lg\:table-row {
+		display: table-row;
+	}
+
 	.lg\:h-auto {
 		height: auto;
 	}
@@ -3068,5 +3075,9 @@ label {
 	.lg\:px-8 {
 		padding-left: 2rem;
 		padding-right: 2rem;
+	}
+
+	.lg\:text-center {
+		text-align: center;
 	}
 }

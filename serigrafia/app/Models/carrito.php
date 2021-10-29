@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class carrito extends Model
+class Carrito extends Model
 {
     use HasFactory;
     
@@ -15,18 +15,9 @@ class carrito extends Model
 		'cliente_id',
         'producto_id',
         'cantidad'
-        
 	];
     
-    public function role(){
-               
-        return $this->belongsToMany(carrito::class);
+    public function cliente(){
+        return $this->hasMany(Cliente::class);
     }
-
-    
-
-    
-
-    
-
 }

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Producto_Pedido;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ProductoPedidoSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class ProductoPedidoSeeder extends Seeder
      */
     public function run()
     {
-        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 		Producto_Pedido::truncate();
 		$productosPedidos = [
 			['id' => 1,'IDPedido' => 2,'PrecioTotal' => 100,'NumProductos' => 5,'IDproducto' => 3,'created_at' => '2021-10-05 04:15:58','updated_at' => '2021-10-05 04:15:58'],
