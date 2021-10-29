@@ -20,4 +20,7 @@ class Carrito extends Model
     public function cliente(){
         return $this->hasMany(Cliente::class);
     }
+    public function producto(){
+        return $this->belongsTo(Producto::class);
+    }
 }

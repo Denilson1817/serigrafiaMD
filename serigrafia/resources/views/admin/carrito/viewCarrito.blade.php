@@ -19,10 +19,13 @@
                 <tbody>
                     @foreach($Carrito as $producto_carrito)
                         <tr class="flex flex-wrap @if($loop->first) mt-4 @endif sm:table-row mb-4 sm:mb-0">
-                            <td class="w-1/2 sm:w-auto p-3 border border-r-0 sm:border-none rounded-l-lg sm:rounded-l-none">{{$p}}</td>
+                            <td class="w-1/2 sm:w-auto p-3 border border-r-0 sm:border-none rounded-l-lg sm:rounded-l-none text-center">{{$producto_carrito->producto->diseno->Nombre}}</td>
+                            <td class="w-1/2 sm:w-auto p-3 border border-r-0 sm:border-none rounded-l-lg sm:rounded-l-none text-center">{{$producto_carrito->producto->Nombre}}</td>
+                            <td class="w-1/2 sm:w-auto p-3 border border-r-0 sm:border-none rounded-l-lg sm:rounded-l-none text-center">{{$producto_carrito->cantidad}}</td>
+                            <td class="w-1/2 sm:w-auto p-3 border border-r-0 sm:border-none rounded-l-lg sm:rounded-l-none text-center">{{$producto_carrito->cantidad * $producto_carrito->producto->Precio}}</td>
                             <td class="w-1/2 sm:w-auto p-3 text-center border sm:border-none rounded-r-lg sm:rounded-r-none">
                                 <div class="grid grid-cols-1">
-                                    <button class="appearance-none bg-pink-600 hover:bg-red-600 text-white transition duration-500 ease-in-out font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline" type="button" wire:click='confirm_delete_area({{$k}})'>
+                                    <button class="appearance-none bg-pink-600 hover:bg-red-600 text-white transition duration-500 ease-in-out font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline" type="button">
                                         Eliminar
                                     </button>
                                 </div>
