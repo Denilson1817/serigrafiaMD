@@ -65,12 +65,7 @@
                 <div class="md:w-2/3">
                     <select name="Diseno" id="Diseno" class="appearance-none border rounded py-2 px-15 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full" >
                         <option disabled selected value="">Diseño</option>
-                        @foreach(App\Models\Catalogo::get() as $desing)
-
-                                <option value="{{$desing->id}}"> {{$desing->Nombre}} </option>
-                            
-                            
-                        @endforeach
+                        
                     </select>
                 </div>
             </div>
@@ -111,13 +106,12 @@
             type: "GET",
             url: route('pedidos.buscarCatalogo'),
             data: {
-                categoria:categoria_value
+                categoria : categoria_value
             },
             
             success: function(respu) {
-                console.log("RES:   "+respu);
-                for ($i = 0; i <respu.count; i++) {
-                    $("Diseno").append("<option value='"+respu[i].desing.id+"'>" + respu[i].$desing.Nombre+"</option>");
+                for (i = 0; i < respu.length; i++) {
+                    $("#Diseno").append("<option value='"+respu[i].id+"'>" + respu[i].Nombre+"</option>");
 
                 }
                

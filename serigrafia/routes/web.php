@@ -81,7 +81,7 @@ Route::get('/admin/pedidos/agregarProducto', [ProductoPedidoController::class, '
 //Ruta para agregar productos
 Route::post('/admin/pedidos/addNewProduct', [ProductoPedidoController::class, 'addNewProduct'])->name('pedidos.addNewProduct');
 //Ruta para buscar disenios en catalogo
-Route::get('/admin/pedidos/buscarCatalogo/{categoria}', [ProductoPedidoController::class, 'buscarCatalogo'])->name('pedidos.buscarCatalogo');
+Route::get('/admin/pedidos/buscarCatalogo/', [ProductoPedidoController::class, 'buscarCatalogo'])->name('pedidos.buscarCatalogo');
 
 //Ruta para agregar clientes vista
 Route::get('/admin/pedidos/agregarCliente', [PedidoController::class, 'agregarCliente'])->name('pedidos.agregarCliente');
