@@ -6,6 +6,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoPedidoController;
 use App\Models\Producto_Pedido;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarritoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,7 +91,7 @@ Route::post('/admin/pedidos/store', [ClienteController::class, 'store'])->name('
 
 
 //CARRITO
-//Route::get('cliente/addCarrito', [CarritoController::class, 'addCarrito'])->name('cliente.addProductos');
+Route::get('cliente/addCarrito', [CarritoController::class, 'addCarrito'])->name('cliente.addCarrito');
 //Route::get('cliente/carrito', [CarritoController::class, 'viewCarrito'])->name('cliente.carrito');
 //Route::post('cliente/saveProductToCarrito', [CarritoController::class, ''])->name('cliente.saveProductoCarrito');
 
