@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Pedido;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PedidoSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class PedidoSeeder extends Seeder
      */
     public function run()
     {
-        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 		Pedido::truncate();
 		$pedidos = [
 			['id' => 1,'FechaRealizado' => '2021-10-05 04:15:58','FechaEntraga' => '2021-10-07 03:59:09','NumProductos' => 5,'IDCliente' => 1,'created_at' => '2021-10-05 04:15:58','updated_at' => '2021-10-05 04:15:58', 'estado' => 1],

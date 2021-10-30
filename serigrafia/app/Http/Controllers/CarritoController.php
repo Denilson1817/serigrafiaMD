@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\carrito;
+use App\Models\Carrito;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\Producto;
@@ -27,7 +27,7 @@ class CarritoController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -60,7 +60,8 @@ class CarritoController extends Controller
      */
     public function edit(carrito $carrito)
     {
-        //
+        $carrito = Carrito::where('cliente_id', auth()->user()->id)->get();
+        return view('admin.carrito.viewCarrito', ['Carrito' => $carrito]);
     }
 
     /**
