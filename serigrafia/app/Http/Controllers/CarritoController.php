@@ -27,10 +27,10 @@ class CarritoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    /*public function create()
     {
         
-    }
+    }*/
 
     /**
      * Store a newly created resource in storage.
@@ -109,5 +109,7 @@ class CarritoController extends Controller
         session()->flash("success", "Pedido registrado");
     }
 
-    
+    public function create(){
+        return view('admin.carrito.addProductos');
+    }
 }
