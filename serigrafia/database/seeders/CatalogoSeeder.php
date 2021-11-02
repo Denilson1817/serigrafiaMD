@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Catalogo;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CatalogoSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class CatalogoSeeder extends Seeder
      */
     public function run()
     {
-        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 		Catalogo::truncate();
 		$catalogs = [
 			['id' => '1','Nombre' => 'Jorge','Categoria' => 'ññññ','Estado' => 1,'created_at' => '2021-10-05 04:13:06','updated_at' => '2021-10-05 04:13:06'],

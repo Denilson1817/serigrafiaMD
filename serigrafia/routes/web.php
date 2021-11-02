@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PedidoController;
@@ -80,7 +81,7 @@ Route::get('/admin/pedidos/agregarProducto', [ProductoPedidoController::class, '
 //Ruta para agregar productos
 Route::post('/admin/pedidos/addNewProduct', [ProductoPedidoController::class, 'addNewProduct'])->name('pedidos.addNewProduct');
 //Ruta para buscar disenios en catalogo
-Route::get('/admin/pedidos/buscarCatalogo/{categoria}', [ProductoPedidoController::class, 'buscarCatalogo'])->name('pedidos.buscarCatalogo');
+Route::get('/admin/pedidos/buscarCatalogo/', [ProductoPedidoController::class, 'buscarCatalogo'])->name('pedidos.buscarCatalogo');
 
 //Ruta para agregar clientes vista
 Route::get('/admin/pedidos/agregarCliente', [PedidoController::class, 'agregarCliente'])->name('pedidos.agregarCliente');
@@ -90,6 +91,9 @@ Route::post('/admin/pedidos/store', [ClienteController::class, 'store'])->name('
 
 
 //CARRITO
-Route::get('cliente/addCarrito', [CarritoController::class, 'addCarrito'])->name('cliente.addProductos');
-Route::get('cliente/carrito', [CarritoController::class, 'viewCarrito'])->name('cliente.carrito');
-Route::post('cliente/saveProductToCarrito', [CarritoController::class, ''])->name('cliente.saveProductoCarrito');
+Route::get('/cliente/addCarrito', [CarritoController::class, 'create'])->name('cliente.addProductos');
+Route::get('/cliente/carrito', [CarritoController::class, 'edit'])->name('cliente.carrito');
+Route::post('/cliente/saveProductToCarrito', [CarritoController::class, 'save'])->name('cliente.saveProductoCarrito');
+
+Route::post('/cliente/carrito/producto_delete', [CarritoController::class, 'destroy'])->name('cliente.carrito.delProduct');
+Route::post('/cliente/carrito/saveCarritoPedido', [CarritoController::class, 'CarritoPedido'])->name('cliente.carrito.carritoPedido');
