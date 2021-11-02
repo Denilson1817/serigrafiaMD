@@ -8,6 +8,7 @@ use App\Models\Cliente;
 use App\Models\Pedido;
 use App\Models\Producto;
 use App\Models\Producto_Pedido;
+use App\Models\Diseno;
 
 class CarritoController extends Controller
 {
@@ -111,5 +112,13 @@ class CarritoController extends Controller
 
     public function create(){
         return view('admin.carrito.addProductos');
+    }
+
+    public function showDesing(Request $request){
+        $disenos = collect();
+        foreach(Catalogo::where('id', $request->id)->get() as $catalog){
+            $disenos = $disenos->concat(Diseno::where('ID_Catalago', $catalog->id)->get());
+        }
+        return $disenos;
     }
 }

@@ -31,16 +31,16 @@
         <br>
         <!--Etiquetas e input-->
         <div class="flex flex-wrap min-w-full my-30">
-            <div class="w-4/5 p-2 text-center">
+            <div class="min-w-full p-2 text-center">
                 <label class="w-2/3 text-xl" for="ElegirCatalog">Primero elige un catálogo</label>
                 <select name="NombreC" id="NombreC" class="w-1/3 text-base">
                     <option value="">Nombre del catálogo</option>
-                    <!--@foreach(App\Models\Catalogo::get() as $catalog)
-                        <option value="{{$catalog->Nombre}}">{{$catalog->Nombre}}</option>
-                    @endforeach-->
+                    @foreach(App\Models\Catalogo::get() as $catalog)
+                        <option value="{{$catalog->id}}">{{$catalog->Nombre}}</option>
+                    @endforeach
                 </select>
             </div>
-            <div class="w-4/5 p-2 text-center">
+            <div class="min-w-full p-2 text-center">
                 <label class="w-2/3 text-xl" for="ElegirDiseno">Ahora un diseno</label>
                 <select name="NombreD" id="NombreD" class="w-1/3 text-base">
                     <option value="">Nombre Diseno</option>
@@ -52,30 +52,44 @@
         <div class="min-w-full">
             <h1 class="text-3xl">Selecciona los productos a comprar</h1>
         </div>
-        <!--Aqui va un @foreach-->
-
-        <!--Aqui finaliza el @foreach-->
+        
     </div>
 
 <script type="text/javascript">
-    function selectDesign() {
-        $('#NombreC').on('change', selectId);
-    }
+    $(function(){
+        $('#NombreC').on('change', obtIdCalalog);
+    });
 
-    function selectId(){
+    function obtIdCalalog(){
         var catalogId = $(this).val();
-        $.get('ruta de controller', function(data){
+        
+        $.ajax({
+            url: '/cliente/showDesing',
+            method: 'GET',
             
+            data: {
+                NombreC : catalogId
+            },
+
+            success: function(res){
+                for(i=0; i<res.length; i++){
+                    $('#NombreD').html('<option value="'+res[i].id+'">' +res[i].Nombre+'</option>');
+                }
+            }
         });
+
+        //Ajax
+        /*$.get('cliente.showDesing', function(res) {
+            var html_select = '<option value="">Nombre Diseno</option>';
+            for (var i=0; i<res.length; i++){
+                html_select += '<option value="'+res[i].id+'">'+res[i].Nombre+'</option>';
+            }
+            $('#NombreD').html(html_select);
+
+        });*/
+
+        
     }
 
 </script>
 @endsection
-
-<!--
-    Controlador para mostrar diseños
-    public function showDesing(%id){
-        return $design = Diseno::select('Nombre')->
-                where('ID_Catalago', $id)->get();
-    }
--->
