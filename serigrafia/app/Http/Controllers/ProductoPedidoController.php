@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Catalogo;
+use App\Models\Diseno;
 use App\Models\Pedido;
+use App\Models\Producto;
 use App\Models\Producto_Pedido;
 use Illuminate\Http\Request;
 
@@ -99,5 +102,27 @@ class ProductoPedidoController extends Controller
         return view('admin.pedido.addProd_Ped', ['pedido' => $pedido]);
 
 
+    }
+
+    public function agregarProducto(){
+        return view('admin.producto.agregarProducto');
+    }
+
+    public function addNewProduct(Request $request){
+        $producto = new Producto();
+        $producto->Material = $request->Material;
+        $producto->Precio = $request->Precio;
+        $producto->Nombre = $request->Nombre;
+        $producto->IDDiseno = $request->Diseno;
+        $producto->save();
+        return back();
+    }
+
+    public function buscarCatalogo(Request $request){
+        $disenos = collect();
+        foreach(Catalogo::where('Categoria', $request->categoria)->get() as $catalog){
+            $disenos = $disenos->concat(Diseno::where('ID_Catalago', $catalog->id)->get());
+        }
+        return $disenos;
     }
 }

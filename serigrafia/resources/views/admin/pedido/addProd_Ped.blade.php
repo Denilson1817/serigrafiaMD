@@ -13,26 +13,24 @@
 <body>
     <!-- AQUÍ EN EL FOREACH ES PARA RECUPERAR LOS PRODUCTOS QUE YA ESTEN EN EL PEDIDO CON EL ID QUE 
             SE NOS MANDARA AL AGREGAR PRODUCTO -->
-    @foreach(App\Models\Producto_Pedido::where('IDPedido', $pedido->id)->get() as $producto )
+    @foreach(App\Models\Producto::where('IDPedido', $pedido->id)->get() as $producto )
     <div class="container mx-auto">
         <br>
         <label class="pl-16">Selecciona un producto</label>  
         <label class="pl-16"><b></b></label>
         <select name="productos" id="productos" placeholder="Productos..." class="form-control appearance-none border rounded py-2 px-24 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input_razon" >
 
-            <option value="{{$producto->IDproducto}}">{{$producto->IDproducto}}</option>
+            <option value="{{$producto->id}}">{{$producto->id}}</option>
             
         </select>
             <br>
             <br>
             <br>
     </div>
-        
-            
-                <label class="pl-16">Precio </label> 
-                <label class="pl-16"><b></b></label>
-                <input type="hidden" id="precio" value="{{$producto->Precio}}">
-                <div class="w-1/2 text-left">{{$producto->Precio}}
+            <label class="pl-16">Precio </label> 
+            <label class="pl-16"><b></b></label>
+            <input type="hidden" id="precio" value="{{$producto->Precio}}">
+            <div class="w-1/2 text-left">{{$producto->Precio}}
             
           <input type="hidden" name="precio" id="precio" value="{{$producto->id}}"> <!-- EN ESTE 
             INPUT SE GUARDARA EL PRECIO PARA POSTERIORMENTE LLEVARLO A LA MULTIPLICACIÓN-->  
@@ -50,6 +48,7 @@
                   <label class="pl-16">Precio total </label>
                   <label class="pl-32"><b></b></label>
                 <div class="w-1/2 text-left" id="total">{{$producto->PrecioTotal}}
+
                 </div>
             
             <br>

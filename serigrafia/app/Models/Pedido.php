@@ -12,7 +12,8 @@ class Pedido extends Model
         'FechaRealizado',
         'FechaEntraga',
         'NumProductos',
-        'IDCliente'
+        'IDCliente',
+        'estado'
     ];
     public function cliente()
     {

@@ -21,7 +21,6 @@
             <input type="date" class="shadow appearance-none border rounded py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input_razon" name="FechaEntrega" id="FechaEntrega" value="{{$pedido->FechaEntraga}}">
             <label class="pl-64"><b> </b></label>
 
-
             <input type="hidden" name="id_pedido" id="id_pedido" value="{{$pedido->id}}" class="input_idpedido">
 
             <button type="submit" class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-8 border-b-4 border-green-700 hover:border-green-500 rounded">
