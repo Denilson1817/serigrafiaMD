@@ -87,7 +87,5 @@ class CarritoController extends Controller
         //
     }
 
-    public function addCarrito(){
-        return view('admin.carrito.addCarrito');
-    }
+    
 }

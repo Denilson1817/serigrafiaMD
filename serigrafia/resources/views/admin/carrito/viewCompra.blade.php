@@ -35,9 +35,9 @@
                 <label class="w-2/3 text-xl" for="ElegirCatalog">Primero elige un catálogo</label>
                 <select name="NombreC" id="NombreC" class="w-1/3 text-base">
                     <option value="">Nombre del catálogo</option>
-                    @foreach(App\Models\Catalogo::get() as $catalog)
-                        <option value="{{$catalog->id}}">{{$catalog->Nombre}}</option>
-                    @endforeach
+                    <!--@foreach(App\Models\Catalogo::get() as $catalog)
+                        <option value="{{$catalog->Nombre}}">{{$catalog->Nombre}}</option>
+                    @endforeach-->
                 </select>
             </div>
             <div class="w-4/5 p-2 text-center">

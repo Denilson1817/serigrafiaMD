@@ -186,6 +186,8 @@ class PedidoController extends Controller
         return view('admin.pedido.agregarCliente');
     }
 
-
+    public function viewCompra(){
+        return view('admin.carrito.viewCompra');
+    }
    
 }
