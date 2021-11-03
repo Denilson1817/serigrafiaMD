@@ -34,8 +34,7 @@
 
                     <br>
         <!--<input type="date" name="fecha" min="2018-03-25" max="2018-05-25" step="2" />-->
-        <input type="date" name="fecha" value="{{$pedido->FechaRealizado}}"/>
-        <input type="hidden" name="fechaRealizado" id="fechaRealizado" value="{{$pedido->FechaRealizado}}"/>                
+        <input type="date" name="fechaRealizado" value="{{$pedido->FechaRealizado}}"/>           
         </div>
 
         </div>
@@ -54,7 +53,7 @@
         <input type="hidden" name="idpedido" id="idpedido" value="{{$pedido->id}}" class="input_idpedido">
         <input type="hidden" name="numProductos" id= "numProductos" value="{{$pedido->NumProducto}}" class="input_numProductos"/>
         <input type="hidden" name="idCliente" id= "idCliente" value="{{$pedido->IDCliente}}" class="input_idCliente"/>
-        <input type="hidden" name="estado" id="estado" value = 0 class="input_estado" />
+   
         <br>
         <br>
         <div class="font-serif text-lg text-black-800" align="center">

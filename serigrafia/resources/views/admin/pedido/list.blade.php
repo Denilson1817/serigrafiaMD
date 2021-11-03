@@ -48,7 +48,6 @@
                     </thead>
                     <tbody>
                         @foreach($pedidos as $pedido)
-                            @if($pedido->estado == 1)
                                 <tr class="bg-gray-800">
                                     <td class="w-2/6 p-3 max-w-xs">
                                         <div class="flex align-items-center">
@@ -77,7 +76,6 @@
                                         </a>
                                     </td>
                                 </tr>
-                            @endif
                         @endforeach
                     </tbody>
                 </table>
