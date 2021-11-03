@@ -9,6 +9,7 @@ use App\Models\Pedido;
 use App\Models\Producto;
 use App\Models\Producto_Pedido;
 use App\Models\Diseno;
+use App\Models\Catalogo;
 
 class CarritoController extends Controller
 {
@@ -114,11 +115,12 @@ class CarritoController extends Controller
         return view('admin.carrito.addProductos');
     }
 
-    public function showDesing(Request $request){
+    public function showDesing($id){
         $disenos = collect();
-        foreach(Catalogo::where('id', $request->id)->get() as $catalog){
-            $disenos = $disenos->concat(Diseno::where('ID_Catalago', $catalog->id)->get());
+        foreach(Catalogo::where('id', $id)->get() as $catalog){
+            $disenos = $disenos->concat(Diseno::where('ID_Catalago', $id)->get());
         }
         return $disenos;
+        //return response(json_encode($disenos),200)->header('Content-type','text/plain');
     }
 }

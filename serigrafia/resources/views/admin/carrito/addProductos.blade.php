@@ -34,16 +34,16 @@
             <div class="min-w-full p-2 text-center">
                 <label class="w-2/3 text-xl" for="ElegirCatalog">Primero elige un catálogo</label>
                 <select name="NombreC" id="NombreC" class="w-1/3 text-base">
-                    <option value="">Nombre del catálogo</option>
+                    <option class="bg-white" value="">Nombre del catálogo</option>
                     @foreach(App\Models\Catalogo::get() as $catalog)
-                        <option value="{{$catalog->id}}">{{$catalog->Nombre}}</option>
+                        <option class="bg-white" value="{{$catalog->id}}">{{$catalog->Nombre}}</option>
                     @endforeach
                 </select>
             </div>
             <div class="min-w-full p-2 text-center">
                 <label class="w-2/3 text-xl" for="ElegirDiseno">Ahora un diseno</label>
                 <select name="NombreD" id="NombreD" class="w-1/3 text-base">
-                    <option value="">Nombre Diseno</option>
+                    <option class="bg-white" value="">Nombre Diseño</option>
                 </select>
             </div>
         </div>
@@ -56,40 +56,19 @@
     </div>
 
 <script type="text/javascript">
-    $(function(){
-        $('#NombreC').on('change', obtIdCalalog);
-    });
-
-    function obtIdCalalog(){
-        var catalogId = $(this).val();
-        
-        $.ajax({
-            url: '/cliente/showDesing',
-            method: 'GET',
-            
-            data: {
-                NombreC : catalogId
-            },
-
-            success: function(res){
-                for(i=0; i<res.length; i++){
-                    $('#NombreD').html('<option value="'+res[i].id+'">' +res[i].Nombre+'</option>');
+    $(document).ready(function(){
+        $('#NombreC').change(function(){
+            var catalogId = $(this).val();
+            $.get('/cliente/addCarrito/showDesing/'+catalogId, function(res){
+                console.log(res);
+                var html_select = '<option class="bg-white" value="">Nombre Diseno</option>';
+                for (var i=0; i<res.length; i++){
+                    html_select += '<option class="bg-white" value="'+res[i].id+'">'+res[i].Nombre+'</option>';
                 }
-            }
+                $('#NombreD').html(html_select);
+            });
         });
-
-        //Ajax
-        /*$.get('cliente.showDesing', function(res) {
-            var html_select = '<option value="">Nombre Diseno</option>';
-            for (var i=0; i<res.length; i++){
-                html_select += '<option value="'+res[i].id+'">'+res[i].Nombre+'</option>';
-            }
-            $('#NombreD').html(html_select);
-
-        });*/
-
-        
-    }
+    });
 
 </script>
 @endsection
