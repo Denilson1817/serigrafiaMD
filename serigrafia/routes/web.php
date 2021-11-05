@@ -99,4 +99,4 @@ Route::post('/cliente/carrito/producto_delete', [CarritoController::class, 'dest
 Route::post('/cliente/carrito/saveCarritoPedido', [CarritoController::class, 'CarritoPedido'])->name('cliente.carrito.carritoPedido');
 
 //Mostar los diseños de los catalogos (Carrito)
-Route::get('/cliente/showDesing', [CarritoController::class, 'showDesing'])->name('cliente.showDesing');
+Route::get('/cliente/addCarrito/showDesing/{id}', [CarritoController::class, 'showDesing'])->name('cliente.showDesing');
