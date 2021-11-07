@@ -116,11 +116,22 @@ class CarritoController extends Controller
     }
 
     public function showDesing($id){
+    
         $disenos = collect();
         foreach(Catalogo::where('id', $id)->get() as $catalog){
             $disenos = $disenos->concat(Diseno::where('ID_Catalago', $id)->get());
         }
         return $disenos;
         //return response(json_encode($disenos),200)->header('Content-type','text/plain');
+    }
+
+    public function showCard($id){
+        $productos = collect();
+        foreach(Diseno::where('id', $id)->get() as $diseno){
+
+            $productos = $productos->concat(Producto::where('IDDiseno', $id)->get());
+        }
+        return $productos;
+
     }
 }
