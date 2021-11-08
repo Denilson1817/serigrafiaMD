@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Empleado_Cliente;
 use App\Models\Catalogo;
 use App\Models\Pedido;
 use App\Models\PedidoCancelado;
@@ -34,6 +34,11 @@ class PedidoController extends Controller
     {
         return view('admin.pedido.registroPedido');
     }
+    public function register()
+    {
+        return view('admin.pedido.registroPedidoEmpleado');
+    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -68,6 +73,42 @@ class PedidoController extends Controller
         return redirect()->route('pedidos.search');
     }
 
+
+    public function storeEmpleado(Request $request)
+    {
+        $pedido = new Pedido();
+
+        $pedido->FechaRealizado = new Carbon();
+        $pedido->FechaEntraga = $request->FechaEntraga;
+        $pedido->NumProductos = 0;
+        $pedido->IDCliente = $request->cliente_id;
+        $pedido->estado = 1;
+        $pedido->save();
+        
+        foreach ($request->productos as $producto) 
+        {
+            $productoPedido               = new Producto_Pedido();
+            $productoPedido->IDPedido     = $pedido->id;
+            $productoPedido->NumProductos = $producto['cantidad'];
+            $productoPedido->IDproducto   = $producto['id'];
+            $productoObj = Producto::find($producto['id']);
+            $productoPedido->PrecioTotal  = $productoObj->Precio * $producto['cantidad'];
+            $productoPedido->save();
+        }
+
+        $pedido->NumProductos = Producto_Pedido::where('IDPedido', $pedido->id)->get()->count();
+        $pedido->save();
+        $empleado = new Empleado_Cliente();
+        $empleado->IDCliente=$request->cliente_id;
+        $empleado->NumEmpleado=auth()->user()->id;
+        $empleado->pedido_id=$pedido->id;
+        $empleado->save();
+        session()->flash("success", "Pedido registrado");
+        return redirect()->route('pedidos.principal');
+
+
+    }
+
     public function show(Request $request)
     {
         $pedidos = Pedido::orderBy('id', 'DESC')->where(function ($q) use ($request) 
@@ -95,6 +136,36 @@ class PedidoController extends Controller
             'date'    => $request->date
         ]);
     }
+
+    //***************************************************************
+    public function show2(Request $request)
+    {
+        $pedidos = Pedido::orderBy('id', 'DESC')->where(function ($q) use ($request) 
+        {
+            if (!empty($request->date)) 
+            {
+                $q->where('FechaRealizado', $request->date);
+            }
+            
+        })->where(function ($q) use ($request) 
+        {
+            if (!empty($request->client)) 
+            {
+                $q->whereHas('cliente', function (Builder $query) use ($request) 
+                {
+                    $query->where('Nombre', 'LIKE', '%'.$request->client.'%');
+                });
+            }
+        })
+        ->where('estado',1)
+        ->paginate(5);
+        return view('admin.pedido.listEmpleado', [
+            'pedidos' => $pedidos,
+            'client'  => $request->client,
+            'date'    => $request->date
+        ]);
+    }
+    //***************************************************************
 
     /**
      * Show the form for editing the specified resource.

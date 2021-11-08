@@ -50,7 +50,9 @@ Route::post('/admin/pedidos/update', [PedidoController::class, 'update'])->name(
 Route::get('/admin/pedidos/create', [PedidoController::class, 'create'])->name('pedidos.create');
 Route::post('/admin/pedidos/save', [PedidoController::class, 'store'])->name('pedidos.save');
 //mi ruta historia 7
-Route::get('/admin/pedidos/principal/', [PedidoController::class, 'show'])->name('pedidos.principal');
+Route::get('/empleado/pedidos/principal/', [PedidoController::class, 'show2'])->name('pedidos.principal');
+Route::get('/empleado/pedidos/register', [PedidoController::class, 'register'])->name('pedidos.register');
+Route::post('/empleado/pedidos/save2', [PedidoController::class, 'storeEmpleado'])->name('pedidos.save2');
 //RUTA PARA CANCELAR PEDIDO
 Route::get('/admin/pedidos/cancelPedido/{id_pedido}/{id_cliente}', [PedidoController::class, 'cancelPedido'])->name('pedidos.cancelPedido');
 //RUTA PARA ENVIAR LOS DATOS A LA BD

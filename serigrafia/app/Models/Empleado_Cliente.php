@@ -10,6 +10,15 @@ class Empleado_Cliente extends Model
     use HasFactory;
     protected $fillable = [
         'NumEmpleado',
-        'IDCliente'
+        'IDCliente',
+        'pedido_id'
     ];
+    public function pedido()
+    {
+        return $this->hasOne(Pedido::class);
+    }
+    public function empleado()
+    {
+        return $this->hasOne(User::class, 'NumEmpleado');
+    }
 }
