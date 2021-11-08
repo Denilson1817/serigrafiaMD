@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Cliente;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ClienteSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class ClienteSeeder extends Seeder
      */
     public function run()
     {
-        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 		Cliente::truncate();
 		$clients = [
 			['id' => 1,'Telefono' => '2255698575','Nombre' => 'Ángel Contreras','Domicilio' => 'asdfg', 'CorreoElectronico' => 'mailfalso1@mail.com','created_at' => '2021-10-05 04:15:58','updated_at' => '2021-10-05 04:15:58'],

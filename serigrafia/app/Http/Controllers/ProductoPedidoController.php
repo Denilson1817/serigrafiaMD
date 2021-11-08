@@ -118,10 +118,10 @@ class ProductoPedidoController extends Controller
         return back();
     }
 
-    public function buscarCatalogo($categoria){
+    public function buscarCatalogo(Request $request){
         $disenos = collect();
-        foreach(Catalogo::where('Categoria', $categoria)->get() as $catalog){
-            $disenos->concat([Diseno::select('Nombre')->where('ID_Catalago', '=', $catalog->id)->get()]);
+        foreach(Catalogo::where('Categoria', $request->categoria)->get() as $catalog){
+            $disenos = $disenos->concat(Diseno::where('ID_Catalago', $catalog->id)->get());
         }
         return $disenos;
     }

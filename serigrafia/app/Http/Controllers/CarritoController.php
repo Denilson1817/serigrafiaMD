@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\carrito;
+use App\Models\Carrito;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Pedido;
 use App\Models\Producto;
+use App\Models\Producto_Pedido;
+use App\Models\Diseno;
+use App\Models\Catalogo;
 
 class CarritoController extends Controller
 {
@@ -25,10 +29,10 @@ class CarritoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    /*public function create()
     {
-        //
-    }
+        
+    }*/
 
     /**
      * Store a newly created resource in storage.
@@ -60,7 +64,8 @@ class CarritoController extends Controller
      */
     public function edit(carrito $carrito)
     {
-        //
+        $carrito = Carrito::where('cliente_id', auth()->user()->id)->get();
+        return view('admin.carrito.viewCarrito', ['Carrito' => $carrito]);
     }
 
     /**
@@ -70,19 +75,52 @@ class CarritoController extends Controller
      * @param  \App\Models\carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, carrito $carrito)
+    public function update(Request $request)
     {
         //
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\carrito  $carrito
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(carrito $carrito)
+    
+    public function destroy(Request $request)
     {
-        //
+        Carrito::destroy($request->id_carrito);
+        return back();
+    }
+
+    public function CarritoPedido(Request $request){
+        $pedido = new Pedido();
+        $pedido->IDCliente = auth()->user()->id;
+        $pedido->FechaEntraga = $request->FechaEntraga;
+        $pedido->NumProductos = 0;
+        $pedido->estado = 1;
+        $pedido->save();
+
+        foreach (Carrito::where('cliente_id', auth()->user()->id)->get() as $producto) 
+        {
+            $productoPedido               = new Producto_Pedido();
+            $productoPedido->IDPedido     = $pedido->id;
+            $productoPedido->NumProductos = $producto->cantidad;
+            $productoPedido->IDproducto   = $producto->producto_id;
+            $productoPedido->PrecioTotal  = $producto->producto->Precio * $producto->cantidad;
+            $productoPedido->save();
+        }
+
+        $pedido->NumProductos = Carrito::where('cliente_id', auth()->user()->id)->get()->count();
+        $pedido->save();
+
+        $carritoEliminado = Carrito::where('cliente_id', auth()->user()->id)->delete();
+        session()->flash("success", "Pedido registrado");
+    }
+
+    public function create(){
+        return view('admin.carrito.addProductos');
+    }
+
+    public function showDesing($id){
+        $disenos = collect();
+        foreach(Catalogo::where('id', $id)->get() as $catalog){
+            $disenos = $disenos->concat(Diseno::where('ID_Catalago', $id)->get());
+        }
+        return $disenos;
+        //return response(json_encode($disenos),200)->header('Content-type','text/plain');
     }
 }

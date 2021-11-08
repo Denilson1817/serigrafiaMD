@@ -186,6 +186,5 @@ class PedidoController extends Controller
         return view('admin.pedido.agregarCliente');
     }
 
-
    
 }
