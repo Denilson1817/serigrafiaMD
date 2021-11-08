@@ -15,12 +15,17 @@
                 <h1 class="w-full text-xl">Editar diseño</h1>
             </div>
             <input type="hidden" name="id" value="{{$desing->id}}">
-            <div class="col-span-6 md:col-span-3">
+            <div class="col-span-6 md:col-span-2">
                 <label for="foto">Foto: </label>
                 <input type="file" name="foto" id="foto" accept=".png, .jpg, .jpeg"  value="{{$desing->Foto}}" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
             </div>
+
+            <div class="col-span-6 md:col-span-2">
+                <label for="Nombre">Nombre: </label>
+                <input type="text" name="Nombre" id="Nombre" value="{{$desing->Nombre}}" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+            </div>
                     
-            <div class="col-span-6 md:col-span-3">
+            <div class="col-span-6 md:col-span-2">
                 <label for="textura">Textura: </label>
                 <input type="text" name="textura" id="textura" value="{{$desing->Textura}}" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
             </div>
@@ -46,7 +51,7 @@
             </div>
             
             <div class="col-span-6">
-                <button class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded" type="submit"> Aceptar </button>
+                <button class="pr-6 bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded" type="submit"> Aceptar </button>
                 <!--<button class="bg-green-500 hover:bg-green-400 mr-64 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded" onclick="document.getElementById('modal2').hidden=false;"  type="button" id="btnAcep"> Aceptar </button>-->
                 <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded" onclick="document.getElementById('modal1').hidden=false;"  type="button" id="btnCance"> Cancelar </button>
             </div>

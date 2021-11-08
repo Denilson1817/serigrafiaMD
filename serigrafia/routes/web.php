@@ -111,3 +111,6 @@ Route::post('/cliente/carrito/saveCarritoPedido', [CarritoController::class, 'Ca
 
 //Mostar los diseños de los catalogos (Carrito)
 Route::get('/cliente/addCarrito/showDesing/{id}', [CarritoController::class, 'showDesing'])->name('cliente.showDesing');
+
+//Mostrar tarjeta de los productos con el diseno
+Route::get('/cliente/addCarrito/showCard/{id}', [CarritoController::class, 'showCard'])->name('cliente.showCard');

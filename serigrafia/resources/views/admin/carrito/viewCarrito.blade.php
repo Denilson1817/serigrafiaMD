@@ -17,12 +17,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php $total=0; @endphp
                     @foreach($Carrito as $producto_carrito)
                         <tr class="flex flex-wrap @if($loop->first) mt-4 @endif sm:table-row mb-4 sm:mb-0">
                             <td class="w-1/2 sm:w-auto p-3 border border-r-0 sm:border-none rounded-l-lg sm:rounded-l-none text-center">{{$producto_carrito->producto->diseno->Nombre}}</td>
                             <td class="w-1/2 sm:w-auto p-3 border border-r-0 sm:border-none rounded-l-lg sm:rounded-l-none text-center">{{$producto_carrito->producto->Nombre}}</td>
                             <td class="w-1/2 sm:w-auto p-3 border border-r-0 sm:border-none rounded-l-lg sm:rounded-l-none text-center">{{$producto_carrito->cantidad}}</td>
                             <td class="w-1/2 sm:w-auto p-3 border border-r-0 sm:border-none rounded-l-lg sm:rounded-l-none text-center">{{$producto_carrito->cantidad * $producto_carrito->producto->Precio}}</td>
+                            @php $total+=$producto_carrito->cantidad * $producto_carrito->producto->Precio; @endphp
                             <td class="w-1/2 sm:w-auto p-3 text-center border sm:border-none rounded-r-lg sm:rounded-r-none">
                                 <button type='button' class='appearance-none bg-pink-600 hover:bg-red-600 text-white transition duration-500 ease-in-out font-bold py-2 px-2 rounded-full focus:outline-none focus:shadow-outline' , onclick='deleteProduct("{{$producto_carrito->id}}")'>
                                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='16' height='16'>
@@ -44,6 +46,33 @@
                 </div>
             </div>
         @endif
+    </div>
+    <div class="w-full">
+        <!--Fecha de entrega-->
+        <div class="flex flex-row w-full pt-16 pl-10 text-center">
+            <div class="w-1/6">
+                <h4 class="text-lg">Fecha de entrega</h4>
+            </div>
+            <div class="w-1/5 text-left">
+                <input type="date" name="fecha" id="fecha" class="">
+            </div>
+        </div>
+        <div class="flex flex-row w-full pt-4 pl-10 pb-4">
+            <!--Total a pagar-->
+            <div class="flex flex-row w-1/2">
+                <div class="w-1/3 text-center">
+                    <h4 class="text-lg">Precio total:</h4>
+                </div>
+                <div class="w-1/5 text-left">
+                    <p>{{$total}}</p>
+                </div>
+            </div>
+            <!--Botones Pagar y Cancelar-->
+            <div class="flex flex-row w-1/2">
+                <button id="btnPagar" class="ml-96 mr-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Pagar</button>
+                <button id="btnCancelar" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded">Cancelar</button>
+            </div>
+        </div>
     </div>
     <script>
         function deleteProduct(id){

@@ -68,6 +68,7 @@ class CatalogController extends Controller
         $path = $request->file('foto')->store('diseños');
         $diseno->Foto = $path;
         $diseno->Textura = $request->textura;
+        $diseno->Nombre = $request->Nombre;
         $diseno->Estado = 1;
         $diseno->ID_Catalago = $catalog->id;
         $diseno->save();
@@ -186,6 +187,7 @@ class CatalogController extends Controller
         $diseno->Foto = $path;
         $diseno->Textura = $request->textura;
         $diseno->Estado = $request->estado;
+        $diseno->Nombre = $request->Nombre;
         $diseno->ID_Catalago = $request->id_catalog;
         $diseno->Estado = 1;
         $diseno->save();
@@ -224,6 +226,7 @@ class CatalogController extends Controller
             $path = $request->file('foto')->store('public/diseños');
             $diseno->Foto = $path;
         }
+        $diseno->Nombre = $request->Nombre;
         $diseno->Textura = $request->textura;
         $diseno->save();
 
