@@ -37,12 +37,17 @@
                 <h3 class="w-full text-xl">Agregar un diseño</h3>
             </div>
             <input type="hidden" name="id_catalog" value="{{$catalog->id}}">
-            <div class="col-span-6 md:col-span-3">
+            <div class="col-span-6 md:col-span-2">
                 <label for="foto">Foto: </label>
                 <input type="file" name="foto" id="foto" accept=".png, .jpg, .jpeg" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
                 @error('foto')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
             </div>
-            <div class="col-span-6 md:col-span-3">
+            <div class="col-span-6 md:col-span-2">
+                <label for="Nombre">Nombre: </label>
+                <input type="text" name="Nombre" id="Nombre" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                @error('Nombre')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
+            </div>
+            <div class="col-span-6 md:col-span-2">
                 <label for="textura">Textura: </label>
                 <input type="text" name="textura" id="textura" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
                 @error('textura')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror

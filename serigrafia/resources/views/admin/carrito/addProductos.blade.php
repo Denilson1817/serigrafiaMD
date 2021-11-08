@@ -31,51 +31,91 @@
         <br>
         <!--Etiquetas e input-->
         <div class="flex flex-wrap min-w-full my-30">
-            <div class="w-4/5 p-2 text-center">
+            <div class="min-w-full p-2 text-center">
                 <label class="w-2/3 text-xl" for="ElegirCatalog">Primero elige un catálogo</label>
                 <select name="NombreC" id="NombreC" class="w-1/3 text-base">
-                    <option value="">Nombre del catálogo</option>
-                    <!--@foreach(App\Models\Catalogo::get() as $catalog)
-                        <option value="{{$catalog->Nombre}}">{{$catalog->Nombre}}</option>
-                    @endforeach-->
+                    <option class="bg-white" value="">Nombre del catálogo</option>
+                    @foreach(App\Models\Catalogo::get() as $catalog)
+                        <option class="bg-white" value="{{$catalog->id}}">{{$catalog->Nombre}}</option>
+                    @endforeach
                 </select>
             </div>
-            <div class="w-4/5 p-2 text-center">
+            <div class="min-w-full p-2 text-center">
                 <label class="w-2/3 text-xl" for="ElegirDiseno">Ahora un diseno</label>
                 <select name="NombreD" id="NombreD" class="w-1/3 text-base">
-                    <option value="">Nombre Diseno</option>
+                    <option class="bg-white" value="">Nombre Diseño</option>
+                   
+
                 </select>
             </div>
         </div>
         <br>
         <!--Titulo y selección de producto-->
-        <div class="min-w-full">
-            <h1 class="text-3xl">Selecciona los productos a comprar</h1>
-        </div>
-        <!--Aqui va un @foreach-->
+       
+    
+        <div id="nombre" class="flex flex-wrap -mx-3 p-3 mb-6 text-black"> 
 
-        <!--Aqui finaliza el @foreach-->
+        
+        </div>
+       
+        
+
+        
     </div>
 
 <script type="text/javascript">
-    function selectDesign() {
-        $('#NombreC').on('change', selectId);
-    }
-
-    function selectId(){
-        var catalogId = $(this).val();
-        $.get('ruta de controller', function(data){
-            
+   $(document).ready(function(){
+        $('#NombreC').change(function(){
+            var catalogId = $(this).val();
+            $.get('/cliente/addCarrito/showDesing/'+catalogId, function(res){
+                console.log(res);
+                var html_select = '<option class="bg-white" value="">Nombre Diseno</option>';
+                for (var i=0; i<res.length; i++){
+                    html_select += '<option class="bg-white" value="'+res[i].id+'">'+res[i].Nombre+'</option>';
+                }
+                $('#NombreD').html(html_select);
+            });
         });
-    }
+    });
 
+    $(document).ready(function(){
+        $('#NombreD').change(function(){
+
+            var disenoId = $(this).val();
+            $.get('/cliente/addCarrito/showCard/'+disenoId, function(res){
+                console.log(res);
+                var titulo = ' <div class="min-w-full">'+
+                '<h1 class="text-3xl">Selecciona los productos a comprar</h1>'+
+           
+                '</div>';
+                var html_card = '';
+                
+                for (var i=0; i<res.length; i++){
+                    html_card += '<div class="w-full max-w-sm md:w-1/3 p-3 mb-6 md:mb-0">'+
+                    '<div class="rounded overflow-hidden shadow-lg flex-1">'+
+                        '<div class="text-center px-4 py-2 m-4">'+
+                            '<img name="Foto" id="Foto" class="pl-2 block h-80 w-64" value="'+res[i].Foto+'" alt="Sunset in the mountains">'+
+                        '</div>'+
+                        '<div class=" flex-1  text-center px-4 py-2 m-2">'+
+                            '<input type="number" name="Cantidad" id="Cantidad" class="appearance-none border rounded py-2 px-15 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-25 text-center">'+
+                            '<td>'+
+                            ' <div class="flex flex-wrap -mx-3 mb-6 text-black">'+
+                                '<div class="flex-1  text-center px-4 py-2 m-2"> '+
+                                    '<a class="bg-blue-600 hover:bg-blue-700 text-white hover:text-black font-semibold py-2 px-8 rounded shadow" href="">Agregar al carrito'+
+                                    '</a>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>';
+                }
+                $('#nombre').html(titulo + html_card);
+            });
+        });
+    });
+
+
+
+        
 </script>
-
-<!--
-    Controlador para mostrar diseños
-    public function showDesing(%id){
-        return $design = Diseno::select('Nombre')->
-                where('ID_Catalago', $id)->get();
-    }
--->
 @endsection

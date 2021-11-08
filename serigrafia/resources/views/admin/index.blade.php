@@ -31,10 +31,15 @@
                         @error('categoria')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
                     </div><br>
                     <h3 class="w-full text-xl">Agregar un diseño</h3>
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 label_foto">
+                    <div class="w-full md:w-1/1 px-3 mb-6 md:mb-0 label_foto">
                         <label for="foto">Foto: </label>
                         <input type="file" name="foto" id="foto" accept=".png, .jpg, .jpeg" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white input_foto">
                         @error('foto')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
+                    </div><br>
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 label_textura">
+                        <label for="Nombre">Nombre: </label>
+                        <input type="text" name="Nombre" id="Nombre" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                        @error('Nombre')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
                     </div><br>
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 label_textura">
                         <label for="textura">Textura: </label>
@@ -56,7 +61,7 @@
                         <input type="number" name="dimension_y" id="dimension_y" accept=".png, .jpg, .jpeg" class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
                         @error('dimension_y')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
                     </div><br>
-                    <div class="botones_crear_cata">
+                    <div class="pt-6 botones_crear_cata">
                         <input type="submit" value="Aceptar" class="crear_cata_enviar">
                         <input type="button" value="Cancelar" class="crear_cata_cancelar" onclick="document.getElementById('crearNuevoC').style.display='none';">
                     </div>

@@ -8,6 +8,8 @@ use App\Models\Cliente;
 use App\Models\Pedido;
 use App\Models\Producto;
 use App\Models\Producto_Pedido;
+use App\Models\Diseno;
+use App\Models\Catalogo;
 
 class CarritoController extends Controller
 {
@@ -109,4 +111,23 @@ class CarritoController extends Controller
         session()->flash("success", "Pedido registrado");
     }
 
+    public function showDesing($id){
+    
+        $disenos = collect();
+        foreach(Catalogo::where('id', $id)->get() as $catalog){
+            $disenos = $disenos->concat(Diseno::where('ID_Catalago', $id)->get());
+        }
+        return $disenos;
+        //return response(json_encode($disenos),200)->header('Content-type','text/plain');
+    }
+
+    public function showCard($id){
+        $productos = collect();
+        foreach(Diseno::where('id', $id)->get() as $diseno){
+
+            $productos = $productos->concat(Producto::where('IDDiseno', $id)->get());
+        }
+        return $productos;
+
+    }
 }

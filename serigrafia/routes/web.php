@@ -49,7 +49,10 @@ Route::post('/admin/pedidos/update', [PedidoController::class, 'update'])->name(
 
 Route::get('/admin/pedidos/create', [PedidoController::class, 'create'])->name('pedidos.create');
 Route::post('/admin/pedidos/save', [PedidoController::class, 'store'])->name('pedidos.save');
-
+//mi ruta historia 7
+Route::get('/empleado/pedidos/principal/', [PedidoController::class, 'show2'])->name('pedidos.principal');
+Route::get('/empleado/pedidos/register', [PedidoController::class, 'register'])->name('pedidos.register');
+Route::post('/empleado/pedidos/save2', [PedidoController::class, 'storeEmpleado'])->name('pedidos.save2');
 //RUTA PARA CANCELAR PEDIDO
 Route::get('/admin/pedidos/cancelPedido/{id_pedido}/{id_cliente}', [PedidoController::class, 'cancelPedido'])->name('pedidos.cancelPedido');
 //RUTA PARA ENVIAR LOS DATOS A LA BD
@@ -91,9 +94,23 @@ Route::post('/admin/pedidos/store', [ClienteController::class, 'store'])->name('
 
 
 //CARRITO
+//Route::get('cliente/addCarrito', [CarritoController::class, 'addCarrito'])->name('cliente.addProductos');
+//Route::get('cliente/carrito', [CarritoController::class, 'viewCarrito'])->name('cliente.carrito');
+
+//Route::post('cliente/saveProductToCarrito', [CarritoController::class, ''])->name('cliente.saveProductoCarrito')
+
+//Route::post('cliente/saveProductToCarrito', [CarritoController::class, ''])->name('cliente.saveProductoCarrito');
+
+
 Route::get('/cliente/addCarrito', [CarritoController::class, 'create'])->name('cliente.addProductos');
 Route::get('/cliente/carrito', [CarritoController::class, 'edit'])->name('cliente.carrito');
 Route::post('/cliente/saveProductToCarrito', [CarritoController::class, 'save'])->name('cliente.saveProductoCarrito');
 
 Route::post('/cliente/carrito/producto_delete', [CarritoController::class, 'destroy'])->name('cliente.carrito.delProduct');
 Route::post('/cliente/carrito/saveCarritoPedido', [CarritoController::class, 'CarritoPedido'])->name('cliente.carrito.carritoPedido');
+
+//Mostar los diseños de los catalogos (Carrito)
+Route::get('/cliente/addCarrito/showDesing/{id}', [CarritoController::class, 'showDesing'])->name('cliente.showDesing');
+
+//Mostrar tarjeta de los productos con el diseno
+Route::get('/cliente/addCarrito/showCard/{id}', [CarritoController::class, 'showCard'])->name('cliente.showCard');
