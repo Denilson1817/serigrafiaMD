@@ -70,7 +70,6 @@
     }
 
 </script>
-@endsection
 
 <!--
     Controlador para mostrar diseños
@@ -79,3 +78,4 @@
                 where('ID_Catalago', $id)->get();
     }
 -->
+@endsection
