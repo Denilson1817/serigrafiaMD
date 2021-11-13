@@ -58,12 +58,46 @@
         
         </div>
        
-        
-
-        
+      
     </div>
 
 <script type="text/javascript">
+
+function addCarrito(){
+        var Disenio = document.getElementById("Disenio");
+        var existente = 0
+        $(".idPDisenios").each(function() 
+        {
+            if (producto.value == this.value) 
+            {
+                existente = 1
+            }
+        });
+        
+        if(existente != 1)
+        {
+
+                        <input type="hidden" name="idNombre" id="idNombre" value="{{$producto_carrito->producto->diseno->Nombre}}" class="input_idNombre">
+                        <input type="hidden" name="idNombreProducto" id="idNombreProducto" value="{{$producto_carrito->producto->Nombre}}" class="input_NombreProducto">
+                        <input type="hidden" name="cantidad" id="cantidad" value="{{$producto_carrito->cantidad}}" class="input_cantidad">
+                        <input type="hidden" name="total" id="total" value="{{$producto_carrito->cantidad * $producto_carrito->producto->Precio}}" class="input_total">
+
+                   
+            );
+        
+        document.getElementById("Producto").value = "";
+        document.getElementById("Cantidad").value = "";
+    }
+
+
+
+
+    
+
+
+
+
+
    $(document).ready(function(){
         $('#NombreC').change(function(){
             var catalogId = $(this).val();
@@ -79,6 +113,7 @@
     });
 
     $(document).ready(function(){
+        
         $('#NombreD').change(function(){
 
             var disenoId = $(this).val();
@@ -101,7 +136,7 @@
                             '<td>'+
                             ' <div class="flex flex-wrap -mx-3 mb-6 text-black">'+
                                 '<div class="flex-1  text-center px-4 py-2 m-2"> '+
-                                    '<a class="bg-blue-600 hover:bg-blue-700 text-white hover:text-black font-semibold py-2 px-8 rounded shadow" href="">Agregar al carrito'+
+                                    '<a  onclick="addCarrito()" class="bg-blue-600 hover:bg-blue-700 text-white hover:text-black font-semibold py-2 px-8 rounded shadow" href="{{route('cliente.carrito')}}">Agregar al carrito'+
                                     '</a>'+
                                 '</div>'+
                             '</div>'+
