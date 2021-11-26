@@ -43,7 +43,17 @@ class CarritoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            $carrito = new Carrito();         
+            $carrito -> producto_id = $request->producto_id;
+            $carrito -> cantidad = $request -> cantidad;
+            $carrito->save();
+    
+            session()->flash("success", "Producto agregado al  carrito");
+            return back();
+    }
+
+    public function agregarAlCarrito(){
+        
     }
 
     /**
