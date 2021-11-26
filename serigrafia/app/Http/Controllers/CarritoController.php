@@ -10,6 +10,7 @@ use App\Models\Producto;
 use App\Models\Producto_Pedido;
 use App\Models\Diseno;
 use App\Models\Catalogo;
+use Illuminate\Support\Carbon;
 
 class CarritoController extends Controller
 {
@@ -88,9 +89,10 @@ class CarritoController extends Controller
 
     public function CarritoPedido(Request $request){
         $pedido = new Pedido();
-        $pedido->IDCliente = auth()->user()->id;
+        $pedido->FechaRealizado = new Carbon();
         $pedido->FechaEntraga = $request->FechaEntraga;
         $pedido->NumProductos = 0;
+        $pedido->IDCliente = auth()->user()->id;
         $pedido->estado = 1;
         $pedido->save();
 
@@ -109,6 +111,7 @@ class CarritoController extends Controller
 
         $carritoEliminado = Carrito::where('cliente_id', auth()->user()->id)->delete();
         session()->flash("success", "Pedido registrado");
+        return back();
     }
 
     public function showDesing($id){

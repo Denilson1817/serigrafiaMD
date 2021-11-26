@@ -19,6 +19,6 @@ class Empleado_Cliente extends Model
     }
     public function empleado()
     {
-        return $this->hasOne(User::class, 'NumEmpleado');
+        return $this->hasOne(User::class, 'NumEmpleado', 'id');
     }
 }

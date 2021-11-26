@@ -39,7 +39,13 @@ class ProductoPedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $producto_Pedido = new Producto_Pedido();
+        $producto_Pedido->IDPedido = $request->pedido;
+        $producto_Pedido->IDproducto = $request->productos;
+        $producto_Pedido->NumProductos = $request->NumProductos;
+        $producto_Pedido->PrecioTotal = $request->NumProductos * $request->precio;
+        $producto_Pedido->save();
+        return redirect()->route('pedidos.search');
     }
 
     /**

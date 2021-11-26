@@ -1,13 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<header class="interfaz_Principal">
-    <div class="titulo_seri">
-        <h2 class="titulo-1">Serigrafía Ortiz Empleado</h2>
-    </div>
-    <div class="titulo_cata">
-        <h1 class="titulo-2">Diseños</h1>
-    </div>
-</header>
     <div class="w-full p-4">
         <form action="{{route('pedidos.principal')}}" method="get">
             <div class="inline-block p-4">
@@ -15,7 +7,7 @@
                 <input type="text" name="client" class="shadow appearance-none border rounded py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input_razon" name="cliente" id="cliente" placeholder="Nombre Cliente">
             </div>
             <div class="inline-block p-4">
-                <label class="pl-16">Para ver si es direrente</label>
+                <label class="pl-16">Fecha</label>
                 <input type="date" name="date" class="shadow appearance-none border rounded py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input_razon" name="fecha" id="fecha" placeholder="DD/MM/YY">
             </div>
 
@@ -88,9 +80,9 @@
                                     @else
                                         <td class="w-2/6 p-3 max-w-xs">
                                             <div class="flex align-items-center">
-                                                    <div class="ml-3">
-                                                    <div class="text-xs md:text-lg">{{$empleado->empleado->name}}</div>
-                                                    </div>
+                                                <div class="ml-3">
+                                                    <div class="text-xs md:text-lg">{{App\Models\User::find($empleado->NumEmpleado)->name}}</div>
+                                                </div>
                                             </div>
                                         </td>
                                     @endif

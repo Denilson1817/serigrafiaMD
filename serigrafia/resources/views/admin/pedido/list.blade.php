@@ -1,13 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<header class="interfaz_Principal">
-    <div class="titulo_seri">
-        <h2 class="titulo-1">Serigrafía Ortiz</h2>
-    </div>
-    <div class="titulo_cata">
-        <h1 class="titulo-2">Diseños</h1>
-    </div>
-</header>
     <div class="w-full p-4">
         <form action="{{route('pedidos.search')}}" method="get">
             <div class="inline-block p-4">
@@ -44,6 +36,7 @@
                             <th class="p-3 text-left">Precio total</th>
                             <th class="p-3 text-left">Número de productos</th>
                             <th class="p-3 text-left"></th>
+                            <th class="p-3 text-left"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,7 +56,7 @@
                                         {{App\Models\Producto_Pedido::where('IDPedido', $pedido->id)->sum('PrecioTotal')}}
                                     </td>
                                     <td class="w-1/6 p-3">
-                                        {{$pedido->NumProductos}}
+                                        {{App\Models\Producto_Pedido::where('IDPedido', $pedido->id)->count('id')}}
                                     </td>
                                     <td class="w-1/6 p-3">
                                         <a href="{{route('pedidos.edit', $pedido->id)}}" class="text-gray-400 hover:text-gray-100 ml-2">

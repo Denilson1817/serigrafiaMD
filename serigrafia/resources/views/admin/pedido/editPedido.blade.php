@@ -1,14 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<header class="interfaz_Principal">
-    <div class="titulo_seri">
-        <h2 class="titulo-1">Serigrafía Ortiz</h2>
-    </div>
-    <div class="titulo_cata">
-        <h1 class="titulo-2">Pedidos</h1>
-    </div>
-</header>
-
 <body>
 
     <form action="{{route('pedidos.update')}}" method="post">
@@ -41,7 +32,7 @@
                         @foreach(App\Models\Producto_Pedido::where('IDPedido', $pedido->id)->get() as $producto )
                         <tr class="bg-gray-400">
                             <td class="border p-2">
-                                <label class="pl-8">ID {{$producto->id}}</label>
+                                <label class="pl-8">{{$producto->producto->Nombre}}</label>
                                 <label class="pl-16"><b> </b></label>
                                 <button class="bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 border-b-4 border-yellow-700 hover:border-yellow-500 rounded" onclick="editProductoPedido('{{$producto->id}}')">
                                     Editar

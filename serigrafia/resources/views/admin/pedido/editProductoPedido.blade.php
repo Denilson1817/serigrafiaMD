@@ -6,7 +6,7 @@
                 <h2 class="text-xl text-left">Catálogo {{$ProductoPedido->producto->diseno->catalogo->Nombre}}</h2>
             </div>
             <div class="w-1/2 p-2 justify-center">
-                <img src="{{$ProductoPedido->producto->diseno->Foto}}" alt="{{$ProductoPedido->producto->diseno->Foto}}" srcset="">
+                <img src="/storage/{{$ProductoPedido->producto->diseno->Foto}}" alt="{{$ProductoPedido->producto->diseno->Foto}}" srcset="">
             </div>
         </div>
         

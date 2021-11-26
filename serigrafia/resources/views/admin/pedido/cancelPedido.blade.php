@@ -1,12 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<header class="interfaz_Principal">
-    <div class="titulo_seri">
-        <h2 class="titulo-1">Serigrafía Ortiz</h2>
-    </div>
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-</header>
-
 <center>
 <form action="{{route('pedidos.enviarPedido')}}" method="post">
         @csrf

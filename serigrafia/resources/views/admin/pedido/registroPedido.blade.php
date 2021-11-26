@@ -1,17 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<header class="interfaz_Principal">
-    <div class="titulo_seri">
-        <title>Agregar productos</title>
-    </div>
-    <h1 style="font-size: 30px;" class="font-extrabold  pl-16 ">Agregar Productos</h1>
-    <br>
-    <br>
-    <div class="titulo_cata">
-    </div>
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-</header>
-
 
 <div class="flex flex-wrap -mx-3 mb-6 p-4">
     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
